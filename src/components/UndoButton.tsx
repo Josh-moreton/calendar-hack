@@ -1,6 +1,5 @@
-
 import { Button } from "@mui/material";
-import UndoIcon from '@mui/icons-material/Undo';
+import UndoIcon from "@mui/icons-material/Undo";
 
 interface Props {
   undoHandler: () => void;
@@ -17,9 +16,9 @@ const UndoButton = ({ undoHandler, disabled }: Props) => {
       disabled={disabled}
       sx={{
         borderRadius: 1,
-        textTransform: 'none',
+        textTransform: "none",
         fontWeight: 500,
-        boxShadow: 1
+        boxShadow: 1,
       }}
     >
       Undo

@@ -24,8 +24,8 @@ import { useMountEffect } from "./ch/hooks";
 import { Units, PlanSummary, dayOfWeek } from "types/app";
 import { getLocaleUnits } from "./ch/localize";
 import { Box, Button } from "@mui/material";
-import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
-import TableViewIcon from '@mui/icons-material/TableView';
+import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
+import TableViewIcon from "@mui/icons-material/TableView";
 
 const App = () => {
   const [{ u, p, d, s }, setq] = useQueryParams({
@@ -167,12 +167,12 @@ const App = () => {
         selectedPlanChangeHandler={onSelectedPlanChange}
         weekStartsOn={weekStartsOn}
       />
-      
-      <Box 
-        sx={{ 
-          display: 'flex', 
-          justifyContent: 'center', 
-          mb: 2
+
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          mb: 2,
         }}
       >
         <UnitsButtons
@@ -180,56 +180,56 @@ const App = () => {
           unitsChangeHandler={onSelectedUnitsChanged}
         />
       </Box>
-      
-      <Box 
-        sx={{ 
-          display: 'flex', 
-          flexDirection: { xs: 'column', sm: 'row' },
-          alignItems: 'center',
-          justifyContent: 'center',
+
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: "center",
+          justifyContent: "center",
           gap: 2,
-          mb: 3
+          mb: 3,
         }}
       >
-        <Button 
+        <Button
           variant="contained"
           onClick={downloadIcalHandler}
           startIcon={<CloudDownloadIcon />}
-          sx={{ 
+          sx={{
             borderRadius: 1,
-            textTransform: 'none'
+            textTransform: "none",
           }}
         >
           Download iCal
         </Button>
-        
+
         <Button
           variant="contained"
           onClick={downloadCsvHandler}
           startIcon={<TableViewIcon />}
-          sx={{ 
+          sx={{
             borderRadius: 1,
-            textTransform: 'none'
+            textTransform: "none",
           }}
         >
           Download CSV
         </Button>
-        
+
         <UndoButton
           disabled={undoHistory.length <= 1}
           undoHandler={undoHandler}
         />
       </Box>
-      
+
       <PlanDetailsCard racePlan={racePlan} />
-      
+
       <Box sx={{ mb: 3 }}>
         <WeekStartsOnPicker
           weekStartsOn={weekStartsOn}
           changeHandler={onWeekStartsOnChanged}
         />
       </Box>
-      
+
       <Box sx={{ mb: 3 }}>
         {racePlan && (
           <CalendarGrid

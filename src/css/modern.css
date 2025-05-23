@@ -1,9 +1,9 @@
-/* Modern Material UI friendly CSS */
+/* Modern Material UI friendly CSS with Forest Theme Inspiration */
 
 /* Retain special styles for drag and drop */
 .drag-handle {
   cursor: move;
-  opacity: 0.5;
+  opacity: 0.6;
   transition: opacity 0.2s;
 }
 
@@ -21,6 +21,7 @@
   z-index: 1;
   opacity: 0.3;
   pointer-events: none;
+  border-radius: 8px;
 }
 
 /* Specific styles for dragging states */
@@ -28,18 +29,27 @@
   opacity: 0.5;
 }
 
-/* React DatePicker customizations */
+/* React DatePicker customizations - Forest theme */
 .react-datepicker-wrapper {
   width: 100%;
 }
 
 .react-datepicker__day--selected {
-  background-color: var(--primary-color) !important;
+  background-color: #2e6d4a !important; /* Forest green */
 }
 
 .react-datepicker__day--keyboard-selected {
-  background-color: var(--secondary-color) !important;
-  color: #424242 !important;
+  background-color: #74a892 !important; /* Sage green */
+  color: #1b4332 !important; /* Deep forest */
+}
+
+.react-datepicker__header {
+  background-color: #1b4332 !important; /* Deep forest */
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+  color: white !important;
 }
 
 /* Custom scrollbar for better UX */

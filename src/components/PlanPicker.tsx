@@ -1,5 +1,12 @@
 import { PlanSummary } from "types/app";
-import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, Box } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  SelectChangeEvent,
+  Box,
+} from "@mui/material";
 
 interface Props {
   availablePlans: PlanSummary[];
@@ -14,9 +21,7 @@ const PlanPicker = ({
 }: Props) => {
   const handleChange = (event: SelectChangeEvent<string>) => {
     const planId = event.target.value;
-    const newSelection = availablePlans.find(
-      (p) => p[1] === planId
-    );
+    const newSelection = availablePlans.find((p) => p[1] === planId);
     if (newSelection) {
       planChangeHandler(newSelection);
     } else {
@@ -33,25 +38,31 @@ const PlanPicker = ({
         value={selectedPlan[1]}
         onChange={handleChange}
         label="Training Plan"
-        sx={{ 
-          borderRadius: 1, 
-          minWidth: '200px',
-          '& .MuiSelect-select': {
-            display: 'flex',
-            alignItems: 'center',
-          }
+        sx={{
+          borderRadius: 1,
+          minWidth: "200px",
+          "& .MuiSelect-select": {
+            display: "flex",
+            alignItems: "center",
+          },
         }}
       >
         {availablePlans.map((plan) => (
           <MenuItem key={plan[1]} value={plan[1]}>
-            <Box component="span" sx={{ 
-              display: 'inline-flex', 
-              alignItems: 'center' 
-            }}>
-              <Box component="span" sx={{ 
-                color: 'text.secondary',
-                mr: 1
-              }}>
+            <Box
+              component="span"
+              sx={{
+                display: "inline-flex",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                component="span"
+                sx={{
+                  color: "text.secondary",
+                  mr: 1,
+                }}
+              >
                 ({plan[2]})
               </Box>
               {plan[1]}

@@ -1,81 +1,96 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material/styles";
 
-// Create a custom theme based on the current color scheme
+// Create a custom forest theme inspired by Stridr (Aragorn from LOTR)
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#B391D2', // --primary-color from original CSS
-      dark: '#9271B2',
-      light: '#D3B1F2',
-      contrastText: '#fff',
+      main: "#2E6D4A", // Forest green
+      dark: "#1B4332", // Deep forest
+      light: "#52B788", // Light green
+      contrastText: "#FFFFFF",
     },
     secondary: {
-      main: '#C2C5EB', // --secondary-color from original CSS
-      dark: '#A2A5CB',
-      light: '#E2E5FB',
-      contrastText: '#424242',
+      main: "#74A892", // Sage green
+      dark: "#5E8C6A", // Dark sage
+      light: "#95C1B1", // Light sage
+      contrastText: "#1B4332",
     },
     error: {
-      main: '#FF6FDF', // --focus-color from original CSS
+      main: "#BC4749", // Rusty red - forest warning
     },
     background: {
-      default: '#677c96', // --app-bg-color from original CSS
-      paper: '#E3F7F8',   // --card-color from original CSS
+      default: "#1B3A4B", // Deep forest night blue
+      paper: "#F8F9FA", // Light parchment color
     },
     text: {
-      primary: '#424242', // --text-color from original CSS
-      secondary: '#666666',
+      primary: "#2F3E46", // Dark forest charcoal
+      secondary: "#54626F", // Forest ash
     },
   },
   typography: {
     fontFamily: [
-      'Roboto',
-      '-apple-system',
-      'BlinkMacSystemFont',
+      "Roboto",
+      "-apple-system",
+      "BlinkMacSystemFont",
       '"Segoe UI"',
       '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-    ].join(','),
+      "Arial",
+      "sans-serif",
+    ].join(","),
     h1: {
-      fontSize: '2rem',
+      fontSize: "2rem",
       fontWeight: 500,
-      '@media (min-width:600px)': {
-        fontSize: '2.5rem',
+      "@media (min-width:600px)": {
+        fontSize: "2.5rem",
       },
     },
     h2: {
-      fontSize: '1.75rem',
+      fontSize: "1.75rem",
       fontWeight: 500,
     },
     h3: {
-      fontSize: '1.5rem',
+      fontSize: "1.5rem",
       fontWeight: 500,
     },
     button: {
-      textTransform: 'none',
+      textTransform: "none",
     },
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: '8px',
+          borderRadius: "8px",
+          textTransform: "none",
+        },
+        contained: {
+          boxShadow: "0 2px 4px rgba(0,0,0,0.15)",
+          "&:hover": {
+            boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+          },
         },
       },
     },
     MuiCard: {
       styleOverrides: {
         root: {
-          borderRadius: '12px',
-          boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+          borderRadius: "12px",
+          boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
         },
       },
     },
     MuiAppBar: {
       styleOverrides: {
         root: {
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+          backgroundImage: "linear-gradient(to right, #2E6D4A, #1B4332)",
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: "8px",
         },
       },
     },

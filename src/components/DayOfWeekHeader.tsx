@@ -61,7 +61,7 @@ export const DayOfWeekHeader = ({
   });
 
   return (
-    <Paper 
+    <Paper
       elevation={1}
       sx={{
         opacity: isDragging ? 0.5 : 1,
@@ -69,7 +69,7 @@ export const DayOfWeekHeader = ({
       }}
       className={`week-header ${isDragging ? "dragging" : ""}`}
     >
-      <Box ref={drop} sx={{ width: '100%', height: '100%' }}>
+      <Box ref={drop} sx={{ width: "100%", height: "100%" }}>
         <Box
           sx={{
             position: "relative",
@@ -77,20 +77,20 @@ export const DayOfWeekHeader = ({
             height: "100%",
           }}
         >
-          <Box ref={dragPreview} sx={{ width: '100%' }}>
-            <Box 
+          <Box ref={dragPreview} sx={{ width: "100%" }}>
+            <Box
               ref={drag}
               sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 p: 1,
-                cursor: 'move',
-                bgcolor: 'secondary.main',
+                cursor: "move",
+                bgcolor: "secondary.main",
                 borderRadius: 1,
-                '&:hover': {
-                  bgcolor: 'secondary.light'
-                }
+                "&:hover": {
+                  bgcolor: "secondary.light",
+                },
               }}
             >
               <DragHandle viewBox="0 0 32 36" />

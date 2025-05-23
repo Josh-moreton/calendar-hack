@@ -9,19 +9,19 @@ export const Dateline = ({ $date }: Props) => {
   return (
     <Box
       sx={{
-        bgcolor: 'primary.main',
-        color: 'white',
+        bgcolor: "primary.main",
+        color: "white",
         p: 0.5,
-        textAlign: 'center',
+        textAlign: "center",
       }}
       className="dateline"
     >
-      <Typography 
-        variant="caption" 
-        sx={{ 
+      <Typography
+        variant="caption"
+        sx={{
           fontWeight: 500,
           lineHeight: 1.2,
-          fontSize: '0.75rem'
+          fontSize: "0.75rem",
         }}
       >
         {format($date)}

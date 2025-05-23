@@ -22,47 +22,49 @@ const PlanAndDate = ({
   weekStartsOn,
 }: Props) => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Paper 
+    <Paper
       elevation={2}
       sx={{
-        display: 'flex',
-        flexDirection: isMobile ? 'column' : 'row',
-        alignItems: 'center',
-        justifyContent: 'space-around',
+        display: "flex",
+        flexDirection: isMobile ? "column" : "row",
+        alignItems: "center",
+        justifyContent: "space-around",
         p: 2,
         mb: 3,
         borderRadius: 2,
-        backgroundColor: 'background.paper',
+        backgroundColor: "background.paper",
       }}
     >
-      <Box sx={{ 
-        width: isMobile ? '100%' : 'auto', 
-        mb: isMobile ? 2 : 0 
-      }}>
+      <Box
+        sx={{
+          width: isMobile ? "100%" : "auto",
+          mb: isMobile ? 2 : 0,
+        }}
+      >
         <PlanPicker
           availablePlans={availablePlans}
           selectedPlan={selectedPlan}
           planChangeHandler={selectedPlanChangeHandler}
         />
       </Box>
-      
-      <Typography 
+
+      <Typography
         variant="h3"
-        sx={{ 
-          mx: 2, 
-          fontSize: '1.25rem',
-          display: isMobile ? 'block' : 'inline',
-          textAlign: isMobile ? 'center' : 'left',
-          mb: isMobile ? 1 : 0
+        sx={{
+          mx: 2,
+          fontSize: "1.25rem",
+          display: isMobile ? "block" : "inline",
+          textAlign: isMobile ? "center" : "left",
+          mb: isMobile ? 1 : 0,
         }}
       >
         ending on
       </Typography>
-      
-      <Box sx={{ width: isMobile ? '100%' : 'auto' }}>
+
+      <Box sx={{ width: isMobile ? "100%" : "auto" }}>
         <DateControl
           selectedDate={selectedDate}
           onDateChanged={dateChangeHandler}

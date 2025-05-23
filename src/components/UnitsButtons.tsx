@@ -7,7 +7,10 @@ interface Props {
 }
 
 const UnitsButtons = ({ units, unitsChangeHandler }: Props) => {
-  const handleChange = (_: React.MouseEvent<HTMLElement>, newUnits: Units | null) => {
+  const handleChange = (
+    _: React.MouseEvent<HTMLElement>,
+    newUnits: Units | null,
+  ) => {
     // Prevent deselection of both buttons
     if (newUnits !== null) {
       unitsChangeHandler(newUnits);
@@ -18,11 +21,11 @@ const UnitsButtons = ({ units, unitsChangeHandler }: Props) => {
     <Paper
       elevation={0}
       sx={{
-        display: 'flex',
-        justifyContent: 'center',
+        display: "flex",
+        justifyContent: "center",
         p: 1,
         mb: 2,
-        backgroundColor: 'transparent'
+        backgroundColor: "transparent",
       }}
     >
       <ToggleButtonGroup
@@ -33,20 +36,20 @@ const UnitsButtons = ({ units, unitsChangeHandler }: Props) => {
         size="small"
         color="primary"
         sx={{
-          '& .MuiToggleButton-root': {
+          "& .MuiToggleButton-root": {
             borderRadius: 1,
             py: 0.5,
             px: 2,
-            border: '1px solid',
-            borderColor: 'primary.main',
-            '&.Mui-selected': {
-              backgroundColor: 'primary.main',
-              color: 'white',
-              '&:hover': {
-                backgroundColor: 'primary.dark',
-              }
-            }
-          }
+            border: "1px solid",
+            borderColor: "primary.main",
+            "&.Mui-selected": {
+              backgroundColor: "primary.main",
+              color: "white",
+              "&:hover": {
+                backgroundColor: "primary.dark",
+              },
+            },
+          },
         }}
       >
         <ToggleButton value="mi" aria-label="miles">

@@ -24,24 +24,24 @@ function renderDesc(
   // In the ical file we always render both and we automatically render the description using the same text as title if description is empty
   desc = title.replace(/\s/g, "") === desc.replace(/\s/g, "") ? "" : desc;
   return (
-    <Box sx={{ width: '100%' }}>
-      <Typography 
+    <Box sx={{ width: "100%" }}>
+      <Typography
         variant="body1"
-        sx={{ 
+        sx={{
           fontWeight: 600,
-          color: 'text.primary',
+          color: "text.primary",
         }}
         className="workout-title"
       >
         {title}
       </Typography>
-      
+
       {desc && (
-        <Typography 
+        <Typography
           variant="body2"
-          sx={{ 
-            color: 'text.secondary',
-            mt: 0.5
+          sx={{
+            color: "text.secondary",
+            mt: 0.5,
           }}
           className="workout-description"
         >
@@ -72,26 +72,26 @@ export const WorkoutCard = ({ dayDetails, date, units }: Props) => {
       elevation={1}
       ref={preview}
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
         borderRadius: 1,
-        overflow: 'hidden',
+        overflow: "hidden",
         opacity: isDragging ? 0.5 : 1,
-        transition: 'all 0.2s',
-        '&:hover': {
-          boxShadow: 3
-        }
+        transition: "all 0.2s",
+        "&:hover": {
+          boxShadow: 3,
+        },
       }}
       className={`workout-card ${isDragging ? "dragging" : ""}`}
     >
       <Dateline $date={date} />
-      <Box 
+      <Box
         sx={{
-          display: 'flex',
+          display: "flex",
           p: 1.5,
           flexGrow: 1,
-          alignItems: 'flex-start'
+          alignItems: "flex-start",
         }}
         className="workout-content"
       >
