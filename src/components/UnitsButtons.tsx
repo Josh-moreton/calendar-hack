@@ -1,6 +1,4 @@
-import React from "react";
-import { IconContext } from "react-icons";
-import { Radio } from "./Radios";
+import { ToggleButtonGroup, ToggleButton, Paper } from "@mui/material";
 import { Units } from "types/app";
 
 interface Props {
@@ -9,32 +7,56 @@ interface Props {
 }
 
 const UnitsButtons = ({ units, unitsChangeHandler }: Props) => {
-  const changeCb = (event: React.FormEvent<HTMLInputElement>) => {
-    const newSelection = "mi" === event.currentTarget.value ? "mi" : "km";
-    unitsChangeHandler(newSelection);
+  const handleChange = (_: React.MouseEvent<HTMLElement>, newUnits: Units | null) => {
+    // Prevent deselection of both buttons
+    if (newUnits !== null) {
+      unitsChangeHandler(newUnits);
+    }
   };
 
   return (
-    <IconContext.Provider value={{}}>
-      <div className="units-panel">
-        <Radio
-          id="radio-mi"
-          name="radio-units"
-          value="mi"
-          labelTxt="Mi"
-          changeCb={changeCb}
-          currentValue={units}
-        />
-        <Radio
-          id="radio-km"
-          name="radio-units"
-          value="km"
-          labelTxt="Km"
-          changeCb={changeCb}
-          currentValue={units}
-        />
-      </div>
-    </IconContext.Provider>
+    <Paper
+      elevation={0}
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        p: 1,
+        mb: 2,
+        backgroundColor: 'transparent'
+      }}
+    >
+      <ToggleButtonGroup
+        value={units}
+        exclusive
+        onChange={handleChange}
+        aria-label="distance units"
+        size="small"
+        color="primary"
+        sx={{
+          '& .MuiToggleButton-root': {
+            borderRadius: 1,
+            py: 0.5,
+            px: 2,
+            border: '1px solid',
+            borderColor: 'primary.main',
+            '&.Mui-selected': {
+              backgroundColor: 'primary.main',
+              color: 'white',
+              '&:hover': {
+                backgroundColor: 'primary.dark',
+              }
+            }
+          }
+        }}
+      >
+        <ToggleButton value="mi" aria-label="miles">
+          Mi
+        </ToggleButton>
+        <ToggleButton value="km" aria-label="kilometers">
+          Km
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </Paper>
   );
 };
 

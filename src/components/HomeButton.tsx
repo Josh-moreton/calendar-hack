@@ -1,16 +1,24 @@
-import { FaHome } from "react-icons/fa";
-import { IconContext } from "react-icons";
+import { IconButton, Tooltip } from "@mui/material";
+import HomeIcon from '@mui/icons-material/Home';
 import { NavLink } from "react-router-dom";
 
 const HomeButton = () => {
   return (
-    <IconContext.Provider value={{}}>
-      <div className="tool-button">
-        <NavLink to="/">
-            <FaHome style={{ verticalAlign: "middle" }} />
-        </NavLink>
-      </div>
-    </IconContext.Provider>
+    <Tooltip title="Home">
+      <IconButton 
+        component={NavLink} 
+        to="/" 
+        color="inherit" 
+        sx={{ 
+          margin: '0 4px',
+          '&.active': {
+            color: 'secondary.main',
+          }
+        }}
+      >
+        <HomeIcon />
+      </IconButton>
+    </Tooltip>
   );
 };
 

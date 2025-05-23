@@ -9,23 +9,26 @@ import { HTML5toTouch } from "rdndmb-html5-to-touch";
 import { QueryParamProvider } from "use-query-params";
 import { WindowHistoryAdapter } from "use-query-params/adapters/window";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import About from "./About";
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import theme from "./theme/theme";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <DndProvider options={HTML5toTouch}>
-      <QueryParamProvider adapter={WindowHistoryAdapter}>
-          <div className="app">
-            <BrowserRouter basename="/hacks/calendarhack">
-              <Routes>
-                <Route path="/" element={<Index />} >
-                  <Route index path="/" element={<App />}/>
-                  <Route path="about" element={<About />}/>
-                </Route>
-              </Routes>
-            </BrowserRouter>
-          </div>
-      </QueryParamProvider>
-    </DndProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <DndProvider options={HTML5toTouch}>
+        <QueryParamProvider adapter={WindowHistoryAdapter}>
+            <div className="app">
+              <BrowserRouter basename="/hacks/calendarhack">
+                <Routes>
+                  <Route path="/" element={<Index />} >
+                    <Route index path="/" element={<App />}/>
+                  </Route>
+                </Routes>
+              </BrowserRouter>
+            </div>
+        </QueryParamProvider>
+      </DndProvider>
+    </ThemeProvider>
   </StrictMode>,
 );
