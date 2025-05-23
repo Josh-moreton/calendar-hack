@@ -1,7 +1,9 @@
+import { Box } from '@mui/material';
+
 export const Overlay = ({ color }: { color: string }) => {
   return (
-    <div
-      style={{
+    <Box
+      sx={{
         position: "absolute",
         top: 0,
         left: 0,
