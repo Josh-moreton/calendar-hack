@@ -2,6 +2,7 @@ import { DragHandle } from "./DragHandle";
 import { useDrop, useDrag } from "react-dnd";
 import { ItemTypes } from "../ch/ItemTypes";
 import { dayOfWeek } from "types/app";
+import { Box, Paper, Typography } from "@mui/material";
 
 interface Props {
   dow: dayOfWeek;
@@ -60,23 +61,46 @@ export const DayOfWeekHeader = ({
   });
 
   return (
-    <div className={`week-header ${isDragging ? "dragging" : ""}`}>
-      <div ref={drop}>
-        <div
-          style={{
+    <Paper 
+      elevation={1}
+      sx={{
+        opacity: isDragging ? 0.5 : 1,
+        borderRadius: 1,
+      }}
+      className={`week-header ${isDragging ? "dragging" : ""}`}
+    >
+      <Box ref={drop} sx={{ width: '100%', height: '100%' }}>
+        <Box
+          sx={{
             position: "relative",
             width: "100%",
             height: "100%",
           }}
         >
-          <div ref={dragPreview}>
-            <div className="day-header" ref={drag}>
+          <Box ref={dragPreview} sx={{ width: '100%' }}>
+            <Box 
+              ref={drag}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                p: 1,
+                cursor: 'move',
+                bgcolor: 'secondary.main',
+                borderRadius: 1,
+                '&:hover': {
+                  bgcolor: 'secondary.light'
+                }
+              }}
+            >
               <DragHandle viewBox="0 0 32 36" />
-              <div>{dow}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+              <Typography variant="body2" sx={{ ml: 1, fontWeight: 500 }}>
+                {dow}
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Paper>
   );
 };

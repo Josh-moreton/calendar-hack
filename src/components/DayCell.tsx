@@ -4,6 +4,7 @@ import { WorkoutCard } from "./WorkoutCard";
 import { BlankCard } from "./BlankCard";
 import { Overlay } from "./Overlay";
 import { DayDetails, Units } from "types/app";
+import { Box } from "@mui/material";
 
 interface Props {
   dayDetails: DayDetails | undefined;
@@ -22,7 +23,6 @@ export const DayCell = ({
   selected,
   hovering,
 }: Props) => {
-
   function canSwap(droppedDate: Date) {
     return dayDetails !== undefined && date !== droppedDate;
   }
@@ -42,14 +42,23 @@ export const DayCell = ({
   });
 
   return (
-    <div
-      style={{
+    <Box
+      sx={{
         position: "relative",
         width: "100%",
         height: "100%",
+        minHeight: "120px",
       }}
     >
-      <div className="day-cell" ref={drop}>
+      <Box
+        sx={{
+          height: "100%",
+          borderRadius: 1,
+          transition: "all 0.3s",
+        }}
+        className="day-cell"
+        ref={drop}
+      >
         {dayDetails && (
           <WorkoutCard
             dayDetails={dayDetails}
@@ -64,7 +73,7 @@ export const DayCell = ({
 
         {dayDetails && selected && <Overlay color="pink" />}
         {dayDetails && !selected && hovering && <Overlay color="lightgreen" />}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

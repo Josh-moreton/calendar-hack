@@ -6,6 +6,7 @@ import { DayOfWeekHeader } from "./DayOfWeekHeader";
 import { format } from "date-fns";
 import { getDaysHeader, WeekStartsOn } from "../ch/datecalc";
 import { Units, dayOfWeek, Week, DayDetails } from "types/app";
+import { Box } from "@mui/material";
 
 interface Props {
   racePlan: RacePlan;
@@ -14,7 +15,6 @@ interface Props {
   swapDates: (d1: Date, d2: Date) => void;
   swapDow: (dow1: dayOfWeek, dow2: dayOfWeek) => void;
 }
-
 
 function calcWeeklyDistance(w: Week<DayDetails>): number {
   return w.days
@@ -52,7 +52,16 @@ export const CalendarGrid = ({
 
   function getWeek(w: Week<DayDetails>) {
     return (
-      <div className="week-grid" key={`wr:${w.weekNum}`}>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "auto repeat(7, 1fr)",
+          gap: 1,
+          mb: 1,
+        }}
+        className="week-grid"
+        key={`wr:${w.weekNum}`}
+      >
         <WeekSummary
           key={`ws:${w.weekNum}`}
           desc={w.desc}
@@ -76,14 +85,22 @@ export const CalendarGrid = ({
             hovering={hoveringDow === format(d.date, "EEEE")}
           />
         ))}
-      </div>
+      </Box>
     );
   }
 
   function getHeader() {
     return (
-      <div className="week-grid">
-        <div key={"blank-left"} />
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "auto repeat(7, 1fr)",
+          gap: 1,
+          mb: 1,
+        }}
+        className="week-grid"
+      >
+        <Box key={"blank-left"} />
         {getDaysHeader(weekStartsOn).map((dow, _) => (
           <DayOfWeekHeader
             key={dow}
@@ -93,14 +110,20 @@ export const CalendarGrid = ({
             setHoveringDow={setHoveringDow}
           />
         ))}
-      </div>
+      </Box>
     );
   }
 
   return (
-    <div className="calendar-grid">
+    <Box
+      sx={{
+        width: "100%",
+        overflowX: "auto",
+      }}
+      className="calendar-grid"
+    >
       {getHeader()}
       {racePlan.dateGrid.weeks.map((w, _) => getWeek(w))}
-    </div>
+    </Box>
   );
 };

@@ -5,6 +5,7 @@ import { useDrag, DragSourceMonitor } from "react-dnd";
 import { ItemTypes } from "../ch/ItemTypes";
 import { DragHandle } from "./DragHandle";
 import { DayDetails, Units } from "types/app";
+import { Paper, Typography, Box } from "@mui/material";
 
 interface Props {
   dayDetails: DayDetails;
@@ -23,16 +24,31 @@ function renderDesc(
   // In the ical file we always render both and we automatically render the description using the same text as title if description is empty
   desc = title.replace(/\s/g, "") === desc.replace(/\s/g, "") ? "" : desc;
   return (
-    <>
-      <p>
-        <span className="workout-title">{title}</span>
-      </p>
-      {desc && 
-        <p>
-          <span className="workout-description">{desc}</span>
-        </p>
-      }
-    </>
+    <Box sx={{ width: '100%' }}>
+      <Typography 
+        variant="body1"
+        sx={{ 
+          fontWeight: 600,
+          color: 'text.primary',
+        }}
+        className="workout-title"
+      >
+        {title}
+      </Typography>
+      
+      {desc && (
+        <Typography 
+          variant="body2"
+          sx={{ 
+            color: 'text.secondary',
+            mt: 0.5
+          }}
+          className="workout-description"
+        >
+          {desc}
+        </Typography>
+      )}
+    </Box>
   );
 }
 
@@ -52,14 +68,38 @@ export const WorkoutCard = ({ dayDetails, date, units }: Props) => {
   });
 
   return (
-    <div ref={preview} className={`workout-card ${isDragging ? "dragging" : ""}`}>
+    <Paper
+      elevation={1}
+      ref={preview}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        borderRadius: 1,
+        overflow: 'hidden',
+        opacity: isDragging ? 0.5 : 1,
+        transition: 'all 0.2s',
+        '&:hover': {
+          boxShadow: 3
+        }
+      }}
+      className={`workout-card ${isDragging ? "dragging" : ""}`}
+    >
       <Dateline $date={date} />
-      <div className="workout-content">
-        <div ref={drag}>
+      <Box 
+        sx={{
+          display: 'flex',
+          p: 1.5,
+          flexGrow: 1,
+          alignItems: 'flex-start'
+        }}
+        className="workout-content"
+      >
+        <Box ref={drag} sx={{ mr: 1.5 }}>
           <DragHandle viewBox="0 0 32 36" />
-        </div>
+        </Box>
         {renderDesc(dayDetails, dayDetails.sourceUnits, units)}
-      </div>
-    </div>
+      </Box>
+    </Paper>
   );
 };

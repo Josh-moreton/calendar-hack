@@ -4,6 +4,7 @@ import FinishIcon from "../svg/icons02/finish.svg";
 import HighMileageIcon from "../svg/highMileage.svg";
 import { RacePlan } from "../ch/dategrid";
 import { Week, DayDetails, Units } from "types/app";
+import { Box, Typography } from "@mui/material";
 
 interface Props {
   desc: string;
@@ -24,19 +25,49 @@ export const WeekSummary = ({
 }: Props) => {
   const distance = getWeekDistance(week, units);
   return (
-    <div className="week-summary" key={"week:" + week.weekNum}>
-      <p>
-        <strong>{`Week ${1 + week.weekNum}`}</strong>
-      </p>
-      {distance > 0 && <p>{renderDist(distance, units, units)}</p>}
-      {isFirstWeek && <img src={StartIcon} alt={"Start"} />}
-      {isLastWeek && <img src={FinishIcon} alt="Finish" />}
-      {isHighestMileage && <img src={HighMileageIcon} alt="Highest Mileage" />}
-      {isHighestMileage && (
-        <p>
-          <small>Highest Mileage</small>
-        </p>
+    <Box 
+      sx={{
+        p: 1,
+        borderRadius: 1,
+        bgcolor: 'background.paper',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%',
+        minWidth: '80px',
+        boxShadow: 1
+      }}
+      className="week-summary" 
+      key={"week:" + week.weekNum}
+    >
+      <Typography variant="subtitle1" fontWeight="bold" align="center">
+        {`Week ${1 + week.weekNum}`}
+      </Typography>
+      
+      {distance > 0 && (
+        <Typography variant="body2" align="center">
+          {renderDist(distance, units, units)}
+        </Typography>
       )}
-    </div>
+      
+      {isFirstWeek && (
+        <Box component="img" src={StartIcon} alt={"Start"} sx={{ width: 24, height: 24, my: 0.5 }} />
+      )}
+      
+      {isLastWeek && (
+        <Box component="img" src={FinishIcon} alt="Finish" sx={{ width: 24, height: 24, my: 0.5 }} />
+      )}
+      
+      {isHighestMileage && (
+        <Box component="img" src={HighMileageIcon} alt="Highest Mileage" sx={{ width: 24, height: 24, my: 0.5 }} />
+      )}
+      
+      {isHighestMileage && (
+        <Typography variant="caption" align="center">
+          Highest Mileage
+        </Typography>
+      )}
+    </Box>
   );
 };
