@@ -55,10 +55,12 @@ export const CalendarGrid = ({
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: "0.75fr repeat(7, 1fr)", // Consistent with header grid
+          gridTemplateColumns: "0.5fr repeat(7, 1fr)", // Reduced sidebar width for more content space
           gridAutoRows: "1fr", // Make all rows the same height
-          gap: 1,
-          mb: 1,
+          gap: { xs: 1, sm: 1.5, md: 2 }, // Responsive gap
+          mb: 2,
+          borderRadius: "8px",
+          backgroundColor: "transparent",
         }}
         className="week-grid"
         key={`wr:${w.weekNum}`}
@@ -95,10 +97,11 @@ export const CalendarGrid = ({
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: "0.75fr repeat(7, 1fr)", // Explicitly match WeekGrid's template
+          gridTemplateColumns: "0.5fr repeat(7, 1fr)", // Match the updated WeekGrid's template
           gridAutoRows: "1fr",
-          gap: 1,
-          mb: 1,
+          gap: { xs: 1, sm: 1.5, md: 2 }, // Responsive gap
+          mb: 2,
+          borderRadius: "8px",
         }}
         className="week-grid"
       >
@@ -123,6 +126,26 @@ export const CalendarGrid = ({
         overflowX: "auto",
         display: "flex",
         flexDirection: "column",
+        padding: { xs: 0, sm: 1 },
+        "& .week-grid": {
+          minWidth: { xs: "800px", md: "100%" }, // Keep horizontal scrolling on small screens, full width on larger
+        },
+        scrollbarWidth: "thin",
+        "&::-webkit-scrollbar": {
+          height: "8px",
+          width: "8px",
+        },
+        "&::-webkit-scrollbar-track": {
+          backgroundColor: "rgba(0,0,0,0.05)",
+          borderRadius: "4px",
+        },
+        "&::-webkit-scrollbar-thumb": {
+          backgroundColor: "rgba(0,0,0,0.2)",
+          borderRadius: "4px",
+          "&:hover": {
+            backgroundColor: "rgba(0,0,0,0.3)",
+          },
+        },
       }}
       className="calendar-grid"
     >

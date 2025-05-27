@@ -18,11 +18,12 @@ const Index = () => {
     >
       <Toolbar />
       <Container
-        maxWidth="lg"
+        maxWidth="xl"
         sx={{
           flex: 1,
           py: 3,
-          px: { xs: 1, sm: 2, md: 3 },
+          px: { xs: 1.5, sm: 3, md: 4 },
+          width: "100%",
         }}
       >
         <Outlet />

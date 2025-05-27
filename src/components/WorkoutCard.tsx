@@ -30,7 +30,10 @@ function renderDesc(
         sx={{
           fontWeight: 600,
           color: "text.primary",
-          mb: 0.5,
+          mb: 0.75,
+          fontSize: "0.95rem",
+          lineHeight: 1.4,
+          letterSpacing: "0.01em",
         }}
         className="workout-title"
       >
@@ -42,7 +45,16 @@ function renderDesc(
           variant="body2"
           sx={{
             color: "text.secondary",
-            mt: 0.5,
+            mt: 0.75,
+            fontSize: "0.85rem",
+            lineHeight: 1.5,
+            letterSpacing: "0.01em",
+            backgroundColor: "rgba(0,0,0,0.02)",
+            borderLeft: "3px solid",
+            borderColor: "secondary.main",
+            pl: 1.5,
+            py: 1,
+            borderRadius: "0 4px 4px 0",
           }}
           className="workout-description"
         >
@@ -70,18 +82,21 @@ export const WorkoutCard = ({ dayDetails, date, units }: Props) => {
 
   return (
     <Paper
-      elevation={1}
+      elevation={2}
       ref={preview}
       sx={{
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        borderRadius: 1,
+        borderRadius: "6px",
         overflow: "hidden",
         opacity: isDragging ? 0.5 : 1,
-        transition: "all 0.2s",
+        transition: "all 0.3s",
+        backgroundColor: "background.paper",
+        border: "1px solid rgba(0,0,0,0.04)",
         "&:hover": {
-          boxShadow: 3,
+          boxShadow: "0 6px 12px rgba(0,0,0,0.12)",
+          transform: "translateY(-2px)",
         },
       }}
       className={`workout-card ${isDragging ? "dragging" : ""}`}
@@ -90,10 +105,11 @@ export const WorkoutCard = ({ dayDetails, date, units }: Props) => {
       <Box
         sx={{
           display: "flex",
-          p: 1.5,
+          p: 2,
           flexGrow: 1,
           alignItems: "flex-start",
-          height: "calc(100% - 30px)", // Subtract dateline height for consistent content area
+          height: "calc(100% - 28px)", // Adjusted height
+          position: "relative",
         }}
         className="workout-content"
       >
@@ -105,10 +121,14 @@ export const WorkoutCard = ({ dayDetails, date, units }: Props) => {
             alignItems: 'flex-start',
             height: '100%',
             alignSelf: 'stretch',
-            paddingTop: '4px'
+            paddingTop: '4px',
+            opacity: 0.7,
+            "&:hover": {
+              opacity: 1,
+            }
           }}
         >
-          <DragHandle viewBox="0 0 32 36" style={{ width: '16px', height: '16px' }} />
+          <DragHandle viewBox="0 0 32 36" style={{ width: '14px', height: '14px' }} />
         </Box>
         {renderDesc(dayDetails, dayDetails.sourceUnits, units)}
       </Box>

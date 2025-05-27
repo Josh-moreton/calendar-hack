@@ -9,11 +9,15 @@ export const BlankCard = ({ date }: { date: Date }) => {
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        borderRadius: 1,
+        borderRadius: "6px",
         overflow: "hidden",
         transition: "all 0.2s",
-        bgcolor: "background.paper",
-        opacity: 0.8,
+        bgcolor: "background.default",  // Slightly different from WorkoutCard
+        opacity: 0.6,
+        border: "1px dashed rgba(0,0,0,0.08)",
+        "&:hover": {
+          opacity: 0.8,
+        }
       }}
       className="blank-card"
     >
@@ -21,11 +25,23 @@ export const BlankCard = ({ date }: { date: Date }) => {
       <Box
         sx={{
           flexGrow: 1,
-          p: 1.5,
-          height: "calc(100% - 30px)", // Same as WorkoutCard for consistency
+          p: 2,
+          height: "calc(100% - 28px)", // Match WorkoutCard
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
         className="blank-content"
-      />
+      >
+        <Box 
+          sx={{
+            width: "80%",
+            height: "3px",
+            backgroundColor: "rgba(0,0,0,0.04)",
+            borderRadius: "2px",
+          }}
+        />
+      </Box>
     </Paper>
   );
 };

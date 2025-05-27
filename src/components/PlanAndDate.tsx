@@ -26,22 +26,27 @@ const PlanAndDate = ({
 
   return (
     <Paper
-      elevation={2}
+      elevation={3}
       sx={{
         display: "flex",
         flexDirection: isMobile ? "column" : "row",
         alignItems: "center",
-        justifyContent: "space-around",
-        p: 2,
-        mb: 3,
-        borderRadius: 2,
+        justifyContent: "center",
+        p: { xs: 2.5, sm: 3 },
+        mb: 4,
+        borderRadius: "8px",
         backgroundColor: "background.paper",
+        boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
+        border: "1px solid rgba(0,0,0,0.03)",
       }}
     >
       <Box
         sx={{
-          width: isMobile ? "100%" : "auto",
+          width: isMobile ? "100%" : "40%",
           mb: isMobile ? 2 : 0,
+          mr: isMobile ? 0 : 2,
+          flexGrow: isMobile ? 0 : 1,
+          maxWidth: isMobile ? "100%" : "600px",
         }}
       >
         <PlanPicker
@@ -54,14 +59,28 @@ const PlanAndDate = ({
       <Typography
         variant="h3"
         sx={{
-          mx: 2,
-          fontSize: "1.25rem",
-          display: isMobile ? "block" : "inline",
-          textAlign: isMobile ? "center" : "left",
-          mb: isMobile ? 1 : 0,
+          mx: { xs: 0, sm: 4 },
+          my: { xs: 2, sm: 0 },
+          fontSize: "1.125rem",
+          display: "flex",
+          alignItems: "center",
+          textAlign: "center",
+          fontFamily: "'Montserrat', sans-serif",
+          color: "text.secondary",
+          fontWeight: 500,
+          letterSpacing: "0.02em",
+          position: "relative",
+          "&:before, &:after": {
+            content: '""',
+            display: { xs: "none", md: "block" },
+            height: "1px",
+            width: "20px",
+            backgroundColor: "rgba(0,0,0,0.1)",
+            mx: 1,
+          },
         }}
       >
-        ending on
+        ENDING ON
       </Typography>
 
       <Box sx={{ width: isMobile ? "100%" : "auto" }}>

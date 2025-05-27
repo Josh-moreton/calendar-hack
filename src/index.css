@@ -1,14 +1,14 @@
 :root {
-  --app-bg-color: #F4F5F7;
-  --focus-color: #3366FF;
-  --primary-color: #3366FF;
-  --secondary-color: #FF5630;
-  --text-color: #253858;
+  --app-bg-color: #ECEFF1;
+  --focus-color: #3498DB;
+  --primary-color: #2C3E50;
+  --secondary-color: #3498DB;
+  --text-color: #2C3E50;
   --card-color: #FFFFFF;
-  --link-color: #3366FF;
+  --link-color: #3498DB;
   --disabled-fg-color: #FFFFFF;
-  --disabled-bg-color: #DFE1E6;
-  --elt-border: 1px solid rgba(0, 0, 0, 0.08);
+  --disabled-bg-color: #BDC3C7;
+  --elt-border: 1px solid rgba(0, 0, 0, 0.06);
   --controls-fg-color: var(--text-color);
   --controls-bg-color: #FFFFFF;
 }

@@ -11,18 +11,23 @@ export const Dateline = ({ $date }: Props) => {
       sx={{
         bgcolor: "primary.main",
         color: "white",
-        p: 0.5,
+        py: 0.6,
+        px: 1,
         textAlign: "center",
+        backgroundImage: "linear-gradient(to right, primary.dark, primary.main)",
       }}
       className="dateline"
     >
       <Typography
         variant="caption"
         sx={{
-          fontWeight: 500,
+          fontFamily: "'Montserrat', sans-serif",
+          fontWeight: 600,
+          letterSpacing: "0.03em",
           lineHeight: 1.2,
           fontSize: "0.75rem",
-          color: "primary.contrastText", // Ensure text properly contrasts with background
+          color: "primary.contrastText",
+          textTransform: "uppercase",
         }}
       >
         {format($date)}

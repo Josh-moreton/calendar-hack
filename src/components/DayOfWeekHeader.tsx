@@ -62,10 +62,11 @@ export const DayOfWeekHeader = ({
 
   return (
     <Paper
-      elevation={1}
+      elevation={2}
       sx={{
         opacity: isDragging ? 0.5 : 1,
         borderRadius: 1,
+        overflow: "hidden",
       }}
       className={`week-header ${isDragging ? "dragging" : ""}`}
     >
@@ -84,18 +85,27 @@ export const DayOfWeekHeader = ({
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                p: 1,
+                p: 1.5,
                 cursor: "move",
-                bgcolor: "secondary.main",
-                borderRadius: 1,
+                bgcolor: "primary.main",
                 width: "100%", // Ensure full width
+                height: "100%",
+                transition: "all 0.2s ease",
                 "&:hover": {
-                  bgcolor: "secondary.light",
+                  bgcolor: "primary.dark",
                 },
               }}
             >
-              <DragHandle viewBox="0 0 32 36" style={{ width: '16px', height: '16px' }} />
-              <Typography variant="body2" sx={{ ml: 1, fontWeight: 500, color: 'secondary.contrastText' }}>
+              <DragHandle viewBox="0 0 32 36" style={{ width: '14px', height: '14px', opacity: 0.7 }} />
+              <Typography variant="subtitle2" sx={{ 
+                ml: 1, 
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 600, 
+                color: 'primary.contrastText',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                fontSize: '0.85rem'
+              }}>
                 {dow}
               </Typography>
             </Box>

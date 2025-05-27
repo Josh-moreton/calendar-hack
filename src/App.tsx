@@ -187,8 +187,11 @@ const App = () => {
           flexDirection: { xs: "column", sm: "row" },
           alignItems: "center",
           justifyContent: "center",
-          gap: 2,
-          mb: 3,
+          gap: { xs: 2, sm: 3 },
+          mb: 4,
+          width: "100%",
+          maxWidth: "800px",
+          mx: "auto",
         }}
       >
         <Button
@@ -198,6 +201,10 @@ const App = () => {
           sx={{
             borderRadius: 1,
             textTransform: "none",
+            px: 3,
+            py: 1.2,
+            width: { xs: "100%", sm: "auto" },
+            minWidth: { sm: "200px" },
           }}
         >
           Download iCal
@@ -210,6 +217,10 @@ const App = () => {
           sx={{
             borderRadius: 1,
             textTransform: "none",
+            px: 3,
+            py: 1.2,
+            width: { xs: "100%", sm: "auto" },
+            minWidth: { sm: "200px" },
           }}
         >
           Download CSV
@@ -223,14 +234,14 @@ const App = () => {
 
       <PlanDetailsCard racePlan={racePlan} />
 
-      <Box sx={{ mb: 3 }}>
+      <Box sx={{ mb: 4, width: "100%" }}>
         <WeekStartsOnPicker
           weekStartsOn={weekStartsOn}
           changeHandler={onWeekStartsOnChanged}
         />
       </Box>
 
-      <Box sx={{ mb: 3 }}>
+      <Box sx={{ mb: 4, width: "100%" }}>
         {racePlan && (
           <CalendarGrid
             racePlan={racePlan}

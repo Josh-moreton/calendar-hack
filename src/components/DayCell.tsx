@@ -47,14 +47,14 @@ export const DayCell = ({
         position: "relative",
         width: "100%",
         height: "100%",
-        minHeight: "150px", // Increased fixed height
+        minHeight: { xs: "160px", md: "180px" }, // Responsive height
       }}
     >
       <Box
         sx={{
           height: "100%",
           borderRadius: 1,
-          transition: "all 0.3s",
+          transition: "all 0.3s ease",
           display: "flex",
           flexDirection: "column",
         }}
