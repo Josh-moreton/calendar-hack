@@ -55,7 +55,7 @@ export const CalendarGrid = ({
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: "auto repeat(7, 1fr)",
+          gridTemplateColumns: "0.75fr repeat(7, 1fr)", // Consistent with header grid
           gridAutoRows: "1fr", // Make all rows the same height
           gap: 1,
           mb: 1,
@@ -95,7 +95,7 @@ export const CalendarGrid = ({
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: "auto repeat(7, 1fr)",
+          gridTemplateColumns: "0.75fr repeat(7, 1fr)", // Explicitly match WeekGrid's template
           gridAutoRows: "1fr",
           gap: 1,
           mb: 1,
@@ -121,6 +121,8 @@ export const CalendarGrid = ({
       sx={{
         width: "100%",
         overflowX: "auto",
+        display: "flex",
+        flexDirection: "column",
       }}
       className="calendar-grid"
     >

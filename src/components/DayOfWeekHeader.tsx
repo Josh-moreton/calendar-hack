@@ -88,6 +88,7 @@ export const DayOfWeekHeader = ({
                 cursor: "move",
                 bgcolor: "secondary.main",
                 borderRadius: 1,
+                width: "100%", // Ensure full width
                 "&:hover": {
                   bgcolor: "secondary.light",
                 },
