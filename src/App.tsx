@@ -23,9 +23,9 @@ import WeekStartsOnPicker from "./components/WeekStartsOnPicker";
 import { useMountEffect } from "./ch/hooks";
 import { Units, PlanSummary, dayOfWeek } from "types/app";
 import { getLocaleUnits } from "./ch/localize";
-import { Box, Button } from "@mui/material";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import TableViewIcon from "@mui/icons-material/TableView";
+import HeroSection from "./components/HeroSection";
 
 const App = () => {
   const [{ u, p, d, s }, setq] = useQueryParams({
@@ -158,229 +158,104 @@ const App = () => {
   }
 
   return (
-    <>
-      <Box
-        sx={{
-          borderRadius: { xs: "0 0 24px 24px", md: "0 0 32px 32px" },
-          mb: 5,
-          p: { xs: 3, md: 6 },
-          background: `linear-gradient(135deg, #1E40AF 0%, #0F2167 100%)`,
-          color: "white",
-          textAlign: "center",
-        }}
-      >
-        <Box
-          sx={{
-            maxWidth: "800px",
-            mx: "auto",
-          }}
-        >
-          <Box
-            component="h1"
-            sx={{
-              fontSize: { xs: "2rem", md: "3rem" },
-              fontWeight: 800,
-              mb: 2,
-              fontFamily: "'Manrope', sans-serif",
-            }}
-          >
-            Your Personal Running Training Calendar
-          </Box>
-          <Box
-            component="p"
-            sx={{
-              fontSize: { xs: "1rem", md: "1.1rem" },
-              mb: 0,
-              opacity: 0.9,
-            }}
-          >
-            Customize your perfect training plan for any race distance and
-            achieve your personal best.
-          </Box>
-        </Box>
-      </Box>
+    <div className="min-h-screen bg-slate-50">
+      {/* Hero Section */}
+      <HeroSection />
 
-      <Box
-        sx={{
-          borderRadius: "16px",
-          p: { xs: 2, sm: 3, md: 4 },
-          mb: 4,
-          bgcolor: "#FFFFFF",
-          border: "1px solid",
-          borderColor: "#E5E7EB",
-          boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06)",
-        }}
-      >
-        <Box
-          component="h2"
-          sx={{
-            fontSize: { xs: "1.5rem", md: "1.75rem" },
-            mb: 3,
-            textAlign: "center",
-            fontWeight: 700,
-            color: "#1E40AF",
-          }}
-        >
-          Customize Your Training Plan
-        </Box>
+      {/* Main Container */}
+      <div className="max-w-6xl mx-auto px-4 md:px-6 space-y-8 pb-12">
 
-        <PlanAndDate
-          availablePlans={repo.available}
-          selectedPlan={selectedPlan}
-          selectedDate={planEndDate}
-          dateChangeHandler={onSelectedEndDateChange}
-          selectedPlanChangeHandler={onSelectedPlanChange}
-          weekStartsOn={weekStartsOn}
-        />
+        {/* Customize Training Plan Card */}
+        <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 animate-slide-up">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-primary-700">
+            Customize Your Training Plan
+          </h2>
 
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            mb: 3,
-            mt: 2,
-          }}
-        >
-          <UnitsButtons
-            units={selectedUnits}
-            unitsChangeHandler={onSelectedUnitsChanged}
+          <PlanAndDate
+            availablePlans={repo.available}
+            selectedPlan={selectedPlan}
+            selectedDate={planEndDate}
+            dateChangeHandler={onSelectedEndDateChange}
+            selectedPlanChangeHandler={onSelectedPlanChange}
+            weekStartsOn={weekStartsOn}
           />
-        </Box>
-      </Box>
 
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
-          alignItems: "center",
-          justifyContent: "center",
-          gap: { xs: 2, sm: 3 },
-          mb: 4,
-          width: "100%",
-          maxWidth: "800px",
-          mx: "auto",
-        }}
-      >
-        <Button
-          variant="contained"
-          onClick={downloadIcalHandler}
-          startIcon={<CloudDownloadIcon />}
-          sx={{
-            width: { xs: "100%", sm: "auto" },
-            minWidth: { sm: "200px" },
-          }}
-        >
-          Download iCal
-        </Button>
-
-        <Button
-          variant="contained"
-          onClick={downloadCsvHandler}
-          startIcon={<TableViewIcon />}
-          sx={{
-            width: { xs: "100%", sm: "auto" },
-            minWidth: { sm: "200px" },
-          }}
-        >
-          Download CSV
-        </Button>
-
-        <UndoButton
-          disabled={undoHistory.length <= 1}
-          undoHandler={undoHandler}
-        />
-      </Box>
-
-      <Box
-        sx={{
-          borderRadius: "16px",
-          p: { xs: 2, sm: 3 },
-          mb: 4,
-          bgcolor: "#FFFFFF",
-          border: "1px solid",
-          borderColor: "#E5E7EB",
-          boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06)",
-        }}
-      >
-        <Box
-          component="h3"
-          sx={{
-            mb: 2,
-            fontWeight: 600,
-            color: "#1E40AF",
-            fontSize: "1.25rem",
-          }}
-        >
-          Plan Details
-        </Box>
-        <PlanDetailsCard racePlan={racePlan} />
-      </Box>
-
-      <Box
-        sx={{
-          borderRadius: "16px",
-          p: { xs: 2, sm: 3 },
-          mb: 4,
-          bgcolor: "#FFFFFF",
-          border: "1px solid",
-          borderColor: "#E5E7EB",
-          boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06)",
-        }}
-      >
-        <Box
-          component="h3"
-          sx={{
-            mb: 2,
-            fontWeight: 600,
-            color: "#1E40AF",
-            fontSize: "1.25rem",
-          }}
-        >
-          Week Options
-        </Box>
-        <WeekStartsOnPicker
-          weekStartsOn={weekStartsOn}
-          changeHandler={onWeekStartsOnChanged}
-        />
-      </Box>
-
-      <Box
-        sx={{
-          borderRadius: "16px",
-          p: { xs: 2, sm: 3 },
-          mb: 4,
-          bgcolor: "#FFFFFF",
-          border: "1px solid",
-          borderColor: "#E5E7EB",
-          boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06)",
-          overflow: "hidden",
-        }}
-      >
-        <Box
-          component="h3"
-          sx={{
-            mb: 3,
-            fontWeight: 600,
-            color: "#1E40AF",
-            fontSize: "1.25rem",
-          }}
-        >
-          Calendar View
-        </Box>
-
-        <Box sx={{ width: "100%" }}>
-          {racePlan && (
-            <CalendarGrid
-              racePlan={racePlan}
+          <div className="flex justify-center mt-6">
+            <UnitsButtons
               units={selectedUnits}
-              weekStartsOn={weekStartsOn}
-              swapDates={swapDates}
-              swapDow={doSwapDow}
+              unitsChangeHandler={onSelectedUnitsChanged}
             />
-          )}
-        </Box>
-      </Box>
-    </>
+          </div>
+        </div>
+
+        {/* Download Actions */}
+        <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
+          <h3 className="text-xl font-semibold mb-6 text-center text-primary-700">
+            Export Your Training Plan
+          </h3>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-3xl mx-auto">
+            <button
+              onClick={downloadIcalHandler}
+              className="w-full sm:w-auto min-w-[200px] bg-primary-600 hover:bg-primary-700 text-white py-3 px-6 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 group"
+            >
+              <CloudDownloadIcon className="group-hover:scale-110 transition-transform duration-200" />
+              Download iCal
+            </button>
+
+            <button
+              onClick={downloadCsvHandler}
+              className="w-full sm:w-auto min-w-[200px] bg-accent-600 hover:bg-accent-700 text-white py-3 px-6 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 group"
+            >
+              <TableViewIcon className="group-hover:scale-110 transition-transform duration-200" />
+              Download CSV
+            </button>
+
+            <UndoButton
+              disabled={undoHistory.length <= 1}
+              undoHandler={undoHandler}
+            />
+          </div>
+        </div>
+
+        {/* Plan Details Card */}
+        <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
+          <h3 className="text-xl font-semibold mb-4 text-primary-700">
+            Plan Details
+          </h3>
+          <PlanDetailsCard racePlan={racePlan} />
+        </div>
+
+        {/* Week Options Card */}
+        <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
+          <h3 className="text-xl font-semibold mb-4 text-primary-700">
+            Week Options
+          </h3>
+          <WeekStartsOnPicker
+            weekStartsOn={weekStartsOn}
+            changeHandler={onWeekStartsOnChanged}
+          />
+        </div>
+
+        {/* Calendar View Card */}
+        <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
+          <h3 className="text-xl font-semibold mb-6 text-primary-700">
+            Calendar View
+          </h3>
+          <div className="w-full">
+            {racePlan && (
+              <CalendarGrid
+                racePlan={racePlan}
+                units={selectedUnits}
+                weekStartsOn={weekStartsOn}
+                swapDates={swapDates}
+                swapDow={doSwapDow}
+              />
+            )}
+          </div>
+        </div>
+
+      </div>
+    </div>
   );
 };
 
