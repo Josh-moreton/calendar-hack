@@ -1,11 +1,12 @@
 
 interface Props {
   viewBox?: string;
+  style?: React.CSSProperties;
 }
 
-export const DragHandle = ({ viewBox = "0 0 32 52" }: Props) => {
+export const DragHandle = ({ viewBox = "0 0 32 52", style }: Props) => {
   return (
-    <svg className="drag-handle" viewBox={viewBox}>
+    <svg className="drag-handle" viewBox={viewBox} style={style}>
       <rect height="4" width="4" y="4" x="0" />
       <rect height="4" width="4" y="12" x="0" />
       <rect height="4" width="4" y="20" x="0" />

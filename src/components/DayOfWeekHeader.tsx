@@ -94,7 +94,7 @@ export const DayOfWeekHeader = ({
                 },
               }}
             >
-              <DragHandle viewBox="0 0 32 36" />
+              <DragHandle viewBox="0 0 32 36" style={{ width: '16px', height: '16px' }} />
               <Typography variant="body2" sx={{ ml: 1, fontWeight: 500, color: 'secondary.contrastText' }}>
                 {dow}
               </Typography>

@@ -5,6 +5,8 @@
   cursor: move;
   opacity: 0.6;
   transition: opacity 0.2s;
+  width: 16px;
+  height: 16px;
 }
 
 .drag-handle:hover {
@@ -74,6 +76,19 @@
   grid-auto-rows: 1fr !important;
   grid-template-columns: 0.75fr repeat(7, 1fr) !important;
   gap: 0.25rem !important;
+}
+
+/* Improve workout card icons positioning */
+.workout-content svg {
+  position: static !important;
+  width: 16px !important;
+  height: 16px !important;
+  transition: transform 0.2s ease-in-out !important;
+}
+
+.workout-content svg:hover {
+  transform: scale(1.2) !important;
+  cursor: grab !important;
 }
 
 ::-webkit-scrollbar-thumb:hover {

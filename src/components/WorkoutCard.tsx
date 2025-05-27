@@ -30,6 +30,7 @@ function renderDesc(
         sx={{
           fontWeight: 600,
           color: "text.primary",
+          mb: 0.5,
         }}
         className="workout-title"
       >
@@ -96,8 +97,18 @@ export const WorkoutCard = ({ dayDetails, date, units }: Props) => {
         }}
         className="workout-content"
       >
-        <Box ref={drag} sx={{ mr: 1.5 }}>
-          <DragHandle viewBox="0 0 32 36" />
+        <Box 
+          ref={drag} 
+          sx={{ 
+            mr: 1.5,
+            display: 'flex',
+            alignItems: 'flex-start',
+            height: '100%',
+            alignSelf: 'stretch',
+            paddingTop: '4px'
+          }}
+        >
+          <DragHandle viewBox="0 0 32 36" style={{ width: '16px', height: '16px' }} />
         </Box>
         {renderDesc(dayDetails, dayDetails.sourceUnits, units)}
       </Box>
