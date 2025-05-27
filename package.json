@@ -24,6 +24,7 @@
     "cross-fetch": "4.0.0",
     "date-fns": "4.1.0",
     "dnd-core": "^16.0.1",
+    "framer-motion": "^12.15.0",
     "history": "5.3.0",
     "ics": "3.8.1",
     "moo": "0.5.2",

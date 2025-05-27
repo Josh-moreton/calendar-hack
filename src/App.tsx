@@ -159,26 +159,92 @@ const App = () => {
 
   return (
     <>
-      <PlanAndDate
-        availablePlans={repo.available}
-        selectedPlan={selectedPlan}
-        selectedDate={planEndDate}
-        dateChangeHandler={onSelectedEndDateChange}
-        selectedPlanChangeHandler={onSelectedPlanChange}
-        weekStartsOn={weekStartsOn}
-      />
-
-      <Box
+      <Box 
         sx={{
-          display: "flex",
-          justifyContent: "center",
-          mb: 2,
+          borderRadius: { xs: "0 0 24px 24px", md: "0 0 32px 32px" },
+          mb: 5,
+          p: { xs: 3, md: 6 },
+          background: `linear-gradient(135deg, #1E40AF 0%, #0F2167 100%)`,
+          color: "white",
+          textAlign: "center",
         }}
       >
-        <UnitsButtons
-          units={selectedUnits}
-          unitsChangeHandler={onSelectedUnitsChanged}
+        <Box
+          sx={{
+            maxWidth: "800px",
+            mx: "auto",
+          }}
+        >
+          <Box 
+            component="h1"
+            sx={{
+              fontSize: { xs: "2rem", md: "3rem" },
+              fontWeight: 800,
+              mb: 2,
+              fontFamily: "'Manrope', sans-serif",
+            }}
+          >
+            Your Personal Running Training Calendar
+          </Box>
+          <Box 
+            component="p"
+            sx={{
+              fontSize: { xs: "1rem", md: "1.1rem" },
+              mb: 0,
+              opacity: 0.9,
+            }}
+          >
+            Customize your perfect training plan for any race distance and achieve your personal best.
+          </Box>
+        </Box>
+      </Box>
+      
+      <Box 
+        sx={{
+          borderRadius: "16px", 
+          p: { xs: 2, sm: 3, md: 4 },
+          mb: 4,
+          bgcolor: "#FFFFFF",
+          border: "1px solid",
+          borderColor: "#E5E7EB",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06)",
+        }}
+      >
+        <Box 
+          component="h2" 
+          sx={{ 
+            fontSize: { xs: "1.5rem", md: "1.75rem" },
+            mb: 3, 
+            textAlign: "center", 
+            fontWeight: 700,
+            color: "#1E40AF",
+          }}
+        >
+          Customize Your Training Plan
+        </Box>
+        
+        <PlanAndDate
+          availablePlans={repo.available}
+          selectedPlan={selectedPlan}
+          selectedDate={planEndDate}
+          dateChangeHandler={onSelectedEndDateChange}
+          selectedPlanChangeHandler={onSelectedPlanChange}
+          weekStartsOn={weekStartsOn}
         />
+
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            mb: 3,
+            mt: 2,
+          }}
+        >
+          <UnitsButtons
+            units={selectedUnits}
+            unitsChangeHandler={onSelectedUnitsChanged}
+          />
+        </Box>
       </Box>
 
       <Box
@@ -199,10 +265,6 @@ const App = () => {
           onClick={downloadIcalHandler}
           startIcon={<CloudDownloadIcon />}
           sx={{
-            borderRadius: 1,
-            textTransform: "none",
-            px: 3,
-            py: 1.2,
             width: { xs: "100%", sm: "auto" },
             minWidth: { sm: "200px" },
           }}
@@ -215,10 +277,6 @@ const App = () => {
           onClick={downloadCsvHandler}
           startIcon={<TableViewIcon />}
           sx={{
-            borderRadius: 1,
-            textTransform: "none",
-            px: 3,
-            py: 1.2,
             width: { xs: "100%", sm: "auto" },
             minWidth: { sm: "200px" },
           }}
@@ -232,25 +290,94 @@ const App = () => {
         />
       </Box>
 
-      <PlanDetailsCard racePlan={racePlan} />
+      <Box 
+        sx={{
+          borderRadius: "16px", 
+          p: { xs: 2, sm: 3 },
+          mb: 4,
+          bgcolor: "#FFFFFF",
+          border: "1px solid",
+          borderColor: "#E5E7EB",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06)",
+        }}
+      >
+        <Box 
+          component="h3" 
+          sx={{ 
+            mb: 2, 
+            fontWeight: 600,
+            color: "#1E40AF",
+            fontSize: "1.25rem",
+          }}
+        >
+          Plan Details
+        </Box>
+        <PlanDetailsCard racePlan={racePlan} />
+      </Box>
 
-      <Box sx={{ mb: 4, width: "100%" }}>
+      <Box 
+        sx={{
+          borderRadius: "16px", 
+          p: { xs: 2, sm: 3 },
+          mb: 4,
+          bgcolor: "#FFFFFF",
+          border: "1px solid",
+          borderColor: "#E5E7EB",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06)",
+        }}
+      >
+        <Box 
+          component="h3" 
+          sx={{ 
+            mb: 2, 
+            fontWeight: 600,
+            color: "#1E40AF",
+            fontSize: "1.25rem",
+          }}
+        >
+          Week Options
+        </Box>
         <WeekStartsOnPicker
           weekStartsOn={weekStartsOn}
           changeHandler={onWeekStartsOnChanged}
         />
       </Box>
 
-      <Box sx={{ mb: 4, width: "100%" }}>
-        {racePlan && (
-          <CalendarGrid
-            racePlan={racePlan}
-            units={selectedUnits}
-            weekStartsOn={weekStartsOn}
-            swapDates={swapDates}
-            swapDow={doSwapDow}
-          />
-        )}
+      <Box 
+        sx={{
+          borderRadius: "16px", 
+          p: { xs: 2, sm: 3 },
+          mb: 4,
+          bgcolor: "#FFFFFF",
+          border: "1px solid",
+          borderColor: "#E5E7EB",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06)",
+          overflow: "hidden",
+        }}
+      >
+        <Box 
+          component="h3" 
+          sx={{ 
+            mb: 3, 
+            fontWeight: 600,
+            color: "#1E40AF",
+            fontSize: "1.25rem",
+          }}
+        >
+          Calendar View
+        </Box>
+        
+        <Box sx={{ width: "100%" }}>
+          {racePlan && (
+            <CalendarGrid
+              racePlan={racePlan}
+              units={selectedUnits}
+              weekStartsOn={weekStartsOn}
+              swapDates={swapDates}
+              swapDow={doSwapDow}
+            />
+          )}
+        </Box>
       </Box>
     </>
   );
