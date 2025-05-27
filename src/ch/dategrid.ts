@@ -90,7 +90,7 @@ export class DateGrid<T> {
   get days(): Day<T>[] {
     if (!this.first || !this.last) return [];
     const dates = eachDayOfInterval({ start: this.first, end: this.last });
-    const res = dates.map((d) => {
+    const res = dates.map(d => {
       return { date: d, event: this.getEvent(d) };
     });
     return res;
@@ -124,7 +124,7 @@ export class DateGrid<T> {
       // min/max/first/last/weekCount maintenance
       if (!this._max || isAfter(date, this._max)) this._max = date;
       this._last = startOfDay(
-        endOfWeek(this._max, { weekStartsOn: this._weekStartsOn }),
+        endOfWeek(this._max, { weekStartsOn: this._weekStartsOn })
       );
       if (!this._min || isBefore(date, this._min)) this._min = date;
       this._first = startOfWeek(this._min, {
@@ -132,7 +132,7 @@ export class DateGrid<T> {
       });
       this._weekCount = differenceInWeeks(
         startOfDay(addDays(this._last, 1)),
-        this._first,
+        this._first
       );
     } else {
       this._events.delete(k);
@@ -151,8 +151,8 @@ export class DateGrid<T> {
     if (!isWithinInterval(d, { start: this.first, end: this.last }))
       throw new Error(
         `"date ${key(d)} is not within interval (${key(this.first)},${key(
-          this.last,
-        )})`,
+          this.last
+        )})`
       );
   }
 
@@ -193,19 +193,19 @@ export class DateGrid<T> {
     const dates = eachDayOfInterval({ start: this.first, end: this.last });
     switch (dow) {
       case "Monday":
-        return dates.filter((d) => isMonday(d));
+        return dates.filter(d => isMonday(d));
       case "Tuesday":
-        return dates.filter((d) => isTuesday(d));
+        return dates.filter(d => isTuesday(d));
       case "Wednesday":
-        return dates.filter((d) => isWednesday(d));
+        return dates.filter(d => isWednesday(d));
       case "Thursday":
-        return dates.filter((d) => isThursday(d));
+        return dates.filter(d => isThursday(d));
       case "Friday":
-        return dates.filter((d) => isFriday(d));
+        return dates.filter(d => isFriday(d));
       case "Saturday":
-        return dates.filter((d) => isSaturday(d));
+        return dates.filter(d => isSaturday(d));
       case "Sunday":
-        return dates.filter((d) => isSunday(d));
+        return dates.filter(d => isSunday(d));
       default:
         throw new Error(`unhandled day of week ${dow}`);
     }

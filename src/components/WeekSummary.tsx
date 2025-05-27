@@ -29,7 +29,9 @@ export const WeekSummary = ({
       sx={{
         p: { xs: 1, md: 2 },
         borderRadius: "6px",
-        bgcolor: isHighestMileage ? "rgba(52, 152, 219, 0.08)" : "background.paper",
+        bgcolor: isHighestMileage
+          ? "rgba(52, 152, 219, 0.08)"
+          : "background.paper",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -38,7 +40,9 @@ export const WeekSummary = ({
         minWidth: { xs: "60px", sm: "80px" },
         maxWidth: { xs: "90px", sm: "120px" },
         boxShadow: isHighestMileage ? 2 : 1,
-        border: isHighestMileage ? "1px solid rgba(52, 152, 219, 0.3)" : "1px solid rgba(0,0,0,0.04)",
+        border: isHighestMileage
+          ? "1px solid rgba(52, 152, 219, 0.3)"
+          : "1px solid rgba(0,0,0,0.04)",
         transition: "all 0.2s ease",
         "&:hover": {
           boxShadow: "0 3px 10px rgba(0,0,0,0.1)",
@@ -48,12 +52,12 @@ export const WeekSummary = ({
       className="week-summary"
       key={"week:" + week.weekNum}
     >
-      <Typography 
-        variant="subtitle1" 
-        fontWeight="700" 
-        align="center" 
-        sx={{ 
-          color: 'text.primary',
+      <Typography
+        variant="subtitle1"
+        fontWeight="700"
+        align="center"
+        sx={{
+          color: "text.primary",
           fontFamily: "'Montserrat', sans-serif",
           letterSpacing: "0.02em",
           mb: 0.5,
@@ -63,15 +67,17 @@ export const WeekSummary = ({
       </Typography>
 
       {distance > 0 && (
-        <Typography 
-          variant="body2" 
-          align="center" 
-          sx={{ 
-            color: isHighestMileage ? 'primary.main' : 'text.primary',
+        <Typography
+          variant="body2"
+          align="center"
+          sx={{
+            color: isHighestMileage ? "primary.main" : "text.primary",
             fontWeight: isHighestMileage ? 600 : 400,
             mt: 0.5,
             fontSize: "0.9rem",
-            backgroundColor: isHighestMileage ? "rgba(52, 152, 219, 0.1)" : "transparent",
+            backgroundColor: isHighestMileage
+              ? "rgba(52, 152, 219, 0.1)"
+              : "transparent",
             borderRadius: "15px",
             px: 1,
             py: 0.5,
@@ -109,7 +115,11 @@ export const WeekSummary = ({
       )}
 
       {isHighestMileage && (
-        <Typography variant="caption" align="center" sx={{ color: 'text.primary' }}>
+        <Typography
+          variant="caption"
+          align="center"
+          sx={{ color: "text.primary" }}
+        >
           Highest Mileage
         </Typography>
       )}

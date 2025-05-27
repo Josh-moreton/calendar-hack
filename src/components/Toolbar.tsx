@@ -24,10 +24,12 @@ const Toolbar = () => {
             height: { xs: "64px", sm: "70px" },
           }}
         >
-          <Box sx={{ 
-            display: "flex", 
-            alignItems: "center",
-          }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <HomeButton />
             <Typography
               variant="h1"
@@ -45,18 +47,20 @@ const Toolbar = () => {
                 "& span": {
                   color: theme.palette.secondary.main,
                   fontWeight: 800,
-                }
+                },
               }}
             >
               STRID<span>R</span>
             </Typography>
           </Box>
 
-          <Box sx={{ 
-            display: "flex", 
-            alignItems: "center", 
-            gap: 1
-          }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+            }}
+          >
             <GitHubButton />
           </Box>
         </Box>

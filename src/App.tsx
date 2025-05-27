@@ -35,25 +35,25 @@ const App = () => {
     s: NumberParam,
   });
   const [selectedUnits, setSelectedUnits] = useState<Units>(
-    u === "mi" || u === "km" ? u : getLocaleUnits(),
+    u === "mi" || u === "km" ? u : getLocaleUnits()
   );
   var [selectedPlan, setSelectedPlan] = useState(repo.find(p || ""));
   var [racePlan, setRacePlan] = useState<RacePlan | undefined>(undefined);
   var [undoHistory, setUndoHistory] = useState([] as RacePlan[]);
   var [weekStartsOn, setWeekStartsOn] = useState<WeekStartsOn>(
-    s === 0 || s === 1 || s === 6 ? s : WeekStartsOnValues.Monday,
+    s === 0 || s === 1 || s === 6 ? s : WeekStartsOnValues.Monday
   );
   var [planEndDate, setPlanEndDate] = useState(
     d && isAfter(d, new Date())
       ? d
-      : addWeeks(endOfWeek(new Date(), { weekStartsOn: weekStartsOn }), 20),
+      : addWeeks(endOfWeek(new Date(), { weekStartsOn: weekStartsOn }), 20)
   );
 
   useMountEffect(() => {
     initialLoad(selectedPlan, planEndDate, selectedUnits, weekStartsOn);
   });
 
-  const [, forceUpdate] = React.useReducer((x) => x + 1, 0);
+  const [, forceUpdate] = React.useReducer(x => x + 1, 0);
   React.useEffect(() => {
     // listen for changes to the URL and force the app to re-render
     history.listen(() => {
@@ -65,7 +65,7 @@ const App = () => {
     units: Units,
     plan: PlanSummary,
     date: Date,
-    weekStartsOn: WeekStartsOn,
+    weekStartsOn: WeekStartsOn
   ) => {
     return {
       u: units,
@@ -79,7 +79,7 @@ const App = () => {
     plan: PlanSummary,
     endDate: Date,
     units: Units,
-    weekStartsOn: WeekStartsOn,
+    weekStartsOn: WeekStartsOn
   ) => {
     const racePlan = build(await repo.fetch(plan), endDate, weekStartsOn);
     setRacePlan(racePlan);
@@ -159,7 +159,7 @@ const App = () => {
 
   return (
     <>
-      <Box 
+      <Box
         sx={{
           borderRadius: { xs: "0 0 24px 24px", md: "0 0 32px 32px" },
           mb: 5,
@@ -175,7 +175,7 @@ const App = () => {
             mx: "auto",
           }}
         >
-          <Box 
+          <Box
             component="h1"
             sx={{
               fontSize: { xs: "2rem", md: "3rem" },
@@ -186,7 +186,7 @@ const App = () => {
           >
             Your Personal Running Training Calendar
           </Box>
-          <Box 
+          <Box
             component="p"
             sx={{
               fontSize: { xs: "1rem", md: "1.1rem" },
@@ -194,14 +194,15 @@ const App = () => {
               opacity: 0.9,
             }}
           >
-            Customize your perfect training plan for any race distance and achieve your personal best.
+            Customize your perfect training plan for any race distance and
+            achieve your personal best.
           </Box>
         </Box>
       </Box>
-      
-      <Box 
+
+      <Box
         sx={{
-          borderRadius: "16px", 
+          borderRadius: "16px",
           p: { xs: 2, sm: 3, md: 4 },
           mb: 4,
           bgcolor: "#FFFFFF",
@@ -210,19 +211,19 @@ const App = () => {
           boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06)",
         }}
       >
-        <Box 
-          component="h2" 
-          sx={{ 
+        <Box
+          component="h2"
+          sx={{
             fontSize: { xs: "1.5rem", md: "1.75rem" },
-            mb: 3, 
-            textAlign: "center", 
+            mb: 3,
+            textAlign: "center",
             fontWeight: 700,
             color: "#1E40AF",
           }}
         >
           Customize Your Training Plan
         </Box>
-        
+
         <PlanAndDate
           availablePlans={repo.available}
           selectedPlan={selectedPlan}
@@ -290,9 +291,9 @@ const App = () => {
         />
       </Box>
 
-      <Box 
+      <Box
         sx={{
-          borderRadius: "16px", 
+          borderRadius: "16px",
           p: { xs: 2, sm: 3 },
           mb: 4,
           bgcolor: "#FFFFFF",
@@ -301,10 +302,10 @@ const App = () => {
           boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06)",
         }}
       >
-        <Box 
-          component="h3" 
-          sx={{ 
-            mb: 2, 
+        <Box
+          component="h3"
+          sx={{
+            mb: 2,
             fontWeight: 600,
             color: "#1E40AF",
             fontSize: "1.25rem",
@@ -315,9 +316,9 @@ const App = () => {
         <PlanDetailsCard racePlan={racePlan} />
       </Box>
 
-      <Box 
+      <Box
         sx={{
-          borderRadius: "16px", 
+          borderRadius: "16px",
           p: { xs: 2, sm: 3 },
           mb: 4,
           bgcolor: "#FFFFFF",
@@ -326,10 +327,10 @@ const App = () => {
           boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06)",
         }}
       >
-        <Box 
-          component="h3" 
-          sx={{ 
-            mb: 2, 
+        <Box
+          component="h3"
+          sx={{
+            mb: 2,
             fontWeight: 600,
             color: "#1E40AF",
             fontSize: "1.25rem",
@@ -343,9 +344,9 @@ const App = () => {
         />
       </Box>
 
-      <Box 
+      <Box
         sx={{
-          borderRadius: "16px", 
+          borderRadius: "16px",
           p: { xs: 2, sm: 3 },
           mb: 4,
           bgcolor: "#FFFFFF",
@@ -355,10 +356,10 @@ const App = () => {
           overflow: "hidden",
         }}
       >
-        <Box 
-          component="h3" 
-          sx={{ 
-            mb: 3, 
+        <Box
+          component="h3"
+          sx={{
+            mb: 3,
             fontWeight: 600,
             color: "#1E40AF",
             fontSize: "1.25rem",
@@ -366,7 +367,7 @@ const App = () => {
         >
           Calendar View
         </Box>
-        
+
         <Box sx={{ width: "100%" }}>
           {racePlan && (
             <CalendarGrid

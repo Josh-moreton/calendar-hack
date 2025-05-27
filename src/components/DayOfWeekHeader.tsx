@@ -30,7 +30,7 @@ export const DayOfWeekHeader = ({
       setSelectedDow(undefined);
       setHoveringDow(undefined);
     },
-    collect: (monitor) => {
+    collect: monitor => {
       return {
         isDragging: monitor.isDragging(),
       };
@@ -44,7 +44,7 @@ export const DayOfWeekHeader = ({
     drop: (item: { id: dayOfWeek }) => {
       swapDow(dow, item.id);
     },
-    collect: (monitor) => {
+    collect: monitor => {
       if (monitor.isOver()) {
         if (monitor.canDrop()) {
           setHoveringDow(dow);
@@ -96,16 +96,22 @@ export const DayOfWeekHeader = ({
                 },
               }}
             >
-              <DragHandle viewBox="0 0 32 36" style={{ width: '14px', height: '14px', opacity: 0.7 }} />
-              <Typography variant="subtitle2" sx={{ 
-                ml: 1, 
-                fontFamily: "'Montserrat', sans-serif",
-                fontWeight: 600, 
-                color: 'primary.contrastText',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                fontSize: '0.85rem'
-              }}>
+              <DragHandle
+                viewBox="0 0 32 36"
+                style={{ width: "14px", height: "14px", opacity: 0.7 }}
+              />
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  ml: 1,
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: 600,
+                  color: "primary.contrastText",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.05em",
+                  fontSize: "0.85rem",
+                }}
+              >
                 {dow}
               </Typography>
             </Box>

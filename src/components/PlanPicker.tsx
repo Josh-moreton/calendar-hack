@@ -21,7 +21,7 @@ const PlanPicker = ({
 }: Props) => {
   const handleChange = (event: SelectChangeEvent<string>) => {
     const planId = event.target.value;
-    const newSelection = availablePlans.find((p) => p[1] === planId);
+    const newSelection = availablePlans.find(p => p[1] === planId);
     if (newSelection) {
       planChangeHandler(newSelection);
     } else {
@@ -47,7 +47,7 @@ const PlanPicker = ({
           },
         }}
       >
-        {availablePlans.map((plan) => (
+        {availablePlans.map(plan => (
           <MenuItem key={plan[1]} value={plan[1]}>
             <Box
               component="span"

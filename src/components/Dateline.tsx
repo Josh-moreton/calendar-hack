@@ -14,7 +14,8 @@ export const Dateline = ({ $date }: Props) => {
         py: 0.6,
         px: 1,
         textAlign: "center",
-        backgroundImage: "linear-gradient(to right, primary.dark, primary.main)",
+        backgroundImage:
+          "linear-gradient(to right, primary.dark, primary.main)",
       }}
       className="dateline"
     >

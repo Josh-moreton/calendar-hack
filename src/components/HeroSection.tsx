@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Typography, Container, Button, useTheme, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Container,
+  Button,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import { motion } from "framer-motion";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 
@@ -11,7 +18,7 @@ const MotionButton = motion(Button);
 const HeroSection: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  
+
   return (
     <Box
       sx={{
@@ -47,7 +54,12 @@ const HeroSection: React.FC = () => {
             animate={{
               x: "-45%",
               y: "-45%",
-              transition: { duration: 15, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }
+              transition: {
+                duration: 15,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut",
+              },
             }}
             sx={{
               position: "absolute",
@@ -65,7 +77,12 @@ const HeroSection: React.FC = () => {
             animate={{
               x: "45%",
               y: "45%",
-              transition: { duration: 20, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }
+              transition: {
+                duration: 20,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut",
+              },
             }}
             sx={{
               position: "absolute",
@@ -81,7 +98,10 @@ const HeroSection: React.FC = () => {
         </>
       )}
 
-      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2, py: { xs: 6, md: 8 } }}>
+      <Container
+        maxWidth="lg"
+        sx={{ position: "relative", zIndex: 2, py: { xs: 6, md: 8 } }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -91,7 +111,12 @@ const HeroSection: React.FC = () => {
             gap: { xs: 4, md: 2 },
           }}
         >
-          <Box sx={{ maxWidth: { xs: "100%", md: "50%" }, textAlign: { xs: "center", md: "left" } }}>
+          <Box
+            sx={{
+              maxWidth: { xs: "100%", md: "50%" },
+              textAlign: { xs: "center", md: "left" },
+            }}
+          >
             <MotionTypography
               variant="h5"
               component="p"
@@ -108,7 +133,7 @@ const HeroSection: React.FC = () => {
             >
               Run Smarter, Train Better
             </MotionTypography>
-            
+
             <MotionTypography
               variant="h2"
               component="h1"
@@ -125,7 +150,7 @@ const HeroSection: React.FC = () => {
             >
               Your Personal Running Training Calendar
             </MotionTypography>
-            
+
             <MotionTypography
               variant="body1"
               initial={{ opacity: 0, y: 20 }}
@@ -139,16 +164,17 @@ const HeroSection: React.FC = () => {
                 mx: { xs: "auto", md: 0 },
               }}
             >
-              Customize your perfect training plan for any race distance and achieve your personal best. 
-              Designed for runners of all levels to reach their goals.
+              Customize your perfect training plan for any race distance and
+              achieve your personal best. Designed for runners of all levels to
+              reach their goals.
             </MotionTypography>
-            
-            <Box 
-              sx={{ 
-                display: "flex", 
-                gap: 2, 
-                flexDirection: { xs: "column", sm: "row" }, 
-                justifyContent: { xs: "center", md: "flex-start" } 
+
+            <Box
+              sx={{
+                display: "flex",
+                gap: 2,
+                flexDirection: { xs: "column", sm: "row" },
+                justifyContent: { xs: "center", md: "flex-start" },
               }}
             >
               <MotionButton
@@ -169,16 +195,16 @@ const HeroSection: React.FC = () => {
               </MotionButton>
             </Box>
           </Box>
-          
+
           {!isMobile && (
             <MotionBox
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              sx={{ 
+              sx={{
                 maxWidth: "50%",
                 display: "flex",
-                justifyContent: "center"
+                justifyContent: "center",
               }}
             >
               <Box

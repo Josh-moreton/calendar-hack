@@ -18,7 +18,7 @@ interface Props {
 
 function calcWeeklyDistance(w: Week<DayDetails>): number {
   return w.days
-    .map((d) => d.event)
+    .map(d => d.event)
     .reduce((a, e) => {
       return !e || !e.dist ? a : a + e.dist;
     }, 0);
@@ -43,10 +43,10 @@ export const CalendarGrid = ({
   swapDow,
 }: Props) => {
   const [selectedDow, setSelectedDow] = React.useState<dayOfWeek | undefined>(
-    undefined,
+    undefined
   );
   const [hoveringDow, setHoveringDow] = React.useState<dayOfWeek | undefined>(
-    undefined,
+    undefined
   );
   const maxDistance = findMaxDistance(racePlan.dateGrid.weeks);
 

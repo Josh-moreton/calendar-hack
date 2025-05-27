@@ -37,16 +37,16 @@
 }
 
 .react-datepicker__day--selected {
-  background-color: #3366FF !important; /* Vibrant blue */
+  background-color: #3366ff !important; /* Vibrant blue */
 }
 
 .react-datepicker__day--keyboard-selected {
-  background-color: #6690FF !important; /* Light blue */
-  color: #FFFFFF !important; /* White text */
+  background-color: #6690ff !important; /* Light blue */
+  color: #ffffff !important; /* White text */
 }
 
 .react-datepicker__header {
-  background-color: #3366FF !important; /* Vibrant blue */
+  background-color: #3366ff !important; /* Vibrant blue */
 }
 
 .react-datepicker__current-month,

@@ -29,12 +29,12 @@ export const DayCell = ({
 
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: ItemTypes.DAY,
-    canDrop: (item) => canSwap(item.date),
+    canDrop: item => canSwap(item.date),
     drop: (item: { date: Date }) => {
       swap(date, item.date);
       return;
     },
-    collect: (monitor) => ({
+    collect: monitor => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
       droppedItem: monitor.getItem(),

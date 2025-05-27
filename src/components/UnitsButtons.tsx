@@ -9,7 +9,7 @@ interface Props {
 const UnitsButtons = ({ units, unitsChangeHandler }: Props) => {
   const handleChange = (
     _: React.MouseEvent<HTMLElement>,
-    newUnits: Units | null,
+    newUnits: Units | null
   ) => {
     // Prevent deselection of both buttons
     if (newUnits !== null) {
@@ -48,7 +48,7 @@ const UnitsButtons = ({ units, unitsChangeHandler }: Props) => {
             minWidth: { xs: "120px", sm: "140px" },
             border: "1px solid",
             borderColor: "primary.main",
-            color: "primary.main", 
+            color: "primary.main",
             fontFamily: "'Montserrat', sans-serif",
             fontWeight: 600,
             letterSpacing: "0.02em",

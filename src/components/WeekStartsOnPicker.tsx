@@ -52,7 +52,14 @@ const WeekStartsOnPicker = ({ weekStartsOn, changeHandler }: Props) => {
         Week Starts On
       </Typography>
 
-      <FormControl size="small" sx={{ minWidth: "150px", backgroundColor: "white", borderRadius: "4px" }}>
+      <FormControl
+        size="small"
+        sx={{
+          minWidth: "150px",
+          backgroundColor: "white",
+          borderRadius: "4px",
+        }}
+      >
         <InputLabel id="week-start-select-label">Day</InputLabel>
         <Select
           labelId="week-start-select-label"

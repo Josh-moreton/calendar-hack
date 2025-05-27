@@ -25,10 +25,10 @@ const Footer = () => {
             mb: { xs: 2, sm: 0 },
           }}
         >
-          <Typography 
-            variant="h6" 
-            align="center" 
-            sx={{ 
+          <Typography
+            variant="h6"
+            align="center"
+            sx={{
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 700,
               letterSpacing: "0.05em",
@@ -37,13 +37,16 @@ const Footer = () => {
               textTransform: "uppercase",
             }}
           >
-            STRID<Box component="span" sx={{ color: "secondary.main" }}>R</Box>
+            STRID
+            <Box component="span" sx={{ color: "secondary.main" }}>
+              R
+            </Box>
           </Typography>
-          
-          <Typography 
-            variant="body2" 
-            align="center" 
-            sx={{ 
+
+          <Typography
+            variant="body2"
+            align="center"
+            sx={{
               opacity: 0.8,
               letterSpacing: "0.02em",
             }}
@@ -52,14 +55,14 @@ const Footer = () => {
           </Typography>
         </Box>
 
-        <Box 
-          sx={{ 
-            borderTop: "1px solid rgba(255,255,255,0.1)", 
-            pt: 2, 
-            mt: 2 
+        <Box
+          sx={{
+            borderTop: "1px solid rgba(255,255,255,0.1)",
+            pt: 2,
+            mt: 2,
           }}
         />
-        
+
         <Box
           sx={{
             display: "flex",

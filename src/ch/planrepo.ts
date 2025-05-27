@@ -28,7 +28,7 @@ class PlanRepo {
   }
 
   find(planId: string): PlanSummary {
-    return this._byId[planId] ? this._byId[planId] : this._byId['pfitz_18_55']; // arbitrary choice
+    return this._byId[planId] ? this._byId[planId] : this._byId["pfitz_18_55"]; // arbitrary choice
   }
 
   get first(): PlanSummary {
@@ -59,7 +59,7 @@ async function fetchFromUrl<T>(url: string): Promise<T> {
 // Fetch a T from a URL, use the provided cache.
 async function fetchWithCache<T>(
   url: string,
-  cache: Map<string, T>,
+  cache: Map<string, T>
 ): Promise<T> {
   // check in cache
   if (cache.has(url)) {

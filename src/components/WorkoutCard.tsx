@@ -17,7 +17,7 @@ interface Props {
 function renderDesc(
   dayDetails: DayDetails,
   from: Units,
-  to: Units,
+  to: Units
 ): React.ReactElement {
   let [title, desc] = render(dayDetails, from, to);
   // Only render the description if it differs from the title
@@ -69,7 +69,7 @@ export const WorkoutCard = ({ dayDetails, date, units }: Props) => {
   const [{ isDragging }, drag, preview] = useDrag({
     type: ItemTypes.DAY,
     item: { date: date, dayDetails: dayDetails, units: units },
-    collect: (monitor) => ({
+    collect: monitor => ({
       isDragging: monitor.isDragging(),
       canDrag: dayDetails !== undefined,
     }),
@@ -113,22 +113,25 @@ export const WorkoutCard = ({ dayDetails, date, units }: Props) => {
         }}
         className="workout-content"
       >
-        <Box 
-          ref={drag} 
-          sx={{ 
+        <Box
+          ref={drag}
+          sx={{
             mr: 1.5,
-            display: 'flex',
-            alignItems: 'flex-start',
-            height: '100%',
-            alignSelf: 'stretch',
-            paddingTop: '4px',
+            display: "flex",
+            alignItems: "flex-start",
+            height: "100%",
+            alignSelf: "stretch",
+            paddingTop: "4px",
             opacity: 0.7,
             "&:hover": {
               opacity: 1,
-            }
+            },
           }}
         >
-          <DragHandle viewBox="0 0 32 36" style={{ width: '14px', height: '14px' }} />
+          <DragHandle
+            viewBox="0 0 32 36"
+            style={{ width: "14px", height: "14px" }}
+          />
         </Box>
         {renderDesc(dayDetails, dayDetails.sourceUnits, units)}
       </Box>

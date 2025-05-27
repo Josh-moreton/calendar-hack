@@ -12,12 +12,12 @@ export const BlankCard = ({ date }: { date: Date }) => {
         borderRadius: "6px",
         overflow: "hidden",
         transition: "all 0.2s",
-        bgcolor: "background.default",  // Slightly different from WorkoutCard
+        bgcolor: "background.default", // Slightly different from WorkoutCard
         opacity: 0.6,
         border: "1px dashed rgba(0,0,0,0.08)",
         "&:hover": {
           opacity: 0.8,
-        }
+        },
       }}
       className="blank-card"
     >
@@ -33,7 +33,7 @@ export const BlankCard = ({ date }: { date: Date }) => {
         }}
         className="blank-content"
       >
-        <Box 
+        <Box
           sx={{
             width: "80%",
             height: "3px",

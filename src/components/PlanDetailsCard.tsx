@@ -31,33 +31,37 @@ export const PlanDetailsCard = ({ racePlan }: Props) => {
           height: "4px",
           background: "linear-gradient(90deg, primary.main, secondary.main)",
           backgroundImage: "linear-gradient(90deg, #2C3E50, #3498DB)",
-        }
+        },
       }}
     >
-      <Box sx={{ 
-        display: "flex", 
-        alignItems: "center", 
-        mb: 2.5,
-        borderBottom: "1px solid rgba(0,0,0,0.06)",
-        pb: 2,
-      }}>
-        <InfoIcon sx={{ mr: 1.5, color: "primary.main", fontSize: "1.75rem" }} />
-        <Typography 
-          variant="h3" 
-          sx={{ 
-            fontWeight: 600, 
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          mb: 2.5,
+          borderBottom: "1px solid rgba(0,0,0,0.06)",
+          pb: 2,
+        }}
+      >
+        <InfoIcon
+          sx={{ mr: 1.5, color: "primary.main", fontSize: "1.75rem" }}
+        />
+        <Typography
+          variant="h3"
+          sx={{
+            fontWeight: 600,
             fontFamily: "'Montserrat', sans-serif",
-            letterSpacing: "0.01em"
+            letterSpacing: "0.01em",
           }}
         >
           Training Plan Overview
         </Typography>
       </Box>
 
-      <Typography 
-        variant="body1" 
-        paragraph 
-        sx={{ 
+      <Typography
+        variant="body1"
+        paragraph
+        sx={{
           lineHeight: 1.6,
           letterSpacing: "0.01em",
           color: "text.primary",
@@ -68,12 +72,12 @@ export const PlanDetailsCard = ({ racePlan }: Props) => {
       </Typography>
 
       {racePlan?.sourceUrl && (
-        <Box 
-          sx={{ 
-            mt: 3, 
-            pt: 1.5, 
+        <Box
+          sx={{
+            mt: 3,
+            pt: 1.5,
             borderTop: "1px solid rgba(0,0,0,0.06)",
-            textAlign: "right"
+            textAlign: "right",
           }}
         >
           <Typography variant="body2">
@@ -83,13 +87,13 @@ export const PlanDetailsCard = ({ racePlan }: Props) => {
               rel="noopener noreferrer"
               underline="hover"
               color="secondary"
-              sx={{ 
+              sx={{
                 fontWeight: 500,
                 display: "inline-flex",
                 alignItems: "center",
                 "&:hover": {
                   textDecoration: "underline",
-                }
+                },
               }}
             >
               View Source Materials

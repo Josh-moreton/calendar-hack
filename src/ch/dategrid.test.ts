@@ -90,7 +90,7 @@ describe("Plan", function () {
     const secondDay = dparse("04/14/2020");
     const lastDay = dparse("04/19/2020");
     const m = new Map();
-    eachDayOfInterval({ start: firstDay, end: lastDay }).forEach((d) => {
+    eachDayOfInterval({ start: firstDay, end: lastDay }).forEach(d => {
       m.set(d, { desc: format(d, "MM/dd/yyyy") });
     });
     const p = new DateGrid(m, WeekStartsOnValues.Monday);
@@ -106,14 +106,14 @@ describe("Plan", function () {
     const firstDay = dparse("03/02/2020");
     const lastDay = dparse("04/05/2020");
     const m = new Map();
-    eachDayOfInterval({ start: firstDay, end: lastDay }).forEach((d) => {
+    eachDayOfInterval({ start: firstDay, end: lastDay }).forEach(d => {
       m.set(d, { desc: format(d, "EEEE MM/dd/yyyy") });
     });
     const p = new DateGrid(m, WeekStartsOnValues.Monday);
     expect(p.days.length).toEqual(35);
 
     expect(() => p.getEvent(dparse("03/01/2020"))).toThrow(
-      /is not within interval/,
+      /is not within interval/
     );
     expect(p.getEvent(dparse("03/02/2020"))).toEqual({
       desc: "Monday 03/02/2020",
@@ -142,11 +142,11 @@ describe("Plan", function () {
       "04/01/2020",
     ];
     expect(p.selectAll("Wednesday").map(fmt)).toEqual(wednesdays);
-    tuesdays.forEach((s) =>
-      expect(p.getEvent(dparse(s))?.desc.startsWith("Wednesday")).toBe(true),
+    tuesdays.forEach(s =>
+      expect(p.getEvent(dparse(s))?.desc.startsWith("Wednesday")).toBe(true)
     );
-    wednesdays.forEach((s) =>
-      expect(p.getEvent(dparse(s))?.desc.startsWith("Tuesday")).toBe(true),
+    wednesdays.forEach(s =>
+      expect(p.getEvent(dparse(s))?.desc.startsWith("Tuesday")).toBe(true)
     );
   });
 });

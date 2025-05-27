@@ -85,7 +85,7 @@ const DateInputButton = forwardRef<HTMLButtonElement, ButtonProps>(
         {format(selectedDate)}
       </Button>
     );
-  },
+  }
 );
 
 DateInputButton.displayName = "DateInputButton";

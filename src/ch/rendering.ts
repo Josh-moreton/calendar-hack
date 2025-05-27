@@ -11,7 +11,7 @@ export function miToKm(value: number): number {
 
 export function getWeekDistance(week: Week<DayDetails>, units: Units): number {
   return week.days
-    .map((d) => d.event)
+    .map(d => d.event)
     .reduce((a, e) => {
       if (!e) {
         return a;
@@ -48,11 +48,11 @@ export function renderDist(value: number, from: Units, to: Units): string {
 }
 
 let dlexer = moo.compile({
-  single: [{ match: /{\d+(?:\.\d+)?}/, value: (x) => x.slice(1, -1) }], // {17}
+  single: [{ match: /{\d+(?:\.\d+)?}/, value: x => x.slice(1, -1) }], // {17}
   with_conversion: [
     {
       match: /{\d+(?:\.\d+)?(?::\d+(?:\.\d+)?)}/,
-      value: (x) => x.slice(1, -1),
+      value: x => x.slice(1, -1),
     },
   ], // {1,1.6}
   text: /.+?/,
@@ -89,7 +89,7 @@ export function renderStr(input: string, from: Units, to: Units): string {
 export function render(
   input: DayDetails,
   from: Units,
-  to: Units,
+  to: Units
 ): [string, string] {
   // [title, desc]
   let title = handle_conversions(input.title, from, to);
