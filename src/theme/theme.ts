@@ -1,30 +1,30 @@
 import { createTheme } from "@mui/material/styles";
 
-// Create a custom forest theme inspired by Stridr (Aragorn from LOTR)
+// Create a modern tech startup theme with bright, vibrant colors
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#2E6D4A", // Forest green
-      dark: "#1B4332", // Deep forest
-      light: "#52B788", // Light green
+      main: "#3366FF", // Vibrant blue
+      dark: "#2952CC", // Darker blue
+      light: "#6690FF", // Light blue
       contrastText: "#FFFFFF",
     },
     secondary: {
-      main: "#74A892", // Sage green
-      dark: "#5E8C6A", // Dark sage
-      light: "#95C1B1", // Light sage
-      contrastText: "#1B4332",
+      main: "#FF5630", // Coral orange
+      dark: "#E64B2C", // Darker orange
+      light: "#FF7A59", // Light orange
+      contrastText: "#FFFFFF",
     },
     error: {
-      main: "#BC4749", // Rusty red - forest warning
+      main: "#FF4242", // Modern error red
     },
     background: {
-      default: "#1B3A4B", // Deep forest night blue
-      paper: "#F8F9FA", // Light parchment color
+      default: "#F4F5F7", // Light gray background
+      paper: "#FFFFFF", // White card backgrounds
     },
     text: {
-      primary: "#2F3E46", // Dark forest charcoal
-      secondary: "#54626F", // Forest ash
+      primary: "#253858", // Dark blue-gray text
+      secondary: "#5E6C84", // Medium gray text
     },
   },
   typography: {

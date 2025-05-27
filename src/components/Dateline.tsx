@@ -22,6 +22,7 @@ export const Dateline = ({ $date }: Props) => {
           fontWeight: 500,
           lineHeight: 1.2,
           fontSize: "0.75rem",
+          color: "primary.contrastText", // Ensure text properly contrasts with background
         }}
       >
         {format($date)}

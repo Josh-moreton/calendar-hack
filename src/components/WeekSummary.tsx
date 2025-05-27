@@ -41,12 +41,12 @@ export const WeekSummary = ({
       className="week-summary"
       key={"week:" + week.weekNum}
     >
-      <Typography variant="subtitle1" fontWeight="bold" align="center">
+      <Typography variant="subtitle1" fontWeight="bold" align="center" sx={{ color: 'text.primary' }}>
         {`Week ${1 + week.weekNum}`}
       </Typography>
 
       {distance > 0 && (
-        <Typography variant="body2" align="center">
+        <Typography variant="body2" align="center" sx={{ color: 'text.primary' }}>
           {renderDist(distance, units, units)}
         </Typography>
       )}
@@ -79,7 +79,7 @@ export const WeekSummary = ({
       )}
 
       {isHighestMileage && (
-        <Typography variant="caption" align="center">
+        <Typography variant="caption" align="center" sx={{ color: 'text.primary' }}>
           Highest Mileage
         </Typography>
       )}

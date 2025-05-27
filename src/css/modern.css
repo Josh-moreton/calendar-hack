@@ -1,4 +1,4 @@
-/* Modern Material UI friendly CSS with Forest Theme Inspiration */
+/* Modern Material UI friendly CSS with Tech Startup Theme */
 
 /* Retain special styles for drag and drop */
 .drag-handle {
@@ -29,22 +29,22 @@
   opacity: 0.5;
 }
 
-/* React DatePicker customizations - Forest theme */
+/* React DatePicker customizations - Modern tech startup theme */
 .react-datepicker-wrapper {
   width: 100%;
 }
 
 .react-datepicker__day--selected {
-  background-color: #2e6d4a !important; /* Forest green */
+  background-color: #3366FF !important; /* Vibrant blue */
 }
 
 .react-datepicker__day--keyboard-selected {
-  background-color: #74a892 !important; /* Sage green */
-  color: #1b4332 !important; /* Deep forest */
+  background-color: #6690FF !important; /* Light blue */
+  color: #FFFFFF !important; /* White text */
 }
 
 .react-datepicker__header {
-  background-color: #1b4332 !important; /* Deep forest */
+  background-color: #3366FF !important; /* Vibrant blue */
 }
 
 .react-datepicker__current-month,

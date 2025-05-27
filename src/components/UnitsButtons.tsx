@@ -42,6 +42,7 @@ const UnitsButtons = ({ units, unitsChangeHandler }: Props) => {
             px: 2,
             border: "1px solid",
             borderColor: "primary.main",
+            color: "primary.main", // Ensuring unselected button text is clearly visible
             "&.Mui-selected": {
               backgroundColor: "primary.main",
               color: "white",
