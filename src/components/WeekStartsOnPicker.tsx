@@ -36,6 +36,7 @@ const WeekStartsOnPicker = ({ weekStartsOn, changeHandler }: Props) => {
           fontSize: "1.25rem",
           fontWeight: 500,
           minWidth: "max-content",
+          color: "text.primary",
         }}
       >
         Week starts on

@@ -47,7 +47,7 @@ export const DayCell = ({
         position: "relative",
         width: "100%",
         height: "100%",
-        minHeight: "120px",
+        minHeight: "150px", // Increased fixed height
       }}
     >
       <Box
@@ -55,6 +55,8 @@ export const DayCell = ({
           height: "100%",
           borderRadius: 1,
           transition: "all 0.3s",
+          display: "flex",
+          flexDirection: "column",
         }}
         className="day-cell"
         ref={drop}
