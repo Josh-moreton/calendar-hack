@@ -22,6 +22,7 @@ export const BlankCard = ({ date }: { date: Date }) => {
         sx={{
           flexGrow: 1,
           p: 1.5,
+          height: "calc(100% - 30px)", // Same as WorkoutCard for consistency
         }}
         className="blank-content"
       />

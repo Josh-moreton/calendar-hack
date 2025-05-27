@@ -56,6 +56,7 @@ export const CalendarGrid = ({
         sx={{
           display: "grid",
           gridTemplateColumns: "auto repeat(7, 1fr)",
+          gridAutoRows: "1fr", // Make all rows the same height
           gap: 1,
           mb: 1,
         }}
@@ -95,6 +96,7 @@ export const CalendarGrid = ({
         sx={{
           display: "grid",
           gridTemplateColumns: "auto repeat(7, 1fr)",
+          gridAutoRows: "1fr",
           gap: 1,
           mb: 1,
         }}

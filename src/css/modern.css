@@ -68,6 +68,12 @@
   border-radius: 4px;
 }
 
+/* Grid layout improvements for consistent heights */
+.week-grid {
+  display: grid;
+  grid-auto-rows: 1fr !important;
+}
+
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.3);
 }

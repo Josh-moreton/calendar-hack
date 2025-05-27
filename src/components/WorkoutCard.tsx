@@ -92,6 +92,7 @@ export const WorkoutCard = ({ dayDetails, date, units }: Props) => {
           p: 1.5,
           flexGrow: 1,
           alignItems: "flex-start",
+          height: "calc(100% - 30px)", // Subtract dateline height for consistent content area
         }}
         className="workout-content"
       >
