@@ -4,49 +4,59 @@ import {
   Typography,
   Box,
   useTheme,
-  useMediaQuery,
 } from "@mui/material";
 import HomeButton from "./HomeButton";
 import GitHubButton from "./GitHubButton";
 
 const Toolbar = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <AppBar position="sticky" color="primary" elevation={4}>
-      <MuiToolbar>
+      <MuiToolbar variant="dense" sx={{ px: { xs: 1, sm: 2, md: 3 } }}>
         <Box
           sx={{
             width: "100%",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            flexDirection: isMobile ? "column" : "row",
-            py: isMobile ? 1 : 0,
+            flexDirection: "row",
+            height: { xs: "64px", sm: "70px" },
           }}
         >
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ 
+            display: "flex", 
+            alignItems: "center",
+          }}>
             <HomeButton />
+            <Typography
+              variant="h1"
+              component="h1"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                fontFamily: "'Montserrat', sans-serif",
+                fontSize: { xs: "1.6rem", sm: "1.8rem" },
+                fontWeight: 700,
+                letterSpacing: "0.01em",
+                ml: 0.5,
+                color: "#FFFFFF",
+                textTransform: "uppercase",
+                "& span": {
+                  color: theme.palette.secondary.main,
+                  fontWeight: 800,
+                }
+              }}
+            >
+              STRID<span>R</span>
+            </Typography>
           </Box>
 
-          <Typography
-            variant="h1"
-            component="h1"
-            sx={{
-              flexGrow: 1,
-              textAlign: isMobile ? "center" : "left",
-              fontSize: { xs: "1.5rem", sm: "2rem" },
-              fontWeight: 700,
-              my: isMobile ? 1 : 0,
-              px: 2,
-              letterSpacing: "0.02em",
-            }}
-          >
-            Stridr
-          </Typography>
-
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ 
+            display: "flex", 
+            alignItems: "center", 
+            gap: 1
+          }}>
             <GitHubButton />
           </Box>
         </Box>

@@ -1,35 +1,35 @@
 import { createTheme } from "@mui/material/styles";
 
-// Create a modern tech startup theme with bright, vibrant colors
+// Create a professional running startup theme with a sophisticated color palette
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#3366FF", // Vibrant blue
-      dark: "#2952CC", // Darker blue
-      light: "#6690FF", // Light blue
+      main: "#2C3E50", // Professional dark blue-gray
+      dark: "#1A252F", // Darker blue-gray
+      light: "#34495E", // Lighter blue-gray
       contrastText: "#FFFFFF",
     },
     secondary: {
-      main: "#FF5630", // Coral orange
-      dark: "#E64B2C", // Darker orange
-      light: "#FF7A59", // Light orange
+      main: "#3498DB", // Modern blue
+      dark: "#2980B9", // Darker blue
+      light: "#5DADE2", // Lighter blue
       contrastText: "#FFFFFF",
     },
     error: {
-      main: "#FF4242", // Modern error red
+      main: "#E74C3C", // Professional error red
     },
     background: {
-      default: "#F4F5F7", // Light gray background
-      paper: "#FFFFFF", // White card backgrounds
+      default: "#ECEFF1", // Subtle light gray background
+      paper: "#FFFFFF", // Pure white card backgrounds
     },
     text: {
-      primary: "#253858", // Dark blue-gray text
-      secondary: "#5E6C84", // Medium gray text
+      primary: "#2C3E50", // Dark blue-gray for main text
+      secondary: "#7F8C8D", // Muted gray for secondary text
     },
   },
   typography: {
     fontFamily: [
-      "Roboto",
+      "'Open Sans'",
       "-apple-system",
       "BlinkMacSystemFont",
       '"Segoe UI"',
@@ -60,13 +60,17 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: "8px",
+          borderRadius: "4px",
           textTransform: "none",
+          fontWeight: 500,
+          padding: "8px 16px",
+          transition: "all 0.2s ease",
         },
         contained: {
-          boxShadow: "0 2px 4px rgba(0,0,0,0.15)",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.12)",
           "&:hover": {
-            boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+            boxShadow: "0 3px 6px rgba(0,0,0,0.15)",
+            transform: "translateY(-1px)",
           },
         },
       },
@@ -74,24 +78,45 @@ const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          borderRadius: "12px",
-          boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+          borderRadius: "6px",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+          transition: "box-shadow 0.3s ease",
+          "&:hover": {
+            boxShadow: "0 4px 12px rgba(0,0,0,0.12)",
+          },
         },
       },
     },
     MuiAppBar: {
       styleOverrides: {
         root: {
-          boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
-          backgroundImage: "linear-gradient(to right, #2E6D4A, #1B4332)",
+          boxShadow: "0 2px 10px rgba(0,0,0,0.15)",
+          backgroundImage: "linear-gradient(to right, #2C3E50, #1A252F)",
         },
       },
     },
     MuiPaper: {
       styleOverrides: {
         root: {
-          borderRadius: "8px",
+          borderRadius: "6px",
+          transition: "all 0.2s ease",
         },
+      },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        h1: {
+          letterSpacing: "-0.01em",
+          fontWeight: 600,
+        },
+        h2: {
+          letterSpacing: "-0.01em",
+          fontWeight: 600,
+        },
+        h3: {
+          letterSpacing: "-0.01em",
+          fontWeight: 500,
+        }
       },
     },
   },
