@@ -2,7 +2,6 @@ import { DragHandle } from "./DragHandle";
 import { useDrop, useDrag } from "react-dnd";
 import { ItemTypes } from "../ch/ItemTypes";
 import { dayOfWeek } from "types/app";
-import { Box, Paper, Typography } from "@mui/material";
 
 interface Props {
   dow: dayOfWeek;
@@ -61,63 +60,29 @@ export const DayOfWeekHeader = ({
   });
 
   return (
-    <Paper
-      elevation={2}
-      sx={{
-        opacity: isDragging ? 0.5 : 1,
-        borderRadius: 1,
-        overflow: "hidden",
-      }}
-      className={`week-header ${isDragging ? "dragging" : ""}`}
+    <div
+      className={`week-header rounded-sm overflow-hidden shadow-sm transition-opacity duration-200 
+                  ${isDragging ? 'opacity-50 dragging' : 'opacity-100'}`}
     >
-      <Box ref={drop} sx={{ width: "100%", height: "100%" }}>
-        <Box
-          sx={{
-            position: "relative",
-            width: "100%",
-            height: "100%",
-          }}
-        >
-          <Box ref={dragPreview} sx={{ width: "100%" }}>
-            <Box
+      <div ref={drop} className="w-full h-full">
+        <div className="relative w-full h-full">
+          <div ref={dragPreview} className="w-full">
+            <div
               ref={drag}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                p: 1.5,
-                cursor: "move",
-                bgcolor: "primary.main",
-                width: "100%", // Ensure full width
-                height: "100%",
-                transition: "all 0.2s ease",
-                "&:hover": {
-                  bgcolor: "primary.dark",
-                },
-              }}
+              className="flex items-center justify-center p-3 cursor-move bg-primary-600 w-full h-full 
+                         transition-colors duration-200 hover:bg-primary-700"
             >
               <DragHandle
                 viewBox="0 0 32 36"
                 style={{ width: "14px", height: "14px", opacity: 0.7 }}
               />
-              <Typography
-                variant="subtitle2"
-                sx={{
-                  ml: 1,
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontWeight: 600,
-                  color: "primary.contrastText",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.05em",
-                  fontSize: "0.85rem",
-                }}
-              >
+              <span className="ml-2 font-semibold text-white uppercase tracking-wider text-sm">
                 {dow}
-              </Typography>
-            </Box>
-          </Box>
-        </Box>
-      </Box>
-    </Paper>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };

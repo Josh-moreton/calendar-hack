@@ -1,6 +1,4 @@
 import { RacePlan } from "../ch/dategrid";
-import { Paper, Typography, Link, Box } from "@mui/material";
-import InfoIcon from "@mui/icons-material/Info";
 
 interface Props {
   racePlan: RacePlan | undefined;
@@ -8,99 +6,51 @@ interface Props {
 
 export const PlanDetailsCard = ({ racePlan }: Props) => {
   return (
-    <Paper
-      elevation={2}
-      sx={{
-        p: { xs: 3, sm: 4 },
-        mb: 4,
-        borderRadius: "8px",
-        backgroundColor: "background.paper",
-        maxWidth: "100%",
-        position: "relative",
-        overflow: "hidden",
-        border: "1px solid rgba(0,0,0,0.03)",
-        width: "100%",
-        maxWidth: { xs: "100%", lg: "90%", xl: "80%" },
-        mx: "auto",
-        "&:before": {
-          content: '""',
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "4px",
-          background: "linear-gradient(90deg, primary.main, secondary.main)",
-          backgroundImage: "linear-gradient(90deg, #2C3E50, #3498DB)",
-        },
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          mb: 2.5,
-          borderBottom: "1px solid rgba(0,0,0,0.06)",
-          pb: 2,
-        }}
-      >
-        <InfoIcon
-          sx={{ mr: 1.5, color: "primary.main", fontSize: "1.75rem" }}
-        />
-        <Typography
-          variant="h3"
-          sx={{
-            fontWeight: 600,
-            fontFamily: "'Montserrat', sans-serif",
-            letterSpacing: "0.01em",
-          }}
-        >
+    <div className="relative p-6 sm:p-8 mb-8 rounded-lg bg-white shadow-md border border-neutral-100 
+                    w-full max-w-full lg:max-w-[90%] xl:max-w-[80%] mx-auto overflow-hidden
+                    before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-1 
+                    before:bg-gradient-to-r before:from-neutral-700 before:to-primary-500">
+      
+      <div className="flex items-center mb-6 border-b border-neutral-100 pb-4">
+        <div className="mr-3 text-primary-600 text-2xl">
+          <svg 
+            className="w-7 h-7" 
+            fill="currentColor" 
+            viewBox="0 0 20 20" 
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path 
+              fillRule="evenodd" 
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" 
+              clipRule="evenodd" 
+            />
+          </svg>
+        </div>
+        <h3 className="text-xl font-semibold text-neutral-900 tracking-wide">
           Training Plan Overview
-        </Typography>
-      </Box>
+        </h3>
+      </div>
 
-      <Typography
-        variant="body1"
-        paragraph
-        sx={{
-          lineHeight: 1.6,
-          letterSpacing: "0.01em",
-          color: "text.primary",
-          fontSize: "1rem",
-        }}
-      >
+      <p className="leading-relaxed tracking-wide text-neutral-900 text-base mb-6">
         {racePlan?.description}
-      </Typography>
+      </p>
 
       {racePlan?.sourceUrl && (
-        <Box
-          sx={{
-            mt: 3,
-            pt: 1.5,
-            borderTop: "1px solid rgba(0,0,0,0.06)",
-            textAlign: "right",
-          }}
-        >
-          <Typography variant="body2">
-            <Link
+        <div className="mt-6 pt-3 border-t border-neutral-100 text-right">
+          <p className="text-sm">
+            <a
               href={racePlan?.sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
-              underline="hover"
-              color="secondary"
-              sx={{
-                fontWeight: 500,
-                display: "inline-flex",
-                alignItems: "center",
-                "&:hover": {
-                  textDecoration: "underline",
-                },
-              }}
+              className="font-medium text-accent-600 hover:text-accent-700 inline-flex items-center 
+                         transition-colors duration-200 hover:underline focus:outline-none 
+                         focus:ring-2 focus:ring-accent-500/20 focus:ring-offset-2 rounded-sm"
             >
               View Source Materials
-            </Link>
-          </Typography>
-        </Box>
+            </a>
+          </p>
+        </div>
       )}
-    </Paper>
+    </div>
   );
 };

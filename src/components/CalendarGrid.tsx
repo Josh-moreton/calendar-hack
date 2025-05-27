@@ -6,7 +6,6 @@ import { DayOfWeekHeader } from "./DayOfWeekHeader";
 import { format } from "date-fns";
 import { getDaysHeader, WeekStartsOn } from "../ch/datecalc";
 import { Units, dayOfWeek, Week, DayDetails } from "types/app";
-import { Box } from "@mui/material";
 
 interface Props {
   racePlan: RacePlan;
@@ -52,17 +51,8 @@ export const CalendarGrid = ({
 
   function getWeek(w: Week<DayDetails>) {
     return (
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "0.5fr repeat(7, 1fr)", // Reduced sidebar width for more content space
-          gridAutoRows: "1fr", // Make all rows the same height
-          gap: { xs: 1, sm: 1.5, md: 2 }, // Responsive gap
-          mb: 2,
-          borderRadius: "8px",
-          backgroundColor: "transparent",
-        }}
-        className="week-grid"
+      <div
+        className="week-grid grid grid-cols-[0.5fr_repeat(7,1fr)] auto-rows-fr gap-1 sm:gap-1.5 md:gap-2 mb-2 rounded-lg bg-transparent"
         key={`wr:${w.weekNum}`}
       >
         <WeekSummary
@@ -88,24 +78,16 @@ export const CalendarGrid = ({
             hovering={hoveringDow === format(d.date, "EEEE")}
           />
         ))}
-      </Box>
+      </div>
     );
   }
 
   function getHeader() {
     return (
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "0.5fr repeat(7, 1fr)", // Match the updated WeekGrid's template
-          gridAutoRows: "1fr",
-          gap: { xs: 1, sm: 1.5, md: 2 }, // Responsive gap
-          mb: 2,
-          borderRadius: "8px",
-        }}
-        className="week-grid"
+      <div
+        className="week-grid grid grid-cols-[0.5fr_repeat(7,1fr)] auto-rows-fr gap-1 sm:gap-1.5 md:gap-2 mb-2 rounded-lg"
       >
-        <Box key={"blank-left"} />
+        <div key={"blank-left"} />
         {getDaysHeader(weekStartsOn).map((dow, _) => (
           <DayOfWeekHeader
             key={dow}
@@ -115,42 +97,40 @@ export const CalendarGrid = ({
             setHoveringDow={setHoveringDow}
           />
         ))}
-      </Box>
+      </div>
     );
   }
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-        overflowX: "auto",
-        display: "flex",
-        flexDirection: "column",
-        padding: { xs: 0, sm: 1 },
-        "& .week-grid": {
-          minWidth: { xs: "800px", md: "100%" }, // Keep horizontal scrolling on small screens, full width on larger
-        },
-        scrollbarWidth: "thin",
-        "&::-webkit-scrollbar": {
-          height: "8px",
-          width: "8px",
-        },
-        "&::-webkit-scrollbar-track": {
-          backgroundColor: "rgba(0,0,0,0.05)",
-          borderRadius: "4px",
-        },
-        "&::-webkit-scrollbar-thumb": {
-          backgroundColor: "rgba(0,0,0,0.2)",
-          borderRadius: "4px",
-          "&:hover": {
-            backgroundColor: "rgba(0,0,0,0.3)",
-          },
-        },
-      }}
-      className="calendar-grid"
-    >
+    <div className="calendar-grid w-full overflow-x-auto flex flex-col p-0 sm:p-1">
+      <style jsx global>{`
+        .calendar-grid .week-grid {
+          min-width: 800px;
+        }
+        @media (min-width: 768px) {
+          .calendar-grid .week-grid {
+            min-width: 100%;
+          }
+        }
+        /* Custom scrollbar styles */
+        .calendar-grid::-webkit-scrollbar {
+          height: 8px;
+          width: 8px;
+        }
+        .calendar-grid::-webkit-scrollbar-track {
+          background-color: rgba(0,0,0,0.05);
+          border-radius: 4px;
+        }
+        .calendar-grid::-webkit-scrollbar-thumb {
+          background-color: rgba(0,0,0,0.2);
+          border-radius: 4px;
+        }
+        .calendar-grid::-webkit-scrollbar-thumb:hover {
+          background-color: rgba(0,0,0,0.3);
+        }
+      `}</style>
       {getHeader()}
       {racePlan.dateGrid.weeks.map((w, _) => getWeek(w))}
-    </Box>
+    </div>
   );
 };

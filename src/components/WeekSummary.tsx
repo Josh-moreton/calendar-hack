@@ -4,7 +4,6 @@ import FinishIcon from "../svg/icons02/finish.svg";
 import HighMileageIcon from "../svg/highMileage.svg";
 import { RacePlan } from "../ch/dategrid";
 import { Week, DayDetails, Units } from "types/app";
-import { Box, Typography } from "@mui/material";
 
 interface Props {
   desc: string;
@@ -25,104 +24,65 @@ export const WeekSummary = ({
 }: Props) => {
   const distance = getWeekDistance(week, units);
   return (
-    <Box
-      sx={{
-        p: { xs: 1, md: 2 },
-        borderRadius: "6px",
-        bgcolor: isHighestMileage
-          ? "rgba(52, 152, 219, 0.08)"
-          : "background.paper",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100%",
-        minWidth: { xs: "60px", sm: "80px" },
-        maxWidth: { xs: "90px", sm: "120px" },
-        boxShadow: isHighestMileage ? 2 : 1,
-        border: isHighestMileage
-          ? "1px solid rgba(52, 152, 219, 0.3)"
-          : "1px solid rgba(0,0,0,0.04)",
-        transition: "all 0.2s ease",
-        "&:hover": {
-          boxShadow: "0 3px 10px rgba(0,0,0,0.1)",
-          transform: "translateY(-2px)",
-        },
-      }}
-      className="week-summary"
+    <div
+      className={`
+        p-2 md:p-4 rounded-lg flex flex-col items-center justify-center h-full 
+        min-w-[60px] sm:min-w-[80px] max-w-[90px] sm:max-w-[120px] 
+        transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 week-summary
+        ${isHighestMileage 
+          ? 'bg-blue-50 border border-blue-200 shadow-md' 
+          : 'bg-white border border-slate-100 shadow-sm'
+        }
+      `}
       key={"week:" + week.weekNum}
     >
-      <Typography
-        variant="subtitle1"
-        fontWeight="700"
-        align="center"
-        sx={{
-          color: "text.primary",
-          fontFamily: "'Montserrat', sans-serif",
-          letterSpacing: "0.02em",
-          mb: 0.5,
-        }}
-      >
+      <h3 className="text-sm font-bold text-center text-neutral-900 tracking-wide mb-2">
         {`Week ${1 + week.weekNum}`}
-      </Typography>
+      </h3>
 
       {distance > 0 && (
-        <Typography
-          variant="body2"
-          align="center"
-          sx={{
-            color: isHighestMileage ? "primary.main" : "text.primary",
-            fontWeight: isHighestMileage ? 600 : 400,
-            mt: 0.5,
-            fontSize: "0.9rem",
-            backgroundColor: isHighestMileage
-              ? "rgba(52, 152, 219, 0.1)"
-              : "transparent",
-            borderRadius: "15px",
-            px: 1,
-            py: 0.5,
-          }}
+        <div
+          className={`
+            text-center text-sm mt-1 px-3 py-1 rounded-full
+            ${isHighestMileage 
+              ? 'text-primary-700 font-semibold bg-blue-100' 
+              : 'text-neutral-700 font-normal'
+            }
+          `}
         >
           {renderDist(distance, units, units)}
-        </Typography>
+        </div>
       )}
 
       {isFirstWeek && (
-        <Box
-          component="img"
+        <img
           src={StartIcon}
-          alt={"Start"}
-          sx={{ width: 24, height: 24, my: 0.5 }}
+          alt="Start"
+          className="w-6 h-6 my-2"
         />
       )}
 
       {isLastWeek && (
-        <Box
-          component="img"
+        <img
           src={FinishIcon}
           alt="Finish"
-          sx={{ width: 24, height: 24, my: 0.5 }}
+          className="w-6 h-6 my-2"
         />
       )}
 
       {isHighestMileage && (
-        <Box
-          component="img"
+        <img
           src={HighMileageIcon}
           alt="Highest Mileage"
-          sx={{ width: 24, height: 24, my: 0.5 }}
+          className="w-6 h-6 my-2"
         />
       )}
 
       {isHighestMileage && (
-        <Typography
-          variant="caption"
-          align="center"
-          sx={{ color: "text.primary" }}
-        >
+        <span className="text-xs text-center text-neutral-700">
           Highest Mileage
-        </Typography>
+        </span>
       )}
-    </Box>
+    </div>
   );
 };

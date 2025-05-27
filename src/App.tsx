@@ -23,8 +23,6 @@ import WeekStartsOnPicker from "./components/WeekStartsOnPicker";
 import { useMountEffect } from "./ch/hooks";
 import { Units, PlanSummary, dayOfWeek } from "types/app";
 import { getLocaleUnits } from "./ch/localize";
-import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
-import TableViewIcon from "@mui/icons-material/TableView";
 import HeroSection from "./components/HeroSection";
 
 const App = () => {
@@ -198,7 +196,9 @@ const App = () => {
               onClick={downloadIcalHandler}
               className="w-full sm:w-auto min-w-[200px] bg-primary-600 hover:bg-primary-700 text-white py-3 px-6 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 group"
             >
-              <CloudDownloadIcon className="group-hover:scale-110 transition-transform duration-200" />
+              <svg className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+              </svg>
               Download iCal
             </button>
 
@@ -206,7 +206,9 @@ const App = () => {
               onClick={downloadCsvHandler}
               className="w-full sm:w-auto min-w-[200px] bg-accent-600 hover:bg-accent-700 text-white py-3 px-6 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 group"
             >
-              <TableViewIcon className="group-hover:scale-110 transition-transform duration-200" />
+              <svg className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M3 3v18h18V3H3zm8 16H5v-2h6v2zm0-4H5v-2h6v2zm0-4H5V9h6v2zm8 8h-6v-2h6v2zm0-4h-6v-2h6v2zm0-4h-6V9h6v2z"/>
+              </svg>
               Download CSV
             </button>
 

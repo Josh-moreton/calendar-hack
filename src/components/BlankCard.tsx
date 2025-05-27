@@ -1,47 +1,15 @@
 import { Dateline } from "./Dateline";
-import { Paper, Box } from "@mui/material";
 
 export const BlankCard = ({ date }: { date: Date }) => {
   return (
-    <Paper
-      elevation={1}
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-        borderRadius: "6px",
-        overflow: "hidden",
-        transition: "all 0.2s",
-        bgcolor: "background.default", // Slightly different from WorkoutCard
-        opacity: 0.6,
-        border: "1px dashed rgba(0,0,0,0.08)",
-        "&:hover": {
-          opacity: 0.8,
-        },
-      }}
-      className="blank-card"
-    >
+    <div className="flex flex-col h-full rounded-md overflow-hidden transition-all duration-200 
+                    bg-neutral-50 opacity-60 border border-dashed border-neutral-200 
+                    hover:opacity-80 blank-card">
       <Dateline $date={date} />
-      <Box
-        sx={{
-          flexGrow: 1,
-          p: 2,
-          height: "calc(100% - 28px)", // Match WorkoutCard
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-        className="blank-content"
-      >
-        <Box
-          sx={{
-            width: "80%",
-            height: "3px",
-            backgroundColor: "rgba(0,0,0,0.04)",
-            borderRadius: "2px",
-          }}
-        />
-      </Box>
-    </Paper>
+      <div className="flex-grow p-4 flex items-center justify-center blank-content"
+           style={{ height: 'calc(100% - 28px)' }}>
+        <div className="w-4/5 h-1 bg-neutral-100 rounded-sm" />
+      </div>
+    </div>
   );
 };

@@ -4,7 +4,6 @@ import { WorkoutCard } from "./WorkoutCard";
 import { BlankCard } from "./BlankCard";
 import { Overlay } from "./Overlay";
 import { DayDetails, Units } from "types/app";
-import { Box } from "@mui/material";
 
 interface Props {
   dayDetails: DayDetails | undefined;
@@ -42,23 +41,9 @@ export const DayCell = ({
   });
 
   return (
-    <Box
-      sx={{
-        position: "relative",
-        width: "100%",
-        height: "100%",
-        minHeight: { xs: "160px", md: "180px" }, // Responsive height
-      }}
-    >
-      <Box
-        sx={{
-          height: "100%",
-          borderRadius: 1,
-          transition: "all 0.3s ease",
-          display: "flex",
-          flexDirection: "column",
-        }}
-        className="day-cell"
+    <div className="relative w-full h-full min-h-[160px] md:min-h-[180px]">
+      <div
+        className="day-cell h-full rounded transition-all duration-300 ease-in-out flex flex-col"
         ref={drop}
       >
         {dayDetails && (
@@ -75,7 +60,7 @@ export const DayCell = ({
 
         {dayDetails && selected && <Overlay color="pink" />}
         {dayDetails && !selected && hovering && <Overlay color="lightgreen" />}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };

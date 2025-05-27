@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         primary: {
@@ -48,7 +48,7 @@ export default {
           800: '#1e293b',
           900: '#0f172a',
           950: '#020617',
-        }
+                }
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

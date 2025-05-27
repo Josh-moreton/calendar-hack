@@ -1,55 +1,28 @@
-import React from "react";
-import {
-  Box,
-  Typography,
-  Container,
-  Button,
-  useTheme,
-  useMediaQuery,
-} from "@mui/material";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
-
-// Animate components with framer-motion
-const MotionBox = motion(Box);
-const MotionTypography = motion(Typography);
-const MotionButton = motion(Button);
 
 const HeroSection: React.FC = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
-    <Box
-      sx={{
-        background: `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)`,
-        color: "white",
-        position: "relative",
-        overflow: "hidden",
-        borderRadius: { xs: "0 0 24px 24px", md: "0 0 32px 32px" },
-        mb: 5,
-        boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.15)",
-      }}
-    >
+    <section className="relative overflow-hidden rounded-b-3xl md:rounded-b-[32px] mb-10 shadow-lg bg-gradient-to-br from-blue-900 to-blue-600 text-white">
       {/* Abstract background pattern */}
-      <Box
-        sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          opacity: 0.1,
-          backgroundImage: "url('/path-pattern.svg')", // You would need to create this SVG pattern
-          backgroundSize: "cover",
-          zIndex: 1,
-        }}
+      <div 
+        className="absolute inset-0 opacity-10 bg-cover z-[1]"
+        style={{ backgroundImage: "url('/path-pattern.svg')" }}
       />
 
       {/* Animated circles */}
       {!isMobile && (
         <>
-          <MotionBox
+          <motion.div
             initial={{ x: "-50%", y: "-50%" }}
             animate={{
               x: "-45%",
@@ -61,18 +34,12 @@ const HeroSection: React.FC = () => {
                 ease: "easeInOut",
               },
             }}
-            sx={{
-              position: "absolute",
-              width: "300px",
-              height: "300px",
-              borderRadius: "50%",
-              background: `radial-gradient(circle, ${theme.palette.secondary.main}30 0%, ${theme.palette.secondary.main}00 70%)`,
-              top: "0%",
-              left: "0%",
-              zIndex: 1,
+            className="absolute w-[300px] h-[300px] rounded-full top-0 left-0 z-[1]"
+            style={{
+              background: "radial-gradient(circle, rgba(251, 146, 60, 0.3) 0%, rgba(251, 146, 60, 0) 70%)",
             }}
           />
-          <MotionBox
+          <motion.div
             initial={{ x: "50%", y: "50%" }}
             animate={{
               x: "45%",
@@ -84,144 +51,78 @@ const HeroSection: React.FC = () => {
                 ease: "easeInOut",
               },
             }}
-            sx={{
-              position: "absolute",
-              width: "400px",
-              height: "400px",
-              borderRadius: "50%",
-              background: `radial-gradient(circle, ${theme.palette.primary.light}30 0%, ${theme.palette.primary.light}00 70%)`,
-              bottom: "-10%",
-              right: "-10%",
-              zIndex: 1,
+            className="absolute w-[400px] h-[400px] rounded-full bottom-[-10%] right-[-10%] z-[1]"
+            style={{
+              background: "radial-gradient(circle, rgba(96, 165, 250, 0.3) 0%, rgba(96, 165, 250, 0) 70%)",
             }}
           />
         </>
       )}
 
-      <Container
-        maxWidth="lg"
-        sx={{ position: "relative", zIndex: 2, py: { xs: 6, md: 8 } }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: { xs: 4, md: 2 },
-          }}
-        >
-          <Box
-            sx={{
-              maxWidth: { xs: "100%", md: "50%" },
-              textAlign: { xs: "center", md: "left" },
-            }}
-          >
-            <MotionTypography
-              variant="h5"
-              component="p"
+      <div className="container mx-auto max-w-5xl relative z-[2] py-12 md:py-16 px-4">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4">
+          <div className="max-w-full md:max-w-1/2 text-center md:text-left">
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              sx={{
-                color: theme.palette.secondary.main,
-                fontWeight: 600,
-                mb: 1,
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-              }}
+              className="text-orange-400 font-semibold mb-2 tracking-wider uppercase text-lg"
             >
               Run Smarter, Train Better
-            </MotionTypography>
+            </motion.p>
 
-            <MotionTypography
-              variant="h2"
-              component="h1"
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              sx={{
-                fontWeight: 800,
-                mb: 2,
-                fontFamily: "'Manrope', sans-serif",
-                letterSpacing: "-0.02em",
-                lineHeight: 1.2,
-              }}
+              className="font-extrabold mb-4 font-manrope tracking-tight leading-tight text-4xl md:text-5xl"
             >
               Your Personal Running Training Calendar
-            </MotionTypography>
+            </motion.h1>
 
-            <MotionTypography
-              variant="body1"
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              sx={{
-                color: "rgba(255, 255, 255, 0.9)",
-                fontSize: { xs: "1rem", md: "1.1rem" },
-                mb: 4,
-                maxWidth: "600px",
-                mx: { xs: "auto", md: 0 },
-              }}
+              className="text-white/90 text-base md:text-lg mb-8 max-w-[600px] mx-auto md:mx-0"
             >
               Customize your perfect training plan for any race distance and
               achieve your personal best. Designed for runners of all levels to
               reach their goals.
-            </MotionTypography>
+            </motion.p>
 
-            <Box
-              sx={{
-                display: "flex",
-                gap: 2,
-                flexDirection: { xs: "column", sm: "row" },
-                justifyContent: { xs: "center", md: "flex-start" },
-              }}
-            >
-              <MotionButton
-                variant="contained"
-                color="secondary"
-                size="large"
-                startIcon={<DirectionsRunIcon />}
+            <div className="flex gap-4 flex-col sm:flex-row justify-center md:justify-start">
+              <motion.button
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                sx={{
-                  px: 4,
-                  py: 1.5,
-                  fontWeight: 700,
-                }}
+                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 font-bold rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
               >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.89 19.38l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L9 8.25v4.75h2v-3.4l1.89 8.63z"/>
+                </svg>
                 Get Started
-              </MotionButton>
-            </Box>
-          </Box>
+              </motion.button>
+            </div>
+          </div>
 
           {!isMobile && (
-            <MotionBox
+            <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              sx={{
-                maxWidth: "50%",
-                display: "flex",
-                justifyContent: "center",
-              }}
+              className="max-w-1/2 flex justify-center"
             >
-              <Box
-                component="img"
-                src="/training-illustration.svg" // You would need to create/add this illustration
+              <img
+                src="/training-illustration.svg"
                 alt="Running Calendar Illustration"
-                sx={{
-                  width: "100%",
-                  maxWidth: "450px",
-                  filter: "drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.15))",
-                }}
+                className="w-full max-w-[450px] filter drop-shadow-lg"
               />
-            </MotionBox>
+            </motion.div>
           )}
-        </Box>
-      </Container>
-    </Box>
+        </div>
+      </div>
+    </section>
   );
 };
 

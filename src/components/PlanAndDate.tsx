@@ -2,7 +2,7 @@ import { DateControl } from "./DateControl";
 import PlanPicker from "./PlanPicker";
 import { PlanSummary } from "types/app";
 import { WeekStartsOn } from "../ch/datecalc";
-import { Box, Typography, useTheme, useMediaQuery, Paper } from "@mui/material";
+import { useState, useEffect } from "react";
 
 interface Props {
   availablePlans: PlanSummary[];
@@ -21,76 +21,41 @@ const PlanAndDate = ({
   dateChangeHandler,
   weekStartsOn,
 }: Props) => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
-    <Paper
-      elevation={3}
-      sx={{
-        display: "flex",
-        flexDirection: isMobile ? "column" : "row",
-        alignItems: "center",
-        justifyContent: "center",
-        p: { xs: 2.5, sm: 3 },
-        mb: 4,
-        borderRadius: "8px",
-        backgroundColor: "background.paper",
-        boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
-        border: "1px solid rgba(0,0,0,0.03)",
-      }}
-    >
-      <Box
-        sx={{
-          width: isMobile ? "100%" : "40%",
-          mb: isMobile ? 2 : 0,
-          mr: isMobile ? 0 : 2,
-          flexGrow: isMobile ? 0 : 1,
-          maxWidth: isMobile ? "100%" : "600px",
-        }}
-      >
+    <div className="flex flex-col sm:flex-row items-center justify-center p-6 sm:p-8 mb-6 rounded-lg bg-white shadow-lg border border-gray-50">
+      <div className={`${isMobile ? "w-full mb-4" : "w-2/5 mr-4 flex-grow max-w-[600px]"}`}>
         <PlanPicker
           availablePlans={availablePlans}
           selectedPlan={selectedPlan}
           planChangeHandler={selectedPlanChangeHandler}
         />
-      </Box>
+      </div>
 
-      <Typography
-        variant="h3"
-        sx={{
-          mx: { xs: 0, sm: 4 },
-          my: { xs: 2, sm: 0 },
-          fontSize: "1.125rem",
-          display: "flex",
-          alignItems: "center",
-          textAlign: "center",
-          fontFamily: "'Montserrat', sans-serif",
-          color: "text.secondary",
-          fontWeight: 500,
-          letterSpacing: "0.02em",
-          position: "relative",
-          "&:before, &:after": {
-            content: '""',
-            display: { xs: "none", md: "block" },
-            height: "1px",
-            width: "20px",
-            backgroundColor: "rgba(0,0,0,0.1)",
-            mx: 1,
-          },
-        }}
+      <h3 
+        className="text-base mx-0 sm:mx-4 my-2 sm:my-0 flex items-center text-center font-montserrat text-gray-600 font-medium tracking-wider relative"
       >
+        <span className="hidden md:block h-px w-5 bg-black/10 mx-1"></span>
         ENDING ON
-      </Typography>
+        <span className="hidden md:block h-px w-5 bg-black/10 mx-1"></span>
+      </h3>
 
-      <Box sx={{ width: isMobile ? "100%" : "auto" }}>
+      <div className={`${isMobile ? "w-full" : "w-auto"}`}>
         <DateControl
           selectedDate={selectedDate}
           onDateChanged={dateChangeHandler}
           weekStartsOn={weekStartsOn}
         />
-      </Box>
-    </Paper>
+      </div>
+    </div>
   );
 };
 

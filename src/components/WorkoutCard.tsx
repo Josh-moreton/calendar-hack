@@ -5,7 +5,6 @@ import { useDrag, DragSourceMonitor } from "react-dnd";
 import { ItemTypes } from "../ch/ItemTypes";
 import { DragHandle } from "./DragHandle";
 import { DayDetails, Units } from "types/app";
-import { Paper, Typography, Box } from "@mui/material";
 
 interface Props {
   dayDetails: DayDetails;
@@ -24,44 +23,18 @@ function renderDesc(
   // In the ical file we always render both and we automatically render the description using the same text as title if description is empty
   desc = title.replace(/\s/g, "") === desc.replace(/\s/g, "") ? "" : desc;
   return (
-    <Box sx={{ width: "100%" }}>
-      <Typography
-        variant="body1"
-        sx={{
-          fontWeight: 600,
-          color: "text.primary",
-          mb: 0.75,
-          fontSize: "0.95rem",
-          lineHeight: 1.4,
-          letterSpacing: "0.01em",
-        }}
-        className="workout-title"
-      >
+    <div className="w-full">
+      <h4 className="font-semibold text-neutral-900 mb-2 text-sm leading-snug tracking-wide workout-title">
         {title}
-      </Typography>
+      </h4>
 
       {desc && (
-        <Typography
-          variant="body2"
-          sx={{
-            color: "text.secondary",
-            mt: 0.75,
-            fontSize: "0.85rem",
-            lineHeight: 1.5,
-            letterSpacing: "0.01em",
-            backgroundColor: "rgba(0,0,0,0.02)",
-            borderLeft: "3px solid",
-            borderColor: "secondary.main",
-            pl: 1.5,
-            py: 1,
-            borderRadius: "0 4px 4px 0",
-          }}
-          className="workout-description"
-        >
+        <p className="text-neutral-600 mt-2 text-xs leading-relaxed tracking-wide 
+                    bg-neutral-50 border-l-2 border-accent-500 pl-3 py-2 rounded-r workout-description">
           {desc}
-        </Typography>
+        </p>
       )}
-    </Box>
+    </div>
   );
 }
 
@@ -81,60 +54,27 @@ export const WorkoutCard = ({ dayDetails, date, units }: Props) => {
   });
 
   return (
-    <Paper
-      elevation={2}
+    <div
       ref={preview}
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-        borderRadius: "6px",
-        overflow: "hidden",
-        opacity: isDragging ? 0.5 : 1,
-        transition: "all 0.3s",
-        backgroundColor: "background.paper",
-        border: "1px solid rgba(0,0,0,0.04)",
-        "&:hover": {
-          boxShadow: "0 6px 12px rgba(0,0,0,0.12)",
-          transform: "translateY(-2px)",
-        },
-      }}
-      className={`workout-card ${isDragging ? "dragging" : ""}`}
+      className={`flex flex-col h-full rounded-md overflow-hidden transition-all duration-300 
+                  bg-white border border-neutral-100 shadow-sm hover:shadow-md hover:-translate-y-1 
+                  workout-card ${isDragging ? 'opacity-50 dragging' : 'opacity-100'}`}
     >
       <Dateline $date={date} />
-      <Box
-        sx={{
-          display: "flex",
-          p: 2,
-          flexGrow: 1,
-          alignItems: "flex-start",
-          height: "calc(100% - 28px)", // Adjusted height
-          position: "relative",
-        }}
-        className="workout-content"
-      >
-        <Box
+      <div className="flex p-4 flex-grow items-start relative workout-content"
+           style={{ height: 'calc(100% - 28px)' }}>
+        <div
           ref={drag}
-          sx={{
-            mr: 1.5,
-            display: "flex",
-            alignItems: "flex-start",
-            height: "100%",
-            alignSelf: "stretch",
-            paddingTop: "4px",
-            opacity: 0.7,
-            "&:hover": {
-              opacity: 1,
-            },
-          }}
+          className="mr-3 flex items-start h-full self-stretch pt-1 opacity-70 hover:opacity-100 
+                     transition-opacity duration-200 cursor-grab active:cursor-grabbing"
         >
           <DragHandle
             viewBox="0 0 32 36"
             style={{ width: "14px", height: "14px" }}
           />
-        </Box>
+        </div>
         {renderDesc(dayDetails, dayDetails.sourceUnits, units)}
-      </Box>
-    </Paper>
+      </div>
+    </div>
   );
 };

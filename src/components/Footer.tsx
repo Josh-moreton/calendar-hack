@@ -1,98 +1,47 @@
-import { Box, Typography, Link, Container } from "@mui/material";
-import EmailIcon from "@mui/icons-material/Email";
-import TagIcon from "@mui/icons-material/Tag";
+// filepath: /Users/joshmoreton/GitHub/calendar-hack/src/components/Footer.tsx
 
 const Footer = () => {
   return (
-    <Box
-      component="footer"
-      sx={{
-        backgroundColor: "primary.dark",
-        color: "white",
-        py: 3,
-        mt: "auto",
-        borderTop: "1px solid rgba(255,255,255,0.1)",
-        boxShadow: "0 -4px 10px rgba(0,0,0,0.05)",
-      }}
-    >
-      <Container maxWidth="lg">
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: { xs: "column", sm: "row" },
-            justifyContent: "space-between",
-            alignItems: "center",
-            mb: { xs: 2, sm: 0 },
-          }}
-        >
-          <Typography
-            variant="h6"
-            align="center"
-            sx={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 700,
-              letterSpacing: "0.05em",
-              mb: { xs: 1, sm: 0 },
-              color: "rgba(255,255,255,0.9)",
-              textTransform: "uppercase",
-            }}
-          >
+    <footer className="bg-blue-900 text-white py-6 mt-auto border-t border-white/10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+      <div className="container mx-auto px-4 max-w-5xl">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-4 sm:mb-0">
+          <h6 className="font-montserrat font-bold tracking-wider mb-2 sm:mb-0 text-white/90 uppercase">
             STRID
-            <Box component="span" sx={{ color: "secondary.main" }}>
-              R
-            </Box>
-          </Typography>
+            <span className="text-orange-400">R</span>
+          </h6>
 
-          <Typography
-            variant="body2"
-            align="center"
-            sx={{
-              opacity: 0.8,
-              letterSpacing: "0.02em",
-            }}
-          >
+          <p className="text-sm text-center opacity-80 tracking-wide">
             Professional Training Plans for Runners
-          </Typography>
-        </Box>
+          </p>
+        </div>
 
-        <Box
-          sx={{
-            borderTop: "1px solid rgba(255,255,255,0.1)",
-            pt: 2,
-            mt: 2,
-          }}
-        />
+        <div className="border-t border-white/10 pt-4 mt-4" />
 
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: 4,
-          }}
-        >
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <EmailIcon fontSize="small" sx={{ mr: 0.5 }} />
-            <Link href="mailto:run@defy.org" color="inherit" underline="hover">
+        <div className="flex justify-center items-center flex-wrap gap-8">
+          <div className="flex items-center">
+            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+            <a href="mailto:run@defy.org" className="text-white hover:text-orange-400 transition-colors duration-200">
               email
-            </Link>
-          </Box>
+            </a>
+          </div>
 
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <TagIcon fontSize="small" sx={{ mr: 0.5 }} />
-            <Link
+          <div className="flex items-center">
+            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M5.5 7L3 12.5c0 .83.67 1.5 1.5 1.5S6 13.33 6 12.5L5.5 7zM11 7v5.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V7h-3zm7-2.5l-1.5 5.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5L18 4.5z"/>
+            </svg>
+            <a
               href="https://sfba.social/@nanreh"
-              color="inherit"
-              underline="hover"
+              className="text-white hover:text-orange-400 transition-colors duration-200"
               rel="me"
             >
               mastodon
-            </Link>
-          </Box>
-        </Box>
-      </Container>
-    </Box>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 };
 

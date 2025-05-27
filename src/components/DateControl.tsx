@@ -3,8 +3,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { WeekStartsOn } from "../ch/datecalc";
 import { format } from "../ch/localize";
-import { Button, styled } from "@mui/material";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 interface Props {
   selectedDate: Date;
@@ -17,51 +15,6 @@ interface ButtonProps {
   onClick: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
-// Style the DatePicker to match Material UI design
-const StyledDatePickerWrapper = styled("div")(({ theme }) => ({
-  "& .react-datepicker": {
-    fontFamily: theme.typography.fontFamily,
-    border: `1px solid ${theme.palette.divider}`,
-    borderRadius: "8px",
-    boxShadow: theme.shadows[3],
-  },
-  "& .react-datepicker__header": {
-    backgroundColor: theme.palette.primary.main,
-    borderBottom: "none",
-    padding: "8px 0",
-    color: "white",
-  },
-  "& .react-datepicker__current-month": {
-    color: "white",
-    fontWeight: 500,
-  },
-  "& .react-datepicker__navigation": {
-    top: "8px",
-  },
-  "& .react-datepicker__day-name": {
-    color: "white",
-    margin: "2px",
-    width: "2rem",
-  },
-  "& .react-datepicker__day": {
-    margin: "2px",
-    width: "2rem",
-    height: "2rem",
-    lineHeight: "2rem",
-    borderRadius: "50%",
-  },
-  "& .react-datepicker__day--selected": {
-    backgroundColor: theme.palette.primary.main,
-    color: "white",
-  },
-  "& .react-datepicker__day--keyboard-selected": {
-    backgroundColor: theme.palette.primary.light,
-  },
-  "& .react-datepicker__day:hover": {
-    backgroundColor: theme.palette.action.hover,
-  },
-}));
-
 // Using forwardRef to properly handle the ref from DatePicker
 const DateInputButton = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ selectedDate, onClick }, ref) => {
@@ -70,20 +23,28 @@ const DateInputButton = forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     return (
-      <Button
+      <button
         ref={ref}
-        variant="outlined"
         onClick={onClick}
-        startIcon={<CalendarMonthIcon />}
-        sx={{
-          borderRadius: 1,
-          textTransform: "none",
-          minWidth: "200px",
-          justifyContent: "flex-start",
-        }}
+        className="flex items-center justify-start min-w-[200px] px-4 py-3 border border-neutral-300 
+                   rounded-lg bg-white text-neutral-900 font-medium hover:border-primary-400 
+                   focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 focus:outline-none 
+                   transition-all duration-200 cursor-pointer"
       >
+        <svg 
+          className="w-5 h-5 mr-2 text-neutral-600" 
+          fill="currentColor" 
+          viewBox="0 0 20 20" 
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path 
+            fillRule="evenodd" 
+            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" 
+            clipRule="evenodd" 
+          />
+        </svg>
         {format(selectedDate)}
-      </Button>
+      </button>
     );
   }
 );
@@ -95,7 +56,7 @@ export class DateControl extends React.Component<Props> {
     const { selectedDate, onDateChanged, weekStartsOn } = this.props;
 
     return (
-      <StyledDatePickerWrapper>
+      <div className="date-picker-wrapper">
         <DatePicker
           selected={selectedDate}
           onChange={onDateChanged}
@@ -107,7 +68,7 @@ export class DateControl extends React.Component<Props> {
           popperPlacement="bottom-start"
           wrapperClassName="date-picker-wrapper"
         />
-      </StyledDatePickerWrapper>
+      </div>
     );
   }
 }

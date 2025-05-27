@@ -1,4 +1,3 @@
-import { ToggleButtonGroup, ToggleButton, Paper } from "@mui/material";
 import { Units } from "types/app";
 
 interface Props {
@@ -7,69 +6,41 @@ interface Props {
 }
 
 const UnitsButtons = ({ units, unitsChangeHandler }: Props) => {
-  const handleChange = (
-    _: React.MouseEvent<HTMLElement>,
-    newUnits: Units | null
-  ) => {
-    // Prevent deselection of both buttons
-    if (newUnits !== null) {
-      unitsChangeHandler(newUnits);
-    }
+  const handleMilesClick = () => {
+    unitsChangeHandler("mi");
+  };
+
+  const handleKilometersClick = () => {
+    unitsChangeHandler("km");
   };
 
   return (
-    <Paper
-      elevation={0}
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        p: { xs: 1, sm: 2 },
-        mb: 3,
-        width: "100%",
-        maxWidth: { xs: "100%", lg: "90%", xl: "80%" },
-        mx: "auto",
-        backgroundColor: "transparent",
-      }}
-    >
-      <ToggleButtonGroup
-        value={units}
-        exclusive
-        onChange={handleChange}
-        aria-label="distance units"
-        size="small"
-        color="primary"
-        sx={{
-          width: { xs: "100%", sm: "auto" },
-          maxWidth: { xs: "300px", sm: "none" },
-          "& .MuiToggleButton-root": {
-            borderRadius: 1,
-            py: 0.8,
-            px: 3,
-            minWidth: { xs: "120px", sm: "140px" },
-            border: "1px solid",
-            borderColor: "primary.main",
-            color: "primary.main",
-            fontFamily: "'Montserrat', sans-serif",
-            fontWeight: 600,
-            letterSpacing: "0.02em",
-            "&.Mui-selected": {
-              backgroundColor: "primary.main",
-              color: "white",
-              "&:hover": {
-                backgroundColor: "primary.dark",
-              },
-            },
-          },
-        }}
-      >
-        <ToggleButton value="mi" aria-label="miles">
-          Mi
-        </ToggleButton>
-        <ToggleButton value="km" aria-label="kilometers">
-          Km
-        </ToggleButton>
-      </ToggleButtonGroup>
-    </Paper>
+    <div className="flex justify-center w-full mb-6">
+      <div className="flex bg-slate-100 rounded-lg p-1 shadow-sm border border-slate-200">
+        <button
+          onClick={handleMilesClick}
+          aria-label="miles"
+          className={`px-6 py-2.5 rounded-md text-sm font-semibold tracking-wide transition-all duration-200 min-w-[120px] ${
+            units === "mi"
+              ? "bg-primary-600 text-white shadow-sm hover:bg-primary-700"
+              : "text-primary-600 hover:bg-slate-200 hover:text-primary-700"
+          }`}
+        >
+          Miles
+        </button>
+        <button
+          onClick={handleKilometersClick}
+          aria-label="kilometers"
+          className={`px-6 py-2.5 rounded-md text-sm font-semibold tracking-wide transition-all duration-200 min-w-[120px] ${
+            units === "km"
+              ? "bg-primary-600 text-white shadow-sm hover:bg-primary-700"
+              : "text-primary-600 hover:bg-slate-200 hover:text-primary-700"
+          }`}
+        >
+          Kilometers
+        </button>
+      </div>
+    </div>
   );
 };
 
