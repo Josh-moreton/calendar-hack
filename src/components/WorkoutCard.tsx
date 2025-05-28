@@ -4,21 +4,25 @@ import { Dateline } from "./Dateline";
 import { useDrag, DragSourceMonitor } from "react-dnd";
 import { ItemTypes } from "../ch/ItemTypes";
 import { DragHandle } from "./DragHandle";
-import { DayDetails, Units } from "types/app";
+import { DayDetails, Units, PaceSettings } from "types/app";
 
 interface Props {
   dayDetails: DayDetails;
   date: Date;
   units: Units;
   swap: (d1: Date, d2: Date) => void;
+  paceSettings?: PaceSettings | null;
+  planId?: string;
 }
 
 function renderDesc(
   dayDetails: DayDetails,
   from: Units,
-  to: Units
+  to: Units,
+  paceSettings?: PaceSettings | null,
+  planId?: string
 ): React.ReactElement {
-  let [title, desc] = render(dayDetails, from, to);
+  let [title, desc] = render(dayDetails, from, to, paceSettings, planId);
   // Only render the description if it differs from the title
   // In the ical file we always render both and we automatically render the description using the same text as title if description is empty
   desc = title.replace(/\s/g, "") === desc.replace(/\s/g, "") ? "" : desc;
@@ -29,8 +33,10 @@ function renderDesc(
       </h4>
 
       {desc && (
-        <p className="text-neutral-600 mt-2 text-xs leading-relaxed tracking-wide 
-                    bg-neutral-50 border-l-2 border-accent-500 pl-3 py-2 rounded-r workout-description">
+        <p
+          className="text-neutral-600 mt-2 text-xs leading-relaxed tracking-wide 
+                    bg-neutral-50 border-l-2 border-accent-500 pl-3 py-2 rounded-r workout-description"
+        >
           {desc}
         </p>
       )}
@@ -38,7 +44,13 @@ function renderDesc(
   );
 }
 
-export const WorkoutCard = ({ dayDetails, date, units }: Props) => {
+export const WorkoutCard = ({
+  dayDetails,
+  date,
+  units,
+  paceSettings,
+  planId,
+}: Props) => {
   const [{ isDragging }, drag, preview] = useDrag({
     type: ItemTypes.DAY,
     item: { date: date, dayDetails: dayDetails, units: units },
@@ -58,11 +70,13 @@ export const WorkoutCard = ({ dayDetails, date, units }: Props) => {
       ref={preview}
       className={`flex flex-col h-full rounded-md overflow-hidden transition-all duration-300 
                   bg-white border border-neutral-100 shadow-sm hover:shadow-md hover:-translate-y-1 
-                  workout-card ${isDragging ? 'opacity-50 dragging' : 'opacity-100'}`}
+                  workout-card ${isDragging ? "opacity-50 dragging" : "opacity-100"}`}
     >
       <Dateline $date={date} />
-      <div className="flex p-4 flex-grow items-start relative workout-content"
-           style={{ height: 'calc(100% - 28px)' }}>
+      <div
+        className="flex p-4 flex-grow items-start relative workout-content"
+        style={{ height: "calc(100% - 28px)" }}
+      >
         <div
           ref={drag}
           className="mr-3 flex items-start h-full self-stretch pt-1 opacity-70 hover:opacity-100 
@@ -73,7 +87,13 @@ export const WorkoutCard = ({ dayDetails, date, units }: Props) => {
             style={{ width: "14px", height: "14px" }}
           />
         </div>
-        {renderDesc(dayDetails, dayDetails.sourceUnits, units)}
+        {renderDesc(
+          dayDetails,
+          dayDetails.sourceUnits,
+          units,
+          paceSettings,
+          planId
+        )}
       </div>
     </div>
   );

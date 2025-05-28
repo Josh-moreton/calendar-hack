@@ -1,0 +1,80 @@
+{
+   "id": "test_pace_plan",
+   "name": "Test Plan with Pace Placeholders",
+   "description": "A test training plan that demonstrates pace placeholders like @easy@, @mp@, @tempo@, @interval@",
+   "units": "mi",
+   "source": "https://example.com/test-plan",
+   "type": "5K",
+   "schedule": [
+      {
+         "workouts": [
+            {
+               "title": "Rest Day"
+            },
+            {
+               "title": "Easy Run @easy@",
+               "description": "Easy Run @easy@\nRun at a comfortable, conversational pace",
+               "distance": 3.0
+            },
+            {
+               "title": "Tempo Run @tempo@",
+               "description": "Tempo Run @tempo@\nWarm up 1 mile, then 2 miles at tempo pace @tempo@, cool down 1 mile",
+               "distance": 4.0
+            },
+            {
+               "title": "Rest or Cross-Training"
+            },
+            {
+               "title": "Interval Training @interval@",
+               "description": "Interval Training @interval@\nWarm up 1 mile, then 4 × 800m at @interval@ with 400m recovery, cool down 1 mile",
+               "distance": 4.0
+            },
+            {
+               "title": "Easy Run @easy@",
+               "description": "Easy Run @easy@\nRecovery run at easy pace",
+               "distance": 2.0
+            },
+            {
+               "title": "Long Run @mp@",
+               "description": "Long Run @mp@\nStart easy @easy@ for 2 miles, then 3 miles at marathon pace @mp@, finish easy @easy@",
+               "distance": 6.0
+            }
+         ]
+      },
+      {
+         "workouts": [
+            {
+               "title": "Rest Day"
+            },
+            {
+               "title": "Easy Run @easy@",
+               "description": "Easy Run @easy@\nComfortable pace with focus on form",
+               "distance": 3.5
+            },
+            {
+               "title": "Fartlek @easy@ to @interval@",
+               "description": "Fartlek @easy@ to @interval@\nWarm up 1 mile @easy@, then 20 minutes alternating between @easy@ and @interval@, cool down 1 mile @easy@",
+               "distance": 4.5
+            },
+            {
+               "title": "Rest or Cross-Training"
+            },
+            {
+               "title": "Threshold Run @tempo@",
+               "description": "Threshold Run @tempo@\nWarm up 1.5 miles @easy@, then 3 miles at @tempo@, cool down 1.5 miles @easy@",
+               "distance": 6.0
+            },
+            {
+               "title": "Recovery Run @easy@",
+               "description": "Recovery Run @easy@\nVery easy pace for active recovery",
+               "distance": 2.5
+            },
+            {
+               "title": "Long Run with Progression",
+               "description": "Long Run with Progression\nStart 3 miles @easy@, then 2 miles @mp@, then 2 miles @tempo@, finish 1 mile @easy@",
+               "distance": 8.0
+            }
+         ]
+      }
+   ]
+}

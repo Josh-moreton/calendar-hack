@@ -18,6 +18,7 @@ interface Props {
 export const WeekCard = ({
   week,
   units,
+  racePlan,
   swap,
   selectedDow,
   hoveringDow,
@@ -42,6 +43,7 @@ export const WeekCard = ({
               hoveringDow === format(d.date, "EEEE") ||
               hoveringWeek === week.weekNum
             }
+            planId={racePlan.planId}
           />
         </div>
       ))}

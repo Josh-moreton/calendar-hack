@@ -2,6 +2,7 @@ import { PlanSummary } from "types/app";
 
 // list of all current plans
 export const plans: PlanSummary[] = [
+  ["test_pace_plan", "Test Plan with Pace Placeholders", "5K"],
   ["c25k", "Couch to 5K", "5K"],
   ["c25k_rbp", "Couch to 5K -- Runner's Blueprint", "5K"],
   ["frr_5k_01", "Faster Road Racing: 5K Schedule 1", "5K"],
