@@ -31,8 +31,8 @@ const PlanAndDate = ({
   }, []);
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-center p-6 sm:p-8 mb-6 rounded-lg bg-white shadow-lg border border-gray-50">
-      <div className={`${isMobile ? "w-full mb-4" : "w-2/5 mr-4 flex-grow max-w-[600px]"}`}>
+    <div className="flex flex-col sm:flex-row items-center justify-center p-6 sm:p-8 rounded-lg bg-gradient-to-r from-gray-50 to-blue-50 border border-gray-100">
+      <div className={`${isMobile ? "w-full mb-6" : "w-2/5 mr-6 flex-grow max-w-[600px]"}`}>
         <PlanPicker
           availablePlans={availablePlans}
           selectedPlan={selectedPlan}
@@ -41,11 +41,11 @@ const PlanAndDate = ({
       </div>
 
       <h3 
-        className="text-base mx-0 sm:mx-4 my-2 sm:my-0 flex items-center text-center font-montserrat text-gray-600 font-medium tracking-wider relative"
+        className="text-base mx-0 sm:mx-6 my-3 sm:my-0 flex items-center text-center font-montserrat text-gray-600 font-medium tracking-wider relative"
       >
-        <span className="hidden md:block h-px w-5 bg-black/10 mx-1"></span>
-        ENDING ON
-        <span className="hidden md:block h-px w-5 bg-black/10 mx-1"></span>
+        <span className="hidden md:block h-px w-6 bg-gradient-to-r from-transparent to-primary-300 mx-2"></span>
+        <span className="px-2">ENDING ON</span>
+        <span className="hidden md:block h-px w-6 bg-gradient-to-l from-transparent to-primary-300 mx-2"></span>
       </h3>
 
       <div className={`${isMobile ? "w-full" : "w-auto"}`}>
