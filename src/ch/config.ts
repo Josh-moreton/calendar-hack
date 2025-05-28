@@ -10,7 +10,7 @@ try {
   // Fallback for environments that don't support import.meta
   isDev = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test';
 }
-const basePath = isDev ? "" : "/hacks/calendarhack";
+const basePath = isDev ? "" : "/calendar-hack";
 
 const AppConfig = {
   plansPath: `${basePath}/plans/json/`,
