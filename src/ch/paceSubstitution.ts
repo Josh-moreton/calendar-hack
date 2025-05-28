@@ -96,7 +96,10 @@ export function substitutePaces(text: string, paceSettings: PaceSettings | null)
  * @returns True if text contains pace placeholders
  */
 export function containsPacePlaceholders(text: string): boolean {
-  return Object.values(PACE_PATTERNS).some(pattern => pattern.test(text));
+  return Object.values(PACE_PATTERNS).some(pattern => {
+    pattern.lastIndex = 0; // Reset regex state
+    return pattern.test(text);
+  });
 }
 
 /**
@@ -108,6 +111,8 @@ export function findPacePlaceholders(text: string): string[] {
   const found: string[] = [];
   
   for (const [paceType, pattern] of Object.entries(PACE_PATTERNS)) {
+    // Reset the regex lastIndex to avoid issues with global flag
+    pattern.lastIndex = 0;
     if (pattern.test(text)) {
       found.push(paceType);
     }

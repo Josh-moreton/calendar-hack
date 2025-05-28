@@ -96,12 +96,29 @@ export function render(
   // [title, desc]
   let title = handle_conversions(input.title, from, to);
   let desc = handle_conversions(input.desc, from, to);
-  
+
+  // Debug logging
+  console.log("render() called with:", {
+    title: input.title,
+    desc: input.desc,
+    paceSettings,
+    hasPaceSettings: !!paceSettings,
+  });
+
   // Apply pace substitutions if pace settings are provided
   if (paceSettings) {
+    console.log("Applying pace substitutions...");
+    const titleBefore = title;
+    const descBefore = desc;
     title = substitutePaces(title, paceSettings);
     desc = substitutePaces(desc, paceSettings);
+    console.log("Pace substitution results:", {
+      titleBefore,
+      titleAfter: title,
+      descBefore,
+      descAfter: desc,
+    });
   }
-  
+
   return [title, desc];
 }
