@@ -1,5 +1,6 @@
 // Determine the base path based on environment
-const basePath = import.meta.env.DEV ? "" : "/hacks/calendarhack";
+// For now, use production path as default since this is mainly used for plan loading
+const basePath = "/hacks/calendarhack";
 
 const AppConfig = {
   plansPath: `${basePath}/plans/json/`,

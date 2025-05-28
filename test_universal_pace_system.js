@@ -6,7 +6,8 @@ console.log("=== UNIVERSAL PACE SYSTEM DEMONSTRATION ===");
 // Mock workout with structured paces (Pfitzinger VO2max workout)
 const sampleWorkout = {
   title: "VO₂max intervals",
-  description: "Warm up easy, then interval training at VO₂max effort with jog recovery",
+  description:
+    "Warm up easy, then interval training at VO₂max effort with jog recovery",
   distance: 8.0,
   tags: ["Speedwork"],
   units: "mi",
@@ -14,7 +15,7 @@ const sampleWorkout = {
     {
       zone: "easy",
       distance: 2.5,
-      description: "warm-up"
+      description: "warm-up",
     },
     {
       zone: "interval",
@@ -23,22 +24,22 @@ const sampleWorkout = {
         count: 5,
         distance: 800,
         units: "m",
-        recovery: "jog 50-90% interval time between"
-      }
+        recovery: "jog 50-90% interval time between",
+      },
     },
     {
       zone: "easy",
       distance: 2.5,
-      description: "cool-down"
-    }
-  ]
+      description: "cool-down",
+    },
+  ],
 };
 
 // Mock pace settings (20:00 5K runner)
 const paceSettings = {
   goalTime: "20:00",
   raceDistance: "5K",
-  units: "mi"
+  units: "mi",
 };
 
 const planId = "frr_5k_01"; // Pfitzinger plan
@@ -49,7 +50,9 @@ console.log("Title:", sampleWorkout.title);
 console.log("Original description:", sampleWorkout.description);
 
 // Simple check for structured paces (since we can't import the function yet)
-const hasStructuredPaces = !!(sampleWorkout.paces && sampleWorkout.paces.length > 0);
+const hasStructuredPaces = !!(
+  sampleWorkout.paces && sampleWorkout.paces.length > 0
+);
 console.log("Has structured paces:", hasStructuredPaces);
 
 console.log("\nPace settings:");
@@ -73,7 +76,9 @@ sampleWorkout.paces.forEach((segment, index) => {
     console.log(`  Distance: ${segment.distance} mi`);
   }
   if (segment.intervals) {
-    console.log(`  Intervals: ${segment.intervals.count} × ${segment.intervals.distance}${segment.intervals.units}`);
+    console.log(
+      `  Intervals: ${segment.intervals.count} × ${segment.intervals.distance}${segment.intervals.units}`
+    );
     console.log(`  Recovery: ${segment.intervals.recovery}`);
   }
 });
@@ -99,7 +104,9 @@ try {
   // console.log("Description:", result.description);
   console.log("\n=== SIMULATION ===");
   console.log("Title: VO₂max intervals");
-  console.log("Description: Warm up easy, then interval training at VO₂max effort with jog recovery");
+  console.log(
+    "Description: Warm up easy, then interval training at VO₂max effort with jog recovery"
+  );
   console.log("");
   console.log("Pace Guide:");
   console.log("• warm-up (2.5 mi): 7:30 (General Aerobic (GA))");
@@ -107,5 +114,7 @@ try {
   console.log("  5 × 800m - jog 50-90% interval time between");
   console.log("• cool-down (2.5 mi): 7:30 (General Aerobic (GA))");
 } catch (error) {
-  console.log("\nNote: This is a simulation - actual rendering would require compiled modules");
+  console.log(
+    "\nNote: This is a simulation - actual rendering would require compiled modules"
+  );
 }

@@ -6,13 +6,26 @@
  */
 
 import { Units } from "../../@types/app";
-import { BasePaceCalculator, RaceTime, PaceZones } from "./baseCalculator";
+import {
+  BasePaceCalculator,
+  RaceTime,
+  PaceZones,
+  PaceZoneLabels,
+} from "./baseCalculator";
 
 export class HigdonPaceCalculator extends BasePaceCalculator {
   name = "Hal Higdon";
   description =
     "Simple, accessible training approach with conversational easy pace";
   supportedDistances = ["5K", "10K", "half", "marathon"];
+
+  zoneLabels: PaceZoneLabels = {
+    easy: "Conversational Pace",
+    marathon: "Goal Marathon Pace",
+    threshold: "Comfortably Hard",
+    interval: "Hard Effort",
+    repetition: "Fast Pace",
+  };
 
   calculatePaces(raceTime: RaceTime, units: Units): PaceZones {
     const vdot = this.estimateVDOT(raceTime);

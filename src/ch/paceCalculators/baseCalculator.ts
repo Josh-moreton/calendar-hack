@@ -78,6 +78,7 @@ export abstract class BasePaceCalculator implements PaceCalculator {
       "10M": 16093.44,
       half: 21097.5,
       marathon: 42195,
+      Marathon: 42195, // Add capitalized version
     };
 
     const distanceMeters = distances[raceTime.distance];

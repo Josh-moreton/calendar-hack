@@ -8,16 +8,16 @@ import { RaceTime } from "./paceCalculators/baseCalculator";
 
 // Pace placeholder patterns that can be used in workout descriptions
 const PACE_PATTERNS = {
-  easy: /@easy@/gi,
-  mp: /@mp@/gi,
-  marathon: /@marathon@/gi,
-  tempo: /@tempo@/gi,
-  threshold: /@threshold@/gi,
-  interval: /@interval@/gi,
-  "5k": /@5k@/gi,
-  "10k": /@10k@/gi,
-  repetition: /@rep@/gi,
-  repetitions: /@repetition@/gi,
+  easy: /(?<!@)@easy@/gi,
+  mp: /(?<!@)@mp@/gi,
+  marathon: /(?<!@)@marathon@/gi,
+  tempo: /(?<!@)@tempo@/gi,
+  threshold: /(?<!@)@threshold@/gi,
+  interval: /(?<!@)@interval@/gi,
+  "5k": /(?<!@)@5k@/gi,
+  "10k": /(?<!@)@10k@/gi,
+  repetition: /(?<!@)@rep@/gi,
+  repetitions: /(?<!@)@repetition@/gi,
   // Pfitzinger-specific pace patterns (based on actual plan content)
   marathonRacePace: /@ marathon race pace/gi,
   lactateThreshold: /@ 15K to half marathon race pace/gi,
@@ -99,7 +99,7 @@ export function substitutePacesEnhanced(
       // Pfitzinger-specific marathon pace pattern
       result = result.replace(
         PACE_PATTERNS.marathonRacePace,
-        `${formatPace(paces.marathon)} pace`
+        `@${formatPace(paces.marathon)} pace`
       );
     }
 
@@ -112,11 +112,11 @@ export function substitutePacesEnhanced(
       // Pfitzinger-specific lactate threshold patterns
       result = result.replace(
         PACE_PATTERNS.lactateThreshold,
-        `${formatPace(paces.threshold)} pace`
+        `@${formatPace(paces.threshold)} pace`
       );
       result = result.replace(
         PACE_PATTERNS.lactateThresholdPace,
-        `${formatPace(paces.threshold)} pace`
+        `@${formatPace(paces.threshold)} pace`
       );
     }
 
@@ -130,11 +130,11 @@ export function substitutePacesEnhanced(
       // Pfitzinger-specific VO2Max pace patterns
       result = result.replace(
         PACE_PATTERNS.vo2Max5K,
-        `${formatPace(paces.interval)} pace`
+        `@${formatPace(paces.interval)} pace`
       );
       result = result.replace(
         PACE_PATTERNS.vo2Max3K5K,
-        `${formatPace(paces.interval)} pace`
+        `@${formatPace(paces.interval)} pace`
       );
     }
 
@@ -142,7 +142,7 @@ export function substitutePacesEnhanced(
       // Use repetition pace for speed work like 800m to mile race pace
       result = result.replace(
         PACE_PATTERNS.speed800Mile,
-        `${formatPace(paces.repetition)} pace`
+        `@${formatPace(paces.repetition)} pace`
       );
       result = result.replace(
         PACE_PATTERNS.repetition,

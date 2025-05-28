@@ -1,189 +1,189 @@
 id: pfitz_sample_with_paces
-name: 'Sample Pfitzinger Plan with Universal Pace Structure'
-description: 'Demonstration of how the new pace system would work with Pfitzinger plans'
+name: "Sample Pfitzinger Plan with Universal Pace Structure"
+description: "Demonstration of how the new pace system would work with Pfitzinger plans"
 units: mi
 source: https://www.amazon.com/gp/product/149256866X/
 type: Marathon
 schedule:
-- workouts:
-  - title: Rest or cross-training
-  - title: Lactate threshold run
-    description: "Warm up easy, then sustained lactate threshold effort, cool down easy"
-    distance: 8.0
-    paces:
-      - zone: "easy"
-        distance: 2.0
-        description: "warm-up"
-      - zone: "threshold"
-        distance: 4.0
-        description: "lactate threshold effort"
-      - zone: "easy"
-        distance: 2.0
-        description: "cool-down"
-  - title: Rest or cross-training
-  - title: General aerobic run
-    description: "Easy aerobic running"
-    distance: 9.0
-    paces:
-      - zone: "easy"
-        distance: 9.0
-        description: "general aerobic pace"
-  - title: Rest or cross-training
-  - title: Recovery run
-    description: "Very easy recovery running"
-    distance: 4.0
-    paces:
-      - zone: "recovery"
-        distance: 4.0
-        description: "recovery pace"
-  - title: Medium-long run
-    description: "Aerobic base building run"
-    distance: 12.0
-    paces:
-      - zone: "easy"
-        distance: 12.0
-        description: "general aerobic pace"
-- workouts:
-  - title: Rest or cross-training
-  - title: General aerobic + speed
-    description: "Easy run with strides"
-    distance: 8.0
-    paces:
-      - zone: "easy"
-        distance: 7.5
-        description: "general aerobic pace"
-      - zone: "repetition"
-        description: "10 × 100m strides"
-        intervals:
-          count: 10
-          distance: 100
-          units: "m"
-          recovery: "walk back recovery"
-  - title: Rest or cross-training
-  - title: General aerobic run
-    description: "Easy aerobic running"
-    distance: 10.0
-    paces:
-      - zone: "easy"
-        distance: 10.0
-        description: "general aerobic pace"
-  - title: Rest or cross-training
-  - title: Recovery run
-    description: "Very easy recovery running"
-    distance: 5.0
-    paces:
-      - zone: "recovery"
-        distance: 5.0
-        description: "recovery pace"
-  - title: Marathon pace run
-    description: "Easy start, then marathon pace segment, easy finish"
-    distance: 13.0
-    paces:
-      - zone: "easy"
-        distance: 2.5
-        description: "warm-up"
-      - zone: "marathon"
+  - workouts:
+      - title: Rest or cross-training
+      - title: Lactate threshold run
+        description: "Warm up easy, then sustained lactate threshold effort, cool down easy"
         distance: 8.0
-        description: "marathon pace segment"
-      - zone: "easy"
-        distance: 2.5
-        description: "cool-down"
-- workouts:
-  - title: Rest or cross-training
-  - title: General aerobic run
-    description: "Easy aerobic running"
-    distance: 10.0
-    paces:
-      - zone: "easy"
+        paces:
+          - zone: "easy"
+            distance: 2.0
+            description: "warm-up"
+          - zone: "threshold"
+            distance: 4.0
+            description: "lactate threshold effort"
+          - zone: "easy"
+            distance: 2.0
+            description: "cool-down"
+      - title: Rest or cross-training
+      - title: General aerobic run
+        description: "Easy aerobic running"
+        distance: 9.0
+        paces:
+          - zone: "easy"
+            distance: 9.0
+            description: "general aerobic pace"
+      - title: Rest or cross-training
+      - title: Recovery run
+        description: "Very easy recovery running"
+        distance: 4.0
+        paces:
+          - zone: "recovery"
+            distance: 4.0
+            description: "recovery pace"
+      - title: Medium-long run
+        description: "Aerobic base building run"
+        distance: 12.0
+        paces:
+          - zone: "easy"
+            distance: 12.0
+            description: "general aerobic pace"
+  - workouts:
+      - title: Rest or cross-training
+      - title: General aerobic + speed
+        description: "Easy run with strides"
+        distance: 8.0
+        paces:
+          - zone: "easy"
+            distance: 7.5
+            description: "general aerobic pace"
+          - zone: "repetition"
+            description: "10 × 100m strides"
+            intervals:
+              count: 10
+              distance: 100
+              units: "m"
+              recovery: "walk back recovery"
+      - title: Rest or cross-training
+      - title: General aerobic run
+        description: "Easy aerobic running"
         distance: 10.0
-        description: "general aerobic pace"
-  - title: Recovery run
-    description: "Very easy recovery running"
-    distance: 4.0
-    paces:
-      - zone: "recovery"
-        distance: 4.0
-        description: "recovery pace"
-  - title: Lactate threshold run
-    description: "Warm up easy, then sustained lactate threshold effort, cool down easy"
-    distance: 8.0
-    paces:
-      - zone: "easy"
-        distance: 2.0
-        description: "warm-up"
-      - zone: "threshold"
-        distance: 4.0
-        description: "lactate threshold effort"
-      - zone: "easy"
-        distance: 2.0
-        description: "cool-down"
-  - title: Rest or cross-training
-  - title: Recovery run
-    description: "Very easy recovery running"
-    distance: 4.0
-    paces:
-      - zone: "recovery"
-        distance: 4.0
-        description: "recovery pace"
-  - title: Medium-long run
-    description: "Aerobic base building run"
-    distance: 14.0
-    paces:
-      - zone: "easy"
-        distance: 14.0
-        description: "general aerobic pace"
-- workouts:
-  - title: Rest or cross-training
-  - title: VO₂max intervals
-    description: "Warm up easy, then interval training at VO₂max effort with jog recovery"
-    distance: 8.0
-    paces:
-      - zone: "easy"
-        distance: 2.5
-        description: "warm-up"
-      - zone: "interval"
-        description: "5 × 800m intervals"
-        intervals:
-          count: 5
-          distance: 800
-          units: "m"
-          recovery: "jog 50-90% interval time between"
-      - zone: "easy"
-        distance: 2.5
-        description: "cool-down"
-  - title: Recovery run
-    description: "Very easy recovery running"
-    distance: 5.0
-    paces:
-      - zone: "recovery"
+        paces:
+          - zone: "easy"
+            distance: 10.0
+            description: "general aerobic pace"
+      - title: Rest or cross-training
+      - title: Recovery run
+        description: "Very easy recovery running"
         distance: 5.0
-        description: "recovery pace"
-  - title: General aerobic run
-    description: "Easy aerobic running"
-    distance: 10.0
-    paces:
-      - zone: "easy"
+        paces:
+          - zone: "recovery"
+            distance: 5.0
+            description: "recovery pace"
+      - title: Marathon pace run
+        description: "Easy start, then marathon pace segment, easy finish"
+        distance: 13.0
+        paces:
+          - zone: "easy"
+            distance: 2.5
+            description: "warm-up"
+          - zone: "marathon"
+            distance: 8.0
+            description: "marathon pace segment"
+          - zone: "easy"
+            distance: 2.5
+            description: "cool-down"
+  - workouts:
+      - title: Rest or cross-training
+      - title: General aerobic run
+        description: "Easy aerobic running"
         distance: 10.0
-        description: "general aerobic pace"
-  - title: Rest or cross-training
-  - title: Recovery + speed
-    description: "Recovery run with strides"
-    distance: 7.0
-    paces:
-      - zone: "recovery"
-        distance: 6.5
-        description: "recovery pace"
-      - zone: "repetition"
-        description: "8 × 100m strides"
-        intervals:
-          count: 8
-          distance: 100
-          units: "m"
-          recovery: "walk back recovery"
-  - title: Medium-long run
-    description: "Aerobic base building run"
-    distance: 14.0
-    paces:
-      - zone: "easy"
+        paces:
+          - zone: "easy"
+            distance: 10.0
+            description: "general aerobic pace"
+      - title: Recovery run
+        description: "Very easy recovery running"
+        distance: 4.0
+        paces:
+          - zone: "recovery"
+            distance: 4.0
+            description: "recovery pace"
+      - title: Lactate threshold run
+        description: "Warm up easy, then sustained lactate threshold effort, cool down easy"
+        distance: 8.0
+        paces:
+          - zone: "easy"
+            distance: 2.0
+            description: "warm-up"
+          - zone: "threshold"
+            distance: 4.0
+            description: "lactate threshold effort"
+          - zone: "easy"
+            distance: 2.0
+            description: "cool-down"
+      - title: Rest or cross-training
+      - title: Recovery run
+        description: "Very easy recovery running"
+        distance: 4.0
+        paces:
+          - zone: "recovery"
+            distance: 4.0
+            description: "recovery pace"
+      - title: Medium-long run
+        description: "Aerobic base building run"
         distance: 14.0
-        description: "general aerobic pace"
+        paces:
+          - zone: "easy"
+            distance: 14.0
+            description: "general aerobic pace"
+  - workouts:
+      - title: Rest or cross-training
+      - title: VO₂max intervals
+        description: "Warm up easy, then interval training at VO₂max effort with jog recovery"
+        distance: 8.0
+        paces:
+          - zone: "easy"
+            distance: 2.5
+            description: "warm-up"
+          - zone: "interval"
+            description: "5 × 800m intervals"
+            intervals:
+              count: 5
+              distance: 800
+              units: "m"
+              recovery: "jog 50-90% interval time between"
+          - zone: "easy"
+            distance: 2.5
+            description: "cool-down"
+      - title: Recovery run
+        description: "Very easy recovery running"
+        distance: 5.0
+        paces:
+          - zone: "recovery"
+            distance: 5.0
+            description: "recovery pace"
+      - title: General aerobic run
+        description: "Easy aerobic running"
+        distance: 10.0
+        paces:
+          - zone: "easy"
+            distance: 10.0
+            description: "general aerobic pace"
+      - title: Rest or cross-training
+      - title: Recovery + speed
+        description: "Recovery run with strides"
+        distance: 7.0
+        paces:
+          - zone: "recovery"
+            distance: 6.5
+            description: "recovery pace"
+          - zone: "repetition"
+            description: "8 × 100m strides"
+            intervals:
+              count: 8
+              distance: 100
+              units: "m"
+              recovery: "walk back recovery"
+      - title: Medium-long run
+        description: "Aerobic base building run"
+        distance: 14.0
+        paces:
+          - zone: "easy"
+            distance: 14.0
+            description: "general aerobic pace"
