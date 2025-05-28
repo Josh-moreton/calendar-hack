@@ -30,10 +30,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
+          cache: 'npm'
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+      - name: Clean up node_modules and package-lock.json
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
 
       - name: Install dependencies
         run: npm ci
