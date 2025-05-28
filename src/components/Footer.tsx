@@ -1,4 +1,4 @@
-// filepath: /Users/joshmoreton/GitHub/calendar-hack/src/components/Footer.tsx
+// filepath: /Users/joshmoreton/GitHub/stridr/src/components/Footer.tsx
 
 const Footer = () => {
   return (

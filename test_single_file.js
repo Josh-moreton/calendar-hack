@@ -5,7 +5,7 @@ console.log('Starting run type extraction...');
 
 // Test with just one file first
 const testFile = 'public/plans/json/pfitz_18_55.json';
-const fullPath = path.join('/Users/joshua.moreton/Documents/GitHub/calendar-hack', testFile);
+const fullPath = path.join('/Users/joshua.moreton/Documents/GitHub/stridr', testFile);
 
 try {
   console.log(`Reading file: ${fullPath}`);
