@@ -3,7 +3,7 @@ import { ItemTypes } from "../ch/ItemTypes";
 import { WorkoutCard } from "./WorkoutCard";
 import { BlankCard } from "./BlankCard";
 import { Overlay } from "./Overlay";
-import { DayDetails, Units } from "types/app";
+import { DayDetails, Units, PaceSettings } from "types/app";
 
 interface Props {
   dayDetails: DayDetails | undefined;
@@ -12,6 +12,7 @@ interface Props {
   swap: (d1: Date, d2: Date) => void;
   selected: boolean;
   hovering: boolean;
+  paceSettings?: PaceSettings | null;
 }
 
 export const DayCell = ({
@@ -21,6 +22,7 @@ export const DayCell = ({
   swap,
   selected,
   hovering,
+  paceSettings,
 }: Props) => {
   function canSwap(droppedDate: Date) {
     return dayDetails !== undefined && date !== droppedDate;
@@ -52,6 +54,7 @@ export const DayCell = ({
             date={date}
             units={units}
             swap={swap}
+            paceSettings={paceSettings}
           />
         )}
         {!dayDetails && <BlankCard date={date} />}

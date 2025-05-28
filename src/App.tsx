@@ -10,6 +10,7 @@ import { download } from "./ch/downloadservice";
 import UnitsButtons from "./components/UnitsButtons";
 import PlanAndDate from "./components/PlanAndDate";
 import UndoButton from "./components/UndoButton";
+import PaceInput from "./components/PaceInput";
 import history from "./defy/history";
 import {
   useQueryParams,
@@ -21,7 +22,7 @@ import { PlanDetailsCard } from "./components/PlanDetailsCard";
 import { WeekStartsOn, WeekStartsOnValues } from "./ch/datecalc";
 import WeekStartsOnPicker from "./components/WeekStartsOnPicker";
 import { useMountEffect } from "./ch/hooks";
-import { Units, PlanSummary, dayOfWeek } from "types/app";
+import { Units, PlanSummary, dayOfWeek, PaceSettings } from "types/app";
 import { getLocaleUnits } from "./ch/localize";
 import HeroSection from "./components/HeroSection";
 
@@ -50,6 +51,7 @@ const App = () => {
   );
   const [currentView, setCurrentView] = useState<ViewState>('selection');
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [paceSettings, setPaceSettings] = useState<PaceSettings | null>(null);
 
   useMountEffect(() => {
     initialLoad(selectedPlan, planEndDate, selectedUnits, weekStartsOn);
@@ -155,7 +157,7 @@ const App = () => {
 
   function downloadIcalHandler() {
     if (racePlan) {
-      const eventsStr = toIcal(racePlan, selectedUnits);
+      const eventsStr = toIcal(racePlan, selectedUnits, paceSettings);
       if (eventsStr) {
         download(eventsStr, "plan", "ics");
       }
@@ -164,7 +166,7 @@ const App = () => {
 
   function downloadCsvHandler() {
     if (racePlan) {
-      const eventsStr = toCsv(racePlan, selectedUnits, weekStartsOn);
+      const eventsStr = toCsv(racePlan, selectedUnits, weekStartsOn, paceSettings);
       if (eventsStr) {
         download(eventsStr, "plan", "csv");
       }
@@ -221,6 +223,17 @@ const App = () => {
                 Plan Details
               </h3>
               <PlanDetailsCard racePlan={racePlan} />
+            </div>
+
+            {/* Pace Calculator Card */}
+            <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300" style={{animationDelay: '150ms'}}>
+              <h3 className="text-xl font-semibold mb-4 text-primary-700">
+                Training Pace Calculator
+              </h3>
+              <PaceInput
+                units={selectedUnits}
+                onPaceSettingsChange={setPaceSettings}
+              />
             </div>
 
             {/* Week Options Card */}
@@ -371,6 +384,7 @@ const App = () => {
                     weekStartsOn={weekStartsOn}
                     swapDates={swapDates}
                     swapDow={doSwapDow}
+                    paceSettings={paceSettings}
                   />
                 )}
               </div>

@@ -2,14 +2,14 @@ import { createEvents, EventAttributes } from "ics";
 import { addDays } from "date-fns";
 import { RacePlan } from "./dategrid";
 import { getWeekDistance, render, renderDist } from "./rendering";
-import { Units } from "types/app";
+import { Units, PaceSettings } from "types/app";
 
 // public for testing
 export function toDate(d: Date): [number, number, number] {
   return [d.getFullYear(), 1 + d.getMonth(), d.getDate()];
 }
 
-export function toIcal(plan: RacePlan, units: Units): string | undefined {
+export function toIcal(plan: RacePlan, units: Units, paceSettings?: PaceSettings | null): string | undefined {
   const events = new Array<EventAttributes>();
   let weekDesc = null;
   let weeks = plan.dateGrid.weeks;
@@ -34,7 +34,7 @@ export function toIcal(plan: RacePlan, units: Units): string | undefined {
     for (var j = 0; j < currWeek.days.length; j++) {
       const currWorkout = currWeek.days[j];
       if (currWorkout.event) {
-        let [title, desc] = render(currWorkout.event, plan.sourceUnits, units);
+        let [title, desc] = render(currWorkout.event, plan.sourceUnits, units, paceSettings);
         desc = desc.replace(/(\r\n|\n|\r)/gm, "\n");
         // if desc is not set, use title
         if (desc.replace(/\s/g, "") === "") {

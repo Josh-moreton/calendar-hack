@@ -5,7 +5,7 @@ import { WeekSummary } from "./WeekSummary";
 import { DayOfWeekHeader } from "./DayOfWeekHeader";
 import { format } from "date-fns";
 import { getDaysHeader, WeekStartsOn } from "../ch/datecalc";
-import { Units, dayOfWeek, Week, DayDetails } from "types/app";
+import { Units, dayOfWeek, Week, DayDetails, PaceSettings } from "types/app";
 
 interface Props {
   racePlan: RacePlan;
@@ -13,6 +13,7 @@ interface Props {
   weekStartsOn: WeekStartsOn;
   swapDates: (d1: Date, d2: Date) => void;
   swapDow: (dow1: dayOfWeek, dow2: dayOfWeek) => void;
+  paceSettings?: PaceSettings | null;
 }
 
 function calcWeeklyDistance(w: Week<DayDetails>): number {
@@ -40,6 +41,7 @@ export const CalendarGrid = ({
   weekStartsOn,
   swapDates,
   swapDow,
+  paceSettings,
 }: Props) => {
   const [selectedDow, setSelectedDow] = React.useState<dayOfWeek | undefined>(
     undefined
@@ -76,6 +78,7 @@ export const CalendarGrid = ({
             dayDetails={d.event}
             selected={selectedDow === format(d.date, "EEEE")}
             hovering={hoveringDow === format(d.date, "EEEE")}
+            paceSettings={paceSettings}
           />
         ))}
       </div>

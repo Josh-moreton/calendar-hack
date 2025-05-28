@@ -4,21 +4,23 @@ import { Dateline } from "./Dateline";
 import { useDrag, DragSourceMonitor } from "react-dnd";
 import { ItemTypes } from "../ch/ItemTypes";
 import { DragHandle } from "./DragHandle";
-import { DayDetails, Units } from "types/app";
+import { DayDetails, Units, PaceSettings } from "types/app";
 
 interface Props {
   dayDetails: DayDetails;
   date: Date;
   units: Units;
   swap: (d1: Date, d2: Date) => void;
+  paceSettings?: PaceSettings | null;
 }
 
 function renderDesc(
   dayDetails: DayDetails,
   from: Units,
-  to: Units
+  to: Units,
+  paceSettings?: PaceSettings | null
 ): React.ReactElement {
-  let [title, desc] = render(dayDetails, from, to);
+  let [title, desc] = render(dayDetails, from, to, paceSettings);
   // Only render the description if it differs from the title
   // In the ical file we always render both and we automatically render the description using the same text as title if description is empty
   desc = title.replace(/\s/g, "") === desc.replace(/\s/g, "") ? "" : desc;
@@ -38,7 +40,7 @@ function renderDesc(
   );
 }
 
-export const WorkoutCard = ({ dayDetails, date, units }: Props) => {
+export const WorkoutCard = ({ dayDetails, date, units, paceSettings }: Props) => {
   const [{ isDragging }, drag, preview] = useDrag({
     type: ItemTypes.DAY,
     item: { date: date, dayDetails: dayDetails, units: units },
@@ -73,7 +75,7 @@ export const WorkoutCard = ({ dayDetails, date, units }: Props) => {
             style={{ width: "14px", height: "14px" }}
           />
         </div>
-        {renderDesc(dayDetails, dayDetails.sourceUnits, units)}
+        {renderDesc(dayDetails, dayDetails.sourceUnits, units, paceSettings)}
       </div>
     </div>
   );

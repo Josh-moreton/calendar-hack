@@ -90,3 +90,18 @@ export interface Week<T> {
   desc: string;
   days: Day<T>[];
 }
+
+// Pace calculation types
+export interface PaceSettings {
+  raceDistance: string;
+  goalTime: string;
+  units: Units;
+}
+
+export interface PaceZones {
+  easy: number;
+  marathon: number;
+  threshold: number;
+  interval: number;
+  repetition: number;
+}

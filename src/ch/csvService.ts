@@ -1,13 +1,14 @@
 import { format } from "date-fns";
 import { RacePlan } from "./dategrid";
 import { getWeekDistance, render, renderDist } from "./rendering";
-import { Units } from "types/app";
+import { Units, PaceSettings } from "types/app";
 import { getDaysHeader, WeekStartsOn } from "./datecalc";
 
 export function toCsv(
   plan: RacePlan,
   units: Units,
-  weekStartsOn: WeekStartsOn
+  weekStartsOn: WeekStartsOn,
+  paceSettings?: PaceSettings | null
 ): string | undefined {
   // one line per week, one column per day with description of workout
   const daysOfWeek = getDaysHeader(weekStartsOn);
@@ -37,7 +38,7 @@ export function toCsv(
       const currWorkout = currWeek.days[j];
       let date = format(currWorkout.date, "yyyy-MM-dd");
       if (currWorkout.event) {
-        let [title, desc] = render(currWorkout.event, plan.sourceUnits, units);
+        let [title, desc] = render(currWorkout.event, plan.sourceUnits, units, paceSettings);
         let text = date + ": " + title;
         desc = desc.replace(/(\r\n|\n|\r)/gm, "\n");
         if (desc.replace(/\s/g, "") !== "") {
