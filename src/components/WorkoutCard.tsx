@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "../ch/rendering";
+import { renderEnhanced } from "../ch/rendering";
 import { Dateline } from "./Dateline";
 import { useDrag, DragSourceMonitor } from "react-dnd";
 import { ItemTypes } from "../ch/ItemTypes";
@@ -22,7 +22,8 @@ function renderDesc(
   paceSettings?: PaceSettings | null,
   planId?: string
 ): React.ReactElement {
-  let [title, desc] = render(dayDetails, from, to, paceSettings, planId);
+  // Use enhanced rendering that supports both legacy and structured paces
+  let [title, desc] = renderEnhanced(dayDetails, from, to, paceSettings, planId);
   // Only render the description if it differs from the title
   // In the ical file we always render both and we automatically render the description using the same text as title if description is empty
   desc = title.replace(/\s/g, "") === desc.replace(/\s/g, "") ? "" : desc;

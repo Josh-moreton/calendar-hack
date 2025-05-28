@@ -1,7 +1,7 @@
 import { createEvents, EventAttributes } from "ics";
 import { addDays } from "date-fns";
 import { RacePlan } from "./dategrid";
-import { getWeekDistance, render, renderDist } from "./rendering";
+import { getWeekDistance, renderEnhanced, renderDist } from "./rendering";
 import { Units, PaceSettings } from "types/app";
 
 // public for testing
@@ -38,7 +38,7 @@ export function toIcal(
     for (var j = 0; j < currWeek.days.length; j++) {
       const currWorkout = currWeek.days[j];
       if (currWorkout.event) {
-        let [title, desc] = render(
+        let [title, desc] = renderEnhanced(
           currWorkout.event,
           plan.sourceUnits,
           units,

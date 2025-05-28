@@ -1,6 +1,7 @@
 import * as moo from "moo";
-import { Week, DayDetails, Units, PaceSettings } from "types/app";
+import { Week, DayDetails, Units, PaceSettings, WorkoutWithPaces } from "types/app";
 import { substitutePacesEnhanced } from "./paceSubstitutionEnhanced";
+import { renderWorkoutWithPaces } from "./universalPaceRenderer";
 
 export function kmToMiles(value: number): number {
   return value * 0.62137;
@@ -105,4 +106,31 @@ export function render(
   }
 
   return [title, desc];
+}
+
+/**
+ * Enhanced render function that supports both legacy DayDetails and new WorkoutWithPaces
+ */
+export function renderEnhanced(
+  input: DayDetails | WorkoutWithPaces,
+  from: Units,
+  to: Units,
+  paceSettings?: PaceSettings | null,
+  planId?: string
+): [string, string] {
+  // Check if this is a workout with structured paces
+  if ('paces' in input && input.paces) {
+    const result = renderWorkoutWithPaces(input as WorkoutWithPaces, paceSettings || null, planId || 'default');
+    return [result.title, result.description];
+  }
+
+  // Fallback to legacy rendering for DayDetails
+  return render(input as DayDetails, from, to, paceSettings, planId);
+}
+
+/**
+ * Check if input uses the new pace structure
+ */
+export function hasStructuredPaces(input: DayDetails | WorkoutWithPaces): boolean {
+  return 'paces' in input && !!(input as WorkoutWithPaces).paces && (input as WorkoutWithPaces).paces!.length > 0;
 }

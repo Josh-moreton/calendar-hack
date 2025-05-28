@@ -18,11 +18,13 @@ const PACE_PATTERNS = {
   "10k": /@10k@/gi,
   repetition: /@rep@/gi,
   repetitions: /@repetition@/gi,
-  // Pfitzinger-specific pace patterns
+  // Pfitzinger-specific pace patterns (based on actual plan content)
   marathonRacePace: /@ marathon race pace/gi,
   lactateThreshold: /@ 15K to half marathon race pace/gi,
   lactateThresholdPace: /@ 15K to half marathon pace/gi,
-  vo2MaxPace: /@ 5K race pace/gi,
+  vo2Max5K: /@ 5K race pace/gi,
+  vo2Max3K5K: /@ 3K-5K race pace/gi,
+  speed800Mile: /@ 800 m to mile race pace/gi,
 };
 
 /**
@@ -125,14 +127,23 @@ export function substitutePacesEnhanced(
       );
       result = result.replace(PACE_PATTERNS["5k"], formatPace(paces.interval));
       result = result.replace(PACE_PATTERNS["10k"], formatPace(paces.interval));
-      // Pfitzinger-specific VO2Max pace pattern
+      // Pfitzinger-specific VO2Max pace patterns
       result = result.replace(
-        PACE_PATTERNS.vo2MaxPace,
+        PACE_PATTERNS.vo2Max5K,
+        `${formatPace(paces.interval)} pace`
+      );
+      result = result.replace(
+        PACE_PATTERNS.vo2Max3K5K,
         `${formatPace(paces.interval)} pace`
       );
     }
 
     if (paces.repetition) {
+      // Use repetition pace for speed work like 800m to mile race pace
+      result = result.replace(
+        PACE_PATTERNS.speed800Mile,
+        `${formatPace(paces.repetition)} pace`
+      );
       result = result.replace(
         PACE_PATTERNS.repetition,
         formatPace(paces.repetition)
