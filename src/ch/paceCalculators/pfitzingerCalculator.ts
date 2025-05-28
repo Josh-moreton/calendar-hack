@@ -6,25 +6,20 @@
  */
 
 import { Units } from "../../@types/app";
-import {
-  BasePaceCalculator,
-  RaceTime,
-  PaceZones,
-  PaceZoneLabels,
-} from "./baseCalculator";
+import { BasePaceCalculator, RaceTime, PaceZones, PaceZoneLabels } from "./baseCalculator";
 
 export class PfitzingerPaceCalculator extends BasePaceCalculator {
   name = "Pfitzinger/Douglas";
   description =
     "Scientific training zones based on Advanced Marathoning methodology";
   supportedDistances = ["5K", "10K", "15K", "10M", "half", "marathon"];
-
+  
   zoneLabels: PaceZoneLabels = {
     easy: "General Aerobic (GA)",
-    marathon: "Marathon Pace (MP)",
+    marathon: "Marathon Pace (MP)", 
     threshold: "Lactate Threshold (LT)",
     interval: "VO₂max",
-    repetition: "Recovery",
+    repetition: "Recovery"
   };
 
   calculatePaces(raceTime: RaceTime, units: Units): PaceZones {
@@ -79,38 +74,97 @@ export class PfitzingerPaceCalculator extends BasePaceCalculator {
       marathonRacePace = racePacePerKm * adjustmentFactor.toMarathon;
     }
 
+    // Debug logging to check calculations
+    console.log("Debug Pfitzinger Calculator:");
+    console.log(`Input: ${raceTime.distance} in ${timeInSeconds} seconds`);
+    console.log(`Distance: ${distanceInKm} km`);
+    console.log(
+      `Race pace per km: ${racePacePerKm} seconds (${Math.floor(racePacePerKm / 60)}:${String(Math.round(racePacePerKm % 60)).padStart(2, "0")})`
+    );
+    console.log(
+      `5K pace: ${fiveKPace} seconds (${Math.floor(fiveKPace / 60)}:${String(Math.round(fiveKPace % 60)).padStart(2, "0")})`
+    );
+    console.log(
+      `Marathon race pace: ${marathonRacePace} seconds (${Math.floor(marathonRacePace / 60)}:${String(Math.round(marathonRacePace % 60)).padStart(2, "0")})`
+    );
+
     // Calculate raw training paces before conversion
     const rawRecoveryPace = marathonRacePace * 1.2;
     const rawEasyPace = marathonRacePace * 1.1;
     const rawMarathonPace = marathonRacePace;
-    const rawThresholdPace = fiveKPace * 1.05; // Threshold should be ~5% slower than 5K pace (15K-Half pace)
-    const rawIntervalPace = fiveKPace * 0.95; // Interval should be ~5% faster than 5K pace
+    const rawThresholdPace = fiveKPace * 1.08;
+    const rawIntervalPace = fiveKPace;
+
+    console.log("Raw training paces (before convertPaceUnits):");
+    console.log(
+      `Raw Recovery: ${rawRecoveryPace} seconds (${Math.floor(rawRecoveryPace / 60)}:${String(Math.round(rawRecoveryPace % 60)).padStart(2, "0")})`
+    );
+    console.log(
+      `Raw Easy: ${rawEasyPace} seconds (${Math.floor(rawEasyPace / 60)}:${String(Math.round(rawEasyPace % 60)).padStart(2, "0")})`
+    );
+    console.log(
+      `Raw Marathon: ${rawMarathonPace} seconds (${Math.floor(rawMarathonPace / 60)}:${String(Math.round(rawMarathonPace % 60)).padStart(2, "0")})`
+    );
+    console.log(
+      `Raw Threshold: ${rawThresholdPace} seconds (${Math.floor(rawThresholdPace / 60)}:${String(Math.round(rawThresholdPace % 60)).padStart(2, "0")})`
+    );
+    console.log(
+      `Raw Interval: ${rawIntervalPace} seconds (${Math.floor(rawIntervalPace / 60)}:${String(Math.round(rawIntervalPace % 60)).padStart(2, "0")})`
+    );
 
     // Pfitzinger training zones based on proper methodology
+    console.log("About to convert paces...");
+
     const recoveryPace = this.convertPaceUnits(
       rawRecoveryPace,
       baseUnits,
       units
     );
+    console.log(`Recovery conversion: ${rawRecoveryPace} -> ${recoveryPace}`);
 
     const easyPace = this.convertPaceUnits(rawEasyPace, baseUnits, units);
+    console.log(`Easy conversion: ${rawEasyPace} -> ${easyPace}`);
 
     const marathonPace = this.convertPaceUnits(
       rawMarathonPace,
       baseUnits,
       units
     );
+    console.log(`Marathon conversion: ${rawMarathonPace} -> ${marathonPace}`);
 
     const thresholdPace = this.convertPaceUnits(
       rawThresholdPace,
       baseUnits,
       units
     );
+    console.log(
+      `Threshold conversion: ${rawThresholdPace} -> ${thresholdPace}`
+    );
 
     const intervalPace = this.convertPaceUnits(
       rawIntervalPace,
       baseUnits,
       units
+    );
+    console.log(`Interval conversion: ${rawIntervalPace} -> ${intervalPace}`);
+
+    // Debug the final converted paces
+    console.log(`Converting from ${baseUnits} to ${units}`);
+    console.log("Final converted paces:");
+    console.log(
+      `Recovery: ${recoveryPace} seconds (${Math.floor(recoveryPace / 60)}:${String(Math.round(recoveryPace % 60)).padStart(2, "0")})`
+    );
+    console.log(
+      `Easy: ${easyPace} seconds (${Math.floor(easyPace / 60)}:${String(Math.round(easyPace % 60)).padStart(2, "0")})`
+    );
+    console.log(
+      `Marathon: ${marathonPace} seconds (${Math.floor(marathonPace / 60)}:${String(Math.round(marathonPace % 60)).padStart(2, "0")})`
+    );
+    console.log(
+      `Threshold: ${thresholdPace} seconds (${Math.floor(thresholdPace / 60)}:${String(Math.round(thresholdPace % 60)).padStart(2, "0")})`
+    );
+    console.log(
+      `Interval: ${intervalPace} seconds (${Math.floor(intervalPace / 60)}:${String(Math.round(intervalPace % 60)).padStart(2, "0")})`
     );
 
     return {

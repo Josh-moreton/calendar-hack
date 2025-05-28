@@ -1,6 +1,6 @@
 /**
  * Universal Pace Renderer
- *
+ * 
  * Handles rendering workouts with the new structured pace system.
  * Supports both legacy text-based pace substitution and new pace segments.
  */
@@ -63,19 +63,13 @@ function renderPaceSegment(
 ): RenderedPaceSegment {
   const calculator = getPaceCalculatorForPlan(planId);
   const raceTime = convertToRaceTime(paceSettings);
-  const calculatedPaces = calculator.calculatePaces(
-    raceTime,
-    paceSettings.units
-  );
+  const calculatedPaces = calculator.calculatePaces(raceTime, paceSettings.units);
   const zoneLabels = calculator.zoneLabels;
 
   // Map pace zones, treating "recovery" as "easy"
   const zoneKey = segment.zone === "recovery" ? "easy" : segment.zone;
   const paceValue = calculatedPaces[zoneKey as keyof typeof calculatedPaces];
-  const zoneName =
-    zoneLabels[zoneKey as keyof typeof zoneLabels] ||
-    zoneLabels.easy ||
-    segment.zone;
+  const zoneName = (zoneLabels[zoneKey as keyof typeof zoneLabels] || zoneLabels.easy) || segment.zone;
 
   return {
     zone: segment.zone,
@@ -95,6 +89,7 @@ export function renderWorkoutWithPaces(
   paceSettings: PaceSettings | null,
   planId: string
 ): { title: string; description: string; paceDetails?: RenderedPaceSegment[] } {
+  
   // Start with basic rendering (handles distance conversions)
   let title = workout.title;
   let description = workout.description || "";
@@ -106,26 +101,24 @@ export function renderWorkoutWithPaces(
 
   // If workout has structured paces, use the new system
   if (workout.paces && workout.paces.length > 0) {
-    const paceDetails = workout.paces.map(segment =>
+    const paceDetails = workout.paces.map(segment => 
       renderPaceSegment(segment, paceSettings, planId)
     );
 
     // Build enhanced description with pace information
     let enhancedDescription = description;
-
+    
     if (paceDetails.length > 0) {
       enhancedDescription += "\n\nPace Guide:";
       paceDetails.forEach(detail => {
         if (detail.intervals) {
           enhancedDescription += `\n• ${detail.description}: ${detail.paceValue} (${detail.zoneName})`;
-          enhancedDescription += `\n  ${detail.intervals.count} × ${detail.intervals.distance}${detail.intervals.units || "m"}`;
+          enhancedDescription += `\n  ${detail.intervals.count} × ${detail.intervals.distance}${detail.intervals.units || 'm'}`;
           if (detail.intervals.recovery) {
             enhancedDescription += ` - ${detail.intervals.recovery}`;
           }
         } else {
-          const distanceText = detail.distance
-            ? ` (${detail.distance} ${paceSettings.units})`
-            : "";
+          const distanceText = detail.distance ? ` (${detail.distance} ${paceSettings.units})` : '';
           enhancedDescription += `\n• ${detail.description}${distanceText}: ${detail.paceValue} (${detail.zoneName})`;
         }
       });
@@ -134,7 +127,7 @@ export function renderWorkoutWithPaces(
     return {
       title,
       description: enhancedDescription,
-      paceDetails,
+      paceDetails
     };
   }
 
@@ -170,9 +163,7 @@ export function calculatePaceSegmentDistance(segments: PaceSegment[]): number {
     }
     if (segment.intervals) {
       // Rough estimate for interval distance
-      return (
-        total + (segment.intervals.count * segment.intervals.distance) / 1600
-      ); // Convert meters to miles
+      return total + (segment.intervals.count * segment.intervals.distance / 1600); // Convert meters to miles
     }
     return total;
   }, 0);

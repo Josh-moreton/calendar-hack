@@ -1,7 +1,6 @@
 # Universal Pace System Design for Training Plans
 
 ## Current Problem
-
 - Pace information is embedded in workout titles/descriptions as text patterns
 - Different training providers use different terminology
 - Hard to parse and substitute consistently
@@ -20,7 +19,7 @@ workout:
     - zone: "threshold"
       distance: 4.0
       description: "lactate threshold effort"
-    - zone: "easy"
+    - zone: "easy" 
       distance: 4.0
       description: "warm-up and cool-down"
 ```
@@ -28,9 +27,8 @@ workout:
 ### 2. Standard Pace Zone Names
 
 Universal zones that map to all training systems:
-
 - `recovery` - Recovery/very easy pace
-- `easy` - Easy/aerobic/general aerobic pace
+- `easy` - Easy/aerobic/general aerobic pace  
 - `marathon` - Marathon race pace
 - `threshold` - Lactate threshold/tempo pace
 - `interval` - VO2max/5K race pace
@@ -42,29 +40,29 @@ Universal zones that map to all training systems:
 const PACE_ZONE_MAPPINGS = {
   pfitzinger: {
     recovery: "Recovery",
-    easy: "General Aerobic (GA)",
+    easy: "General Aerobic (GA)", 
     marathon: "Marathon Pace (MP)",
     threshold: "Lactate Threshold (LT)",
     interval: "VO₂max",
-    repetition: "Neuromuscular Power",
+    repetition: "Neuromuscular Power"
   },
   hansons: {
     recovery: "Easy Pace (EP)",
     easy: "Easy Pace (EP)",
-    marathon: "Marathon Pace (MP)",
+    marathon: "Marathon Pace (MP)", 
     threshold: "Tempo Pace (TP)",
     interval: "Speed Pace (SP)",
-    repetition: "Speed Pace (SP)",
+    repetition: "Speed Pace (SP)"
   },
   daniels: {
     recovery: "Recovery (R)",
     easy: "Easy (E)",
     marathon: "Marathon (M)",
-    threshold: "Threshold (T)",
+    threshold: "Threshold (T)", 
     interval: "Interval (I)",
-    repetition: "Repetition (R)",
-  },
-};
+    repetition: "Repetition (R)"
+  }
+}
 ```
 
 ### 4. Enhanced Workout Structure
@@ -77,8 +75,8 @@ const PACE_ZONE_MAPPINGS = {
     - zone: "easy"
       distance: 2.0
       description: "warm-up"
-    - zone: "interval"
-      distance: 3.1 # 5 x 1000m = ~3.1 miles
+    - zone: "interval" 
+      distance: 3.1  # 5 x 1000m = ~3.1 miles
       description: "5 × 1,000m intervals"
       intervals:
         count: 5
@@ -97,19 +95,19 @@ function renderWorkoutWithPaces(workout, paceSettings, planId) {
   const calculator = getPaceCalculatorForPlan(planId);
   const calculatedPaces = calculator.calculatePaces(paceSettings);
   const zoneLabels = calculator.zoneLabels;
-
+  
   let renderedDescription = workout.description;
-
+  
   if (workout.paces) {
     workout.paces.forEach(paceSegment => {
       const zoneName = zoneLabels[paceSegment.zone];
       const paceValue = calculatedPaces[paceSegment.zone];
-
+      
       // Replace pace references with actual values
       renderedDescription += `\n${paceSegment.description}: ${formatPace(paceValue)} (${zoneName})`;
     });
   }
-
+  
   return renderedDescription;
 }
 ```
@@ -117,7 +115,7 @@ function renderWorkoutWithPaces(workout, paceSettings, planId) {
 ## Benefits
 
 1. **Clean Separation**: Pace logic separated from descriptive text
-2. **Consistency**: All plans use same pace zone structure
+2. **Consistency**: All plans use same pace zone structure  
 3. **Flexibility**: Easy to add new providers and pace zones
 4. **Maintainability**: No more regex pattern matching
 5. **Rich Data**: Can include interval counts, recovery info, etc.

@@ -1,11 +1,5 @@
 import * as moo from "moo";
-import {
-  Week,
-  DayDetails,
-  Units,
-  PaceSettings,
-  WorkoutWithPaces,
-} from "types/app";
+import { Week, DayDetails, Units, PaceSettings, WorkoutWithPaces } from "types/app";
 import { substitutePacesEnhanced } from "./paceSubstitutionEnhanced";
 import { renderWorkoutWithPaces } from "./universalPaceRenderer";
 
@@ -125,12 +119,8 @@ export function renderEnhanced(
   planId?: string
 ): [string, string] {
   // Check if this is a workout with structured paces
-  if ("paces" in input && input.paces) {
-    const result = renderWorkoutWithPaces(
-      input as WorkoutWithPaces,
-      paceSettings || null,
-      planId || "default"
-    );
+  if ('paces' in input && input.paces) {
+    const result = renderWorkoutWithPaces(input as WorkoutWithPaces, paceSettings || null, planId || 'default');
     return [result.title, result.description];
   }
 
@@ -141,12 +131,6 @@ export function renderEnhanced(
 /**
  * Check if input uses the new pace structure
  */
-export function hasStructuredPaces(
-  input: DayDetails | WorkoutWithPaces
-): boolean {
-  return (
-    "paces" in input &&
-    !!(input as WorkoutWithPaces).paces &&
-    (input as WorkoutWithPaces).paces!.length > 0
-  );
+export function hasStructuredPaces(input: DayDetails | WorkoutWithPaces): boolean {
+  return 'paces' in input && !!(input as WorkoutWithPaces).paces && (input as WorkoutWithPaces).paces!.length > 0;
 }

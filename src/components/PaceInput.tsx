@@ -174,25 +174,19 @@ const PaceInput: React.FC<PaceInputProps> = ({
               <div className="pace-zones">
                 <div className="pace-zone">
                   <span className="zone-label">Easy:</span>
-                  <span className="zone-pace">{pacePreview.paces.easy}</span>
+                  <span className="zone-pace">{pacePreview.easy}</span>
                 </div>
                 <div className="pace-zone">
                   <span className="zone-label">Marathon:</span>
-                  <span className="zone-pace">
-                    {pacePreview.paces.marathon}
-                  </span>
+                  <span className="zone-pace">{pacePreview.marathon}</span>
                 </div>
                 <div className="pace-zone">
                   <span className="zone-label">Threshold:</span>
-                  <span className="zone-pace">
-                    {pacePreview.paces.threshold}
-                  </span>
+                  <span className="zone-pace">{pacePreview.threshold}</span>
                 </div>
                 <div className="pace-zone">
                   <span className="zone-label">Interval:</span>
-                  <span className="zone-pace">
-                    {pacePreview.paces.interval}
-                  </span>
+                  <span className="zone-pace">{pacePreview.interval}</span>
                 </div>
               </div>
               <small className="pace-note">
