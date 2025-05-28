@@ -8,17 +8,18 @@ import {
 
 // Pace placeholder patterns that can be used in workout descriptions
 // Examples: @easy@, @mp@, @tempo@, @threshold@, @interval@, @5k@, @10k@
+// Use negative lookbehind and lookahead to avoid matching malformed placeholders like @@tempo@
 const PACE_PATTERNS = {
-  easy: /@easy@/gi,
-  mp: /@mp@/gi,
-  marathon: /@marathon@/gi,
-  tempo: /@tempo@/gi,
-  threshold: /@threshold@/gi,
-  interval: /@interval@/gi,
-  "5k": /@5k@/gi,
-  "10k": /@10k@/gi,
-  repetition: /@rep@/gi,
-  repetitions: /@repetition@/gi,
+  easy: /(?<!\@)\@easy\@(?!\@)/gi,
+  mp: /(?<!\@)\@mp\@(?!\@)/gi,
+  marathon: /(?<!\@)\@marathon\@(?!\@)/gi,
+  tempo: /(?<!\@)\@tempo\@(?!\@)/gi,
+  threshold: /(?<!\@)\@threshold\@(?!\@)/gi,
+  interval: /(?<!\@)\@interval\@(?!\@)/gi,
+  "5k": /(?<!\@)\@5k\@(?!\@)/gi,
+  "10k": /(?<!\@)\@10k\@(?!\@)/gi,
+  recovery: /(?<!\@)\@recovery\@(?!\@)/gi,
+  repetition: /(?<!\@)\@repetition\@(?!\@)/gi,
 };
 
 /**
@@ -95,14 +96,14 @@ export function substitutePaces(
       result = result.replace(PACE_PATTERNS["10k"], formatPace(paces.interval));
     }
 
-    if (paces.repetition) {
+    if (paces.recovery) {
       result = result.replace(
-        PACE_PATTERNS.repetition,
-        formatPace(paces.repetition)
+        PACE_PATTERNS.recovery,
+        formatPace(paces.recovery)
       );
       result = result.replace(
-        PACE_PATTERNS.repetitions,
-        formatPace(paces.repetition)
+        PACE_PATTERNS.repetition,
+        formatPace(paces.recovery)
       );
     }
 

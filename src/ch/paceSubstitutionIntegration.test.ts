@@ -10,7 +10,7 @@ describe("Pace Substitution Integration Tests", () => {
   };
 
   const marathonPaceSettings: PaceSettings = {
-    raceDistance: "Marathon",
+    raceDistance: "marathon",
     goalTime: "3:00:00",
     units: "mi",
   };

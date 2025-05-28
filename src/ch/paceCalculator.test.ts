@@ -76,7 +76,8 @@ describe("paceCalculator", () => {
       expect(paces.easy).toBeGreaterThan(paces.marathon);
       expect(paces.marathon).toBeGreaterThan(paces.threshold);
       expect(paces.threshold).toBeGreaterThan(paces.interval);
-      expect(paces.interval).toBeGreaterThan(paces.repetition);
+      expect(paces.interval).toBeGreaterThan(paces.recovery);
+      expect(paces.long).toBeGreaterThan(paces.easy); // Long should be slower than easy
 
       // Should be reasonable times (4:30-10:00 min/mile range)
       expect(paces.easy).toBeGreaterThan(270);
@@ -93,7 +94,8 @@ describe("paceCalculator", () => {
       expect(paces.easy).toBeGreaterThan(paces.marathon);
       expect(paces.marathon).toBeGreaterThan(paces.threshold);
       expect(paces.threshold).toBeGreaterThan(paces.interval);
-      expect(paces.interval).toBeGreaterThan(paces.repetition);
+      expect(paces.interval).toBeGreaterThan(paces.recovery);
+      expect(paces.long).toBeGreaterThan(paces.easy); // Long should be slower than easy
 
       // Should be reasonable times (3:00-6:00 min/km range)
       expect(paces.easy).toBeGreaterThan(180);
@@ -115,7 +117,8 @@ describe("paceCalculator", () => {
       marathon: 420, // 7:00
       threshold: 380, // 6:20
       interval: 340, // 5:40
-      repetition: 300, // 5:00
+      recovery: 300, // 5:00
+      long: 510, // 8:30
     };
 
     test("should identify easy pace zones", () => {

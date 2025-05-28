@@ -40,7 +40,8 @@ export interface PaceZones {
   marathon: number;      // Marathon pace (seconds per unit)
   threshold: number;     // Lactate Threshold pace (seconds per unit)
   interval: number;      // VO2max/5K pace (seconds per unit)
-  repetition: number;    // Neuromuscular power/mile pace (seconds per unit)
+  recovery: number;      // Recovery/Neuromuscular power pace (seconds per unit)
+  long: number;          // Long run pace (seconds per unit)
 }
 
 /**
@@ -131,7 +132,8 @@ export function calculatePaceZones(vdot: number, units: Units): PaceZones {
     marathon: fiveKPace * 1.15,   // Marathon: 15% slower than 5K pace  
     threshold: fiveKPace * 1.08,  // Threshold: 8% slower than 5K pace
     interval: fiveKPace * 1.0,    // Interval: 5K pace
-    repetition: fiveKPace * 0.95, // Repetition: 5% faster than 5K pace
+    recovery: fiveKPace * 0.95,   // Recovery: 5% faster than 5K pace
+    long: fiveKPace * 1.4,        // Long run: 40% slower than 5K pace
   };
 }
 
@@ -171,7 +173,7 @@ export function getPaceByZone(paces: PaceZones, zone: string): number | null {
     return paces.interval;
   }
   if (normalizedZone.includes('repetition') || normalizedZone.includes('rep') || normalizedZone.includes('mile') || normalizedZone.includes('800')) {
-    return paces.repetition;
+    return paces.recovery;
   }
   
   return null;

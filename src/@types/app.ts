@@ -105,9 +105,8 @@ export interface PaceZones {
   marathon: number;
   threshold: number;
   interval: number;
-  repetition: number;
-  // Potentially add other zones if plans use them, e.g., recovery
-  recovery?: number;
+  recovery: number;
+  long: number;
 }
 
 export type PaceZoneKey = keyof PaceZones; // Added PaceZoneKey

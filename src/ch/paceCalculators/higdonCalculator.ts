@@ -19,7 +19,8 @@ export class HigdonPaceCalculator extends BasePaceCalculator {
     marathon: "Marathon Pace",
     threshold: "Tempo", 
     interval: "5K Pace",
-    repetition: "Long Run Pace"
+    recovery: "Long Run Pace",
+    long: "Long Run Pace (LRP)"
   };
 
   calculatePaces(raceTime: RaceTime, units: Units): PaceZones {
@@ -41,7 +42,8 @@ export class HigdonPaceCalculator extends BasePaceCalculator {
       marathon: fiveKPace * 1.2, // Marathon: Comfortable goal pace
       threshold: fiveKPace * 1.12, // Threshold: Comfortably hard
       interval: fiveKPace * 1.05, // Interval: Moderately hard
-      repetition: fiveKPace * 0.98, // Repetition: Close to 5K pace
+      recovery: fiveKPace * 0.98, // Recovery: Close to 5K pace
+      long: fiveKPace * 1.5, // Long: Very easy, conversational pace
     };
   }
 }

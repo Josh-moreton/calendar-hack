@@ -15,7 +15,8 @@ export interface PaceZones {
   marathon: number; // Marathon pace (seconds per unit)
   threshold: number; // Lactate Threshold pace (seconds per unit)
   interval: number; // VO2max/5K pace (seconds per unit)
-  repetition: number; // Neuromuscular power/mile pace (seconds per unit)
+  recovery: number; // Recovery pace (seconds per unit)
+  long: number; // Long run pace (seconds per unit)
 }
 
 export interface PaceZoneLabels {
@@ -23,7 +24,8 @@ export interface PaceZoneLabels {
   marathon: string;
   threshold: string;
   interval: string;
-  repetition?: string; // Optional since not all providers use all zones
+  recovery?: string; // Optional since not all providers use all zones
+  long?: string; // Optional since not all providers use all zones
 }
 
 export interface PaceCalculator {

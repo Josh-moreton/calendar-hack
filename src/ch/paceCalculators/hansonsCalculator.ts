@@ -19,7 +19,8 @@ export class HansonsPaceCalculator extends BasePaceCalculator {
     marathon: "Marathon Pace (MP)",
     threshold: "Tempo Pace (TP)", 
     interval: "Speed Pace (SP)",
-    repetition: "Long Run Pace"
+    recovery: "Long Run Pace",
+    long: "Long Run Pace (LRP)"
   };
 
   calculatePaces(raceTime: RaceTime, units: Units): PaceZones {
@@ -43,7 +44,8 @@ export class HansonsPaceCalculator extends BasePaceCalculator {
       marathon: marathonPace, // Marathon: Goal race pace
       threshold: marathonPace * 0.94, // Threshold: Faster than marathon (strength runs)
       interval: fiveKPace * 0.98, // Interval: Close to 5K pace (speed work)
-      repetition: fiveKPace * 0.93, // Repetition: Faster than 5K pace
+      recovery: fiveKPace * 0.93, // Recovery: Faster than 5K pace
+      long: marathonPace * 1.2, // Long: Slightly slower than marathon pace
     };
   }
 }

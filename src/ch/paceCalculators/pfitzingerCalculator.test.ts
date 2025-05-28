@@ -21,7 +21,8 @@ describe("PfitzingerPaceCalculator", () => {
     expect(paces1.marathon).toBeLessThan(paces2.marathon);
     expect(paces1.threshold).toBeLessThan(paces2.threshold);
     expect(paces1.interval).toBeLessThan(paces2.interval);
-    expect(paces1.repetition).toBeLessThan(paces2.repetition);
+    expect(paces1.recovery).toBeLessThan(paces2.recovery);
+    expect(paces1.long).toBeLessThan(paces2.long);
   });
 
   it("should calculate reasonable pace ranges", () => {
@@ -37,7 +38,7 @@ describe("PfitzingerPaceCalculator", () => {
     expect(paces.marathon).toBeGreaterThan(racePace); // Marathon should be slower than race pace
     expect(paces.threshold).toBeGreaterThan(racePace); // Threshold should be slower than race pace
     expect(paces.interval).toBeLessThan(racePace); // Interval should be faster than race pace
-    expect(paces.repetition).toBeGreaterThan(paces.easy); // Recovery should be slower than easy
+    expect(paces.recovery).toBeGreaterThan(paces.easy); // Recovery should be slower than easy
 
     // Log actual values for debugging
     console.log("Race pace (4:00/km):", racePace, "seconds");
@@ -45,6 +46,7 @@ describe("PfitzingerPaceCalculator", () => {
     console.log("Marathon:", paces.marathon, "seconds");
     console.log("Threshold:", paces.threshold, "seconds");
     console.log("Interval:", paces.interval, "seconds");
-    console.log("Recovery:", paces.repetition, "seconds");
+    console.log("Recovery:", paces.recovery, "seconds");
+    console.log("Long:", paces.long, "seconds");
   });
 });

@@ -7,17 +7,18 @@ import { getPaceCalculatorForPlan } from "./paceCalculators/calculatorRegistry";
 import { RaceTime } from "./paceCalculators/baseCalculator";
 
 // Pace placeholder patterns that can be used in workout descriptions
+// Use negative lookbehind and lookahead to avoid matching malformed placeholders like @@tempo@
 const PACE_PATTERNS = {
-  easy: /@easy@/gi,
-  mp: /@mp@/gi,
-  marathon: /@marathon@/gi,
-  tempo: /@tempo@/gi,
-  threshold: /@threshold@/gi,
-  interval: /@interval@/gi,
-  "5k": /@5k@/gi,
-  "10k": /@10k@/gi,
-  repetition: /@rep@/gi,
-  repetitions: /@repetition@/gi,
+  easy: /(?<!\@)\@easy\@(?!\@)/gi,
+  mp: /(?<!\@)\@mp\@(?!\@)/gi,
+  marathon: /(?<!\@)\@marathon\@(?!\@)/gi,
+  tempo: /(?<!\@)\@tempo\@(?!\@)/gi,
+  threshold: /(?<!\@)\@threshold\@(?!\@)/gi,
+  interval: /(?<!\@)\@interval\@(?!\@)/gi,
+  "5k": /(?<!\@)\@5k\@(?!\@)/gi,
+  "10k": /(?<!\@)\@10k\@(?!\@)/gi,
+  recovery: /(?<!\@)\@recovery\@(?!\@)/gi,
+  repetition: /(?<!\@)\@repetition\@(?!\@)/gi,
   // Pfitzinger-specific pace patterns
   marathonRacePace: /@ marathon race pace/gi,
   lactateThreshold: /@ 15K to half marathon race pace/gi,
@@ -132,14 +133,14 @@ export function substitutePacesEnhanced(
       );
     }
 
-    if (paces.repetition) {
+    if (paces.recovery) {
       result = result.replace(
-        PACE_PATTERNS.repetition,
-        formatPace(paces.repetition)
+        PACE_PATTERNS.recovery,
+        formatPace(paces.recovery)
       );
       result = result.replace(
-        PACE_PATTERNS.repetitions,
-        formatPace(paces.repetition)
+        PACE_PATTERNS.repetition,
+        formatPace(paces.recovery)
       );
     }
 
