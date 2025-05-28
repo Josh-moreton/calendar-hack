@@ -1,4 +1,3 @@
-import { substitutePaceWithCalculated } from './paceSubstitutionEnhanced';
 import { substitutePacesEnhanced } from './paceSubstitutionEnhanced';
 import { PaceSettings } from '../@types/app';
 
