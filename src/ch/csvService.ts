@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { RacePlan } from "./dategrid";
-import { getWeekDistance, renderEnhanced, renderDist } from "./rendering";
+import { getWeekDistance, render, renderDist } from "./rendering";
 import { Units, PaceSettings } from "types/app";
 import { getDaysHeader, WeekStartsOn } from "./datecalc";
 
@@ -38,7 +38,7 @@ export function toCsv(
       const currWorkout = currWeek.days[j];
       let date = format(currWorkout.date, "yyyy-MM-dd");
       if (currWorkout.event) {
-        let [title, desc] = renderEnhanced(
+        let [title, desc] = render(
           currWorkout.event,
           plan.sourceUnits,
           units,

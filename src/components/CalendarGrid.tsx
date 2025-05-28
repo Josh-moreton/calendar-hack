@@ -105,8 +105,7 @@ export const CalendarGrid = ({
 
   return (
     <div className="calendar-grid w-full overflow-x-auto flex flex-col p-0 sm:p-1">
-      <style dangerouslySetInnerHTML={{
-        __html: `
+      <style jsx global>{`
         .calendar-grid .week-grid {
           min-width: 800px;
         }
@@ -131,8 +130,7 @@ export const CalendarGrid = ({
         .calendar-grid::-webkit-scrollbar-thumb:hover {
           background-color: rgba(0, 0, 0, 0.3);
         }
-        `
-      }} />
+      `}</style>
       {getHeader()}
       {racePlan.dateGrid.weeks.map((w, _) => getWeek(w))}
     </div>

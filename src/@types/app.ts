@@ -105,30 +105,3 @@ export interface PaceZones {
   interval: number;
   repetition: number;
 }
-
-// Universal pace zone types
-export type PaceZone =
-  | "recovery"
-  | "easy"
-  | "marathon"
-  | "threshold"
-  | "interval"
-  | "repetition";
-
-export interface PaceInterval {
-  count: number;
-  distance: number;
-  units?: "m" | "km" | "mi" | "yd";
-  recovery?: string;
-}
-
-export interface PaceSegment {
-  zone: PaceZone;
-  distance?: number;
-  description: string;
-  intervals?: PaceInterval;
-}
-
-export interface WorkoutWithPaces extends PlannedWorkout {
-  paces?: PaceSegment[];
-}

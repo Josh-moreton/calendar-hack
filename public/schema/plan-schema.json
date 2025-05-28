@@ -95,70 +95,11 @@
                     },
                     "minItems": 1,
                     "uniqueItems": true
-                },
-                "paces": {
-                    "type": "array",
-                    "description": "Structured pace information for different segments of the workout",
-                    "items": {
-                        "$ref": "#/definitions/paceSegment"
-                    }
                 }
             },
             "required": [
                 "title"
             ]
-        },
-        "paceSegment": {
-            "type": "object",
-            "description": "A segment of the workout with a specific pace zone",
-            "properties": {
-                "zone": {
-                    "type": "string",
-                    "enum": [
-                        "recovery",
-                        "easy", 
-                        "marathon",
-                        "threshold",
-                        "interval", 
-                        "repetition"
-                    ],
-                    "description": "Universal pace zone that maps to provider-specific terminology"
-                },
-                "distance": {
-                    "type": "number",
-                    "description": "Distance for this pace segment (optional for intervals)"
-                },
-                "description": {
-                    "type": "string", 
-                    "description": "Human-readable description of this pace segment"
-                },
-                "intervals": {
-                    "type": "object",
-                    "description": "Interval-specific information",
-                    "properties": {
-                        "count": {
-                            "type": "integer",
-                            "minimum": 1,
-                            "description": "Number of intervals"
-                        },
-                        "distance": {
-                            "type": "number",
-                            "description": "Distance per interval"
-                        },
-                        "units": {
-                            "type": "string",
-                            "enum": ["m", "km", "mi", "yd"],
-                            "description": "Units for interval distance"
-                        },
-                        "recovery": {
-                            "type": "string",
-                            "description": "Recovery between intervals"
-                        }
-                    },
-                    "required": ["count", "distance"]
-                }
-            },
-            "required": ["zone", "description"]
         }
     }
 }
