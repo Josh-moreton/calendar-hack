@@ -25,6 +25,8 @@ import { Units, PlanSummary, dayOfWeek } from "types/app";
 import { getLocaleUnits } from "./ch/localize";
 import HeroSection from "./components/HeroSection";
 
+type ViewState = 'selection' | 'calendar';
+
 const App = () => {
   const [{ u, p, d, s }, setq] = useQueryParams({
     u: StringParam,
@@ -46,6 +48,7 @@ const App = () => {
       ? d
       : addWeeks(endOfWeek(new Date(), { weekStartsOn: weekStartsOn }), 20)
   );
+  const [currentView, setCurrentView] = useState<ViewState>('selection');
 
   useMountEffect(() => {
     initialLoad(selectedPlan, planEndDate, selectedUnits, weekStartsOn);
@@ -99,6 +102,16 @@ const App = () => {
     setRacePlan(racePlan);
     setUndoHistory([racePlan]);
     setq(getParams(selectedUnits, selectedPlan, date, weekStartsOn));
+  };
+
+  const generateCalendar = () => {
+    if (racePlan) {
+      setCurrentView('calendar');
+    }
+  };
+
+  const backToSelection = () => {
+    setCurrentView('selection');
   };
 
   const onSelectedUnitsChanged = (u: Units) => {
@@ -160,123 +173,185 @@ const App = () => {
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Main Container */}
-      <div className="max-w-6xl mx-auto px-4 md:px-6 space-y-8 pb-12">
+      {/* Two-page sliding container */}
+      <div className="relative overflow-hidden">
+        
+        {/* Selection Page */}
+        <div className={`transition-transform duration-700 ease-in-out ${
+          currentView === 'selection' ? 'translate-x-0' : '-translate-x-full'
+        }`}>
+          <div className="max-w-6xl mx-auto px-4 md:px-6 space-y-8 pb-12">
+            
+            {/* Customize Training Plan Card */}
+            <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 animate-slide-up">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-primary-700">
+                Customize Your Training Plan
+              </h2>
 
-        {/* Customize Training Plan Card */}
-        <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 animate-slide-up">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-primary-700">
-            Customize Your Training Plan
-          </h2>
-
-          <PlanAndDate
-            availablePlans={repo.available}
-            selectedPlan={selectedPlan}
-            selectedDate={planEndDate}
-            dateChangeHandler={onSelectedEndDateChange}
-            selectedPlanChangeHandler={onSelectedPlanChange}
-            weekStartsOn={weekStartsOn}
-          />
-
-          <div className="flex justify-center mt-6">
-            <UnitsButtons
-              units={selectedUnits}
-              unitsChangeHandler={onSelectedUnitsChanged}
-            />
-          </div>
-        </div>
-
-        {/* Download Actions */}
-        <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
-          <h3 className="text-xl font-semibold mb-6 text-center text-primary-700">
-            Export Your Training Plan
-          </h3>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-3xl mx-auto">
-            <button
-              onClick={downloadIcalHandler}
-              className="w-full sm:w-auto min-w-[200px] bg-primary-600 hover:bg-primary-700 text-white py-3 px-6 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 group"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg>
-              Download iCal
-            </button>
-
-            <button
-              onClick={downloadCsvHandler}
-              className="w-full sm:w-auto min-w-[200px] bg-accent-600 hover:bg-accent-700 text-white py-3 px-6 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 group"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <line x1="3" y1="9" x2="21" y2="9" />
-                <line x1="3" y1="15" x2="21" y2="15" />
-                <line x1="9" y1="3" x2="9" y2="21" />
-                <line x1="15" y1="3" x2="15" y2="21" />
-              </svg>
-              Download CSV
-            </button>
-
-            <UndoButton
-              disabled={undoHistory.length <= 1}
-              undoHandler={undoHandler}
-            />
-          </div>
-        </div>
-
-        {/* Plan Details Card */}
-        <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
-          <h3 className="text-xl font-semibold mb-4 text-primary-700">
-            Plan Details
-          </h3>
-          <PlanDetailsCard racePlan={racePlan} />
-        </div>
-
-        {/* Week Options Card */}
-        <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
-          <h3 className="text-xl font-semibold mb-4 text-primary-700">
-            Week Options
-          </h3>
-          <WeekStartsOnPicker
-            weekStartsOn={weekStartsOn}
-            changeHandler={onWeekStartsOnChanged}
-          />
-        </div>
-
-        {/* Calendar View Card */}
-        <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
-          <h3 className="text-xl font-semibold mb-6 text-primary-700">
-            Calendar View
-          </h3>
-          <div className="w-full">
-            {racePlan && (
-              <CalendarGrid
-                racePlan={racePlan}
-                units={selectedUnits}
+              <PlanAndDate
+                availablePlans={repo.available}
+                selectedPlan={selectedPlan}
+                selectedDate={planEndDate}
+                dateChangeHandler={onSelectedEndDateChange}
+                selectedPlanChangeHandler={onSelectedPlanChange}
                 weekStartsOn={weekStartsOn}
-                swapDates={swapDates}
-                swapDow={doSwapDow}
               />
-            )}
+
+              <div className="flex justify-center mt-6">
+                <UnitsButtons
+                  units={selectedUnits}
+                  unitsChangeHandler={onSelectedUnitsChanged}
+                />
+              </div>
+            </div>
+
+            {/* Plan Details Card */}
+            <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
+              <h3 className="text-xl font-semibold mb-4 text-primary-700">
+                Plan Details
+              </h3>
+              <PlanDetailsCard racePlan={racePlan} />
+            </div>
+
+            {/* Week Options Card */}
+            <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
+              <h3 className="text-xl font-semibold mb-4 text-primary-700">
+                Week Options
+              </h3>
+              <WeekStartsOnPicker
+                weekStartsOn={weekStartsOn}
+                changeHandler={onWeekStartsOnChanged}
+              />
+            </div>
+
+            {/* Generate Calendar Button */}
+            <div className="flex justify-center py-8">
+              <button
+                onClick={generateCalendar}
+                disabled={!racePlan}
+                className="bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white py-4 px-12 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100"
+              >
+                <span className="flex items-center gap-3">
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="w-6 h-6" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Generate Calendar
+                </span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Calendar Page */}
+        <div className={`absolute top-0 left-0 w-full transition-transform duration-700 ease-in-out ${
+          currentView === 'calendar' ? 'translate-x-0' : 'translate-x-full'
+        }`}>
+          <div className="max-w-6xl mx-auto px-4 md:px-6 space-y-8 pb-12">
+            
+            {/* Back Button and Header */}
+            <div className="flex items-center justify-between bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+              <button
+                onClick={backToSelection}
+                className="flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold transition-colors duration-200"
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className="w-5 h-5" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                Back to Plan Selection
+              </button>
+              
+              <h2 className="text-xl md:text-2xl font-bold text-primary-700">
+                Your Training Calendar
+              </h2>
+              
+              <div className="w-[140px]"></div> {/* Spacer for center alignment */}
+            </div>
+
+            {/* Download Actions */}
+            <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
+              <h3 className="text-xl font-semibold mb-6 text-center text-primary-700">
+                Export Your Training Plan
+              </h3>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-3xl mx-auto">
+                <button
+                  onClick={downloadIcalHandler}
+                  className="w-full sm:w-auto min-w-[200px] bg-primary-600 hover:bg-primary-700 text-white py-3 px-6 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 group"
+                >
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                  >
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                  Download iCal
+                </button>
+
+                <button
+                  onClick={downloadCsvHandler}
+                  className="w-full sm:w-auto min-w-[200px] bg-accent-600 hover:bg-accent-700 text-white py-3 px-6 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 group"
+                >
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <line x1="3" y1="9" x2="21" y2="9" />
+                    <line x1="3" y1="15" x2="21" y2="15" />
+                    <line x1="9" y1="3" x2="9" y2="21" />
+                    <line x1="15" y1="3" x2="15" y2="21" />
+                  </svg>
+                  Download CSV
+                </button>
+
+                <UndoButton
+                  disabled={undoHistory.length <= 1}
+                  undoHandler={undoHandler}
+                />
+              </div>
+            </div>
+
+            {/* Calendar View Card */}
+            <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="w-full">
+                {racePlan && (
+                  <CalendarGrid
+                    racePlan={racePlan}
+                    units={selectedUnits}
+                    weekStartsOn={weekStartsOn}
+                    swapDates={swapDates}
+                    swapDow={doSwapDow}
+                  />
+                )}
+              </div>
+            </div>
+
           </div>
         </div>
 

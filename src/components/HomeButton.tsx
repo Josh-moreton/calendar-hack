@@ -6,11 +6,11 @@ const HomeButton = () => {
       <NavLink
         to="/"
         className={({ isActive }) => 
-          `inline-flex items-center justify-center w-10 h-10 mx-1 rounded-lg transition-all duration-200 
-           focus:outline-none focus:ring-2 focus:ring-primary-500/20 ${
+          `inline-flex items-center justify-center w-10 h-10 rounded-lg transition-all duration-200 
+           focus:outline-none focus:ring-2 focus:ring-white/20 ${
              isActive 
-               ? 'text-accent-600 bg-accent-50' 
-               : 'text-neutral-700 hover:text-primary-600 hover:bg-primary-50'
+               ? 'text-white bg-white/20' 
+               : 'text-white/90 hover:text-white hover:bg-white/10'
            }`
         }
       >

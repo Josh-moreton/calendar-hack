@@ -2,6 +2,46 @@
 @import "@fontsource/inter/500.css";
 @import "@fontsource/inter/600.css";
 @import "@fontsource/inter/700.css";
+
+/* Custom slide animations for two-page UI flow */
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Smooth transitions for all interactive elements */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
