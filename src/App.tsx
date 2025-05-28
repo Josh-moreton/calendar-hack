@@ -35,13 +35,13 @@ const App = () => {
   const [selectedUnits, setSelectedUnits] = useState<Units>(
     u === "mi" || u === "km" ? u : getLocaleUnits()
   );
-  var [selectedPlan, setSelectedPlan] = useState(repo.find(p || ""));
-  var [racePlan, setRacePlan] = useState<RacePlan | undefined>(undefined);
-  var [undoHistory, setUndoHistory] = useState([] as RacePlan[]);
-  var [weekStartsOn, setWeekStartsOn] = useState<WeekStartsOn>(
+  const [selectedPlan, setSelectedPlan] = useState(repo.find(p || ""));
+  const [racePlan, setRacePlan] = useState<RacePlan | undefined>(undefined);
+  const [undoHistory, setUndoHistory] = useState([] as RacePlan[]);
+  const [weekStartsOn, setWeekStartsOn] = useState<WeekStartsOn>(
     s === 0 || s === 1 || s === 6 ? s : WeekStartsOnValues.Monday
   );
-  var [planEndDate, setPlanEndDate] = useState(
+  const [planEndDate, setPlanEndDate] = useState(
     d && isAfter(d, new Date())
       ? d
       : addWeeks(endOfWeek(new Date(), { weekStartsOn: weekStartsOn }), 20)
@@ -196,8 +196,19 @@ const App = () => {
               onClick={downloadIcalHandler}
               className="w-full sm:w-auto min-w-[200px] bg-primary-600 hover:bg-primary-700 text-white py-3 px-6 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 group"
             >
-              <svg className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
               Download iCal
             </button>
@@ -206,8 +217,21 @@ const App = () => {
               onClick={downloadCsvHandler}
               className="w-full sm:w-auto min-w-[200px] bg-accent-600 hover:bg-accent-700 text-white py-3 px-6 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 group"
             >
-              <svg className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M3 3v18h18V3H3zm8 16H5v-2h6v2zm0-4H5v-2h6v2zm0-4H5V9h6v2zm8 8h-6v-2h6v2zm0-4h-6v-2h6v2zm0-4h-6V9h6v2z"/>
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                <line x1="3" y1="9" x2="21" y2="9" />
+                <line x1="3" y1="15" x2="21" y2="15" />
+                <line x1="9" y1="3" x2="9" y2="21" />
+                <line x1="15" y1="3" x2="15" y2="21" />
               </svg>
               Download CSV
             </button>

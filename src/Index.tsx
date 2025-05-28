@@ -6,9 +6,9 @@ const Index = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Toolbar />
-      <main className="flex-1 py-6 px-3 sm:px-6 md:px-8 w-full max-w-7xl mx-auto">
+      <div className="flex-1 w-full">
         <Outlet />
-      </main>
+      </div>
       <Footer />
     </div>
   );

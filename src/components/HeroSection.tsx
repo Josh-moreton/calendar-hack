@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const HeroSection: React.FC = () => {
@@ -12,12 +12,9 @@ const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden rounded-b-3xl md:rounded-b-[32px] mb-10 shadow-lg bg-gradient-to-br from-blue-900 to-blue-600 text-white">
+    <div className="relative overflow-hidden bg-gradient-to-br from-blue-900 to-blue-800 text-white rounded-b-3xl md:rounded-b-4xl mb-5 shadow-lg">
       {/* Abstract background pattern */}
-      <div 
-        className="absolute inset-0 opacity-10 bg-cover z-[1]"
-        style={{ backgroundImage: "url('/path-pattern.svg')" }}
-      />
+      <div className="absolute inset-0 opacity-10 bg-cover z-10" style={{backgroundImage: "url('/path-pattern.svg')"}} />
 
       {/* Animated circles */}
       {!isMobile && (
@@ -34,10 +31,7 @@ const HeroSection: React.FC = () => {
                 ease: "easeInOut",
               },
             }}
-            className="absolute w-[300px] h-[300px] rounded-full top-0 left-0 z-[1]"
-            style={{
-              background: "radial-gradient(circle, rgba(251, 146, 60, 0.3) 0%, rgba(251, 146, 60, 0) 70%)",
-            }}
+            className="absolute w-[300px] h-[300px] rounded-full bg-gradient-radial from-orange-400/30 to-orange-400/0 top-0 left-0 z-10"
           />
           <motion.div
             initial={{ x: "50%", y: "50%" }}
@@ -51,22 +45,19 @@ const HeroSection: React.FC = () => {
                 ease: "easeInOut",
               },
             }}
-            className="absolute w-[400px] h-[400px] rounded-full bottom-[-10%] right-[-10%] z-[1]"
-            style={{
-              background: "radial-gradient(circle, rgba(96, 165, 250, 0.3) 0%, rgba(96, 165, 250, 0) 70%)",
-            }}
+            className="absolute w-[400px] h-[400px] rounded-full bg-gradient-radial from-blue-600/30 to-blue-600/0 -bottom-[10%] -right-[10%] z-10"
           />
         </>
       )}
 
-      <div className="container mx-auto max-w-5xl relative z-[2] py-12 md:py-16 px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4">
-          <div className="max-w-full md:max-w-1/2 text-center md:text-left">
+      <div className="container mx-auto max-w-7xl relative z-20 py-8 md:py-12 px-4 sm:px-6 md:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4">
+          <div className="max-w-full md:max-w-[50%] text-center md:text-left">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="text-orange-400 font-semibold mb-2 tracking-wider uppercase text-lg"
+              className="text-orange-400 font-semibold mb-1 tracking-wider uppercase"
             >
               Run Smarter, Train Better
             </motion.p>
@@ -75,7 +66,7 @@ const HeroSection: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="font-extrabold mb-4 font-manrope tracking-tight leading-tight text-4xl md:text-5xl"
+              className="font-extrabold mb-2 font-manrope tracking-tight leading-tight text-3xl md:text-4xl"
             >
               Your Personal Running Training Calendar
             </motion.h1>
@@ -84,22 +75,33 @@ const HeroSection: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="text-white/90 text-base md:text-lg mb-8 max-w-[600px] mx-auto md:mx-0"
+              className="text-white/90 text-base md:text-lg mb-4 max-w-[600px] mx-auto md:mx-0"
             >
               Customize your perfect training plan for any race distance and
               achieve your personal best. Designed for runners of all levels to
               reach their goals.
             </motion.p>
 
-            <div className="flex gap-4 flex-col sm:flex-row justify-center md:justify-start">
+            <div className="flex flex-col sm:flex-row gap-2 justify-center md:justify-start">
               <motion.button
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 font-bold rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+                className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-1.5 rounded-md font-bold flex items-center justify-center gap-2 transition-colors duration-200"
               >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.89 19.38l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L9 8.25v4.75h2v-3.4l1.89 8.63z"/>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className="h-5 w-5" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M13 10V3L4 14h7v7l9-11h-7z" 
+                  />
                 </svg>
                 Get Started
               </motion.button>
@@ -111,18 +113,18 @@ const HeroSection: React.FC = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="max-w-1/2 flex justify-center"
+              className="max-w-[50%] flex justify-center"
             >
               <img
                 src="/training-illustration.svg"
                 alt="Running Calendar Illustration"
-                className="w-full max-w-[450px] filter drop-shadow-lg"
+                className="w-full max-w-[450px] filter drop-shadow-xl"
               />
             </motion.div>
           )}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

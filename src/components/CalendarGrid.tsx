@@ -84,9 +84,7 @@ export const CalendarGrid = ({
 
   function getHeader() {
     return (
-      <div
-        className="week-grid grid grid-cols-[0.5fr_repeat(7,1fr)] auto-rows-fr gap-1 sm:gap-1.5 md:gap-2 mb-2 rounded-lg"
-      >
+      <div className="week-grid grid grid-cols-[0.5fr_repeat(7,1fr)] auto-rows-fr gap-1 sm:gap-1.5 md:gap-2 mb-2 rounded-lg">
         <div key={"blank-left"} />
         {getDaysHeader(weekStartsOn).map((dow, _) => (
           <DayOfWeekHeader
@@ -118,15 +116,15 @@ export const CalendarGrid = ({
           width: 8px;
         }
         .calendar-grid::-webkit-scrollbar-track {
-          background-color: rgba(0,0,0,0.05);
+          background-color: rgba(0, 0, 0, 0.05);
           border-radius: 4px;
         }
         .calendar-grid::-webkit-scrollbar-thumb {
-          background-color: rgba(0,0,0,0.2);
+          background-color: rgba(0, 0, 0, 0.2);
           border-radius: 4px;
         }
         .calendar-grid::-webkit-scrollbar-thumb:hover {
-          background-color: rgba(0,0,0,0.3);
+          background-color: rgba(0, 0, 0, 0.3);
         }
       `}</style>
       {getHeader()}
