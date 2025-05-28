@@ -1,7 +1,7 @@
 {
-  "name": "calendar-hack",
+  "name": "stridr",
   "version": "0.1.0",
-  "homepage": "/hacks/calendarhack/",
+  "homepage": "https://joshua-moreton.github.io/stridr/",
   "private": true,
   "type": "module",
   "scripts": {

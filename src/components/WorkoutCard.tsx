@@ -1,10 +1,10 @@
 import React from "react";
-import { render } from "../ch/rendering";
+import { render, getCalculatedPaceForWorkout } from "../ch/rendering";
 import { Dateline } from "./Dateline";
 import { useDrag, DragSourceMonitor } from "react-dnd";
 import { ItemTypes } from "../ch/ItemTypes";
 import { DragHandle } from "./DragHandle";
-import { DayDetails, Units, PaceSettings } from "types/app";
+import { DayDetails, Units, PaceSettings, PaceZoneKey } from "../@types/app"; // Updated import path for types, removed PaceZones
 
 interface Props {
   dayDetails: DayDetails;
@@ -23,6 +23,34 @@ function renderDesc(
   planId?: string
 ): React.ReactElement {
   let [title, desc] = render(dayDetails, from, to, paceSettings, planId);
+
+  let calculatedPaceString = "";
+  // --- BEGIN DEBUG LOGGING ---
+  console.log("[WorkoutCard] renderDesc: dayDetails:", JSON.parse(JSON.stringify(dayDetails)));
+  console.log("[WorkoutCard] renderDesc: paceSettings:", paceSettings);
+  console.log("[WorkoutCard] renderDesc: planId:", planId);
+  console.log("[WorkoutCard] renderDesc: dayDetails.pace VALUE:", dayDetails.pace); // ADDED THIS LINE
+  // --- END DEBUG LOGGING ---
+
+  if (paceSettings && dayDetails.pace && planId) {
+    const paceKey = dayDetails.pace as PaceZoneKey;
+    // --- BEGIN DEBUG LOGGING ---
+    console.log("[WorkoutCard] renderDesc: paceKey being used:", paceKey);
+    // --- END DEBUG LOGGING ---
+    const specificPace = getCalculatedPaceForWorkout(
+      paceSettings,
+      planId,
+      paceKey,
+      to // ensure pace is in the correct units
+    );
+    // --- BEGIN DEBUG LOGGING ---
+    console.log("[WorkoutCard] renderDesc: specificPace returned:", specificPace);
+    // --- END DEBUG LOGGING ---
+    if (specificPace) {
+      calculatedPaceString = ` (Pace: ${specificPace})`;
+    }
+  }
+
   // Only render the description if it differs from the title
   // In the ical file we always render both and we automatically render the description using the same text as title if description is empty
   desc = title.replace(/\s/g, "") === desc.replace(/\s/g, "") ? "" : desc;
@@ -30,6 +58,7 @@ function renderDesc(
     <div className="w-full">
       <h4 className="font-semibold text-neutral-900 mb-2 text-sm leading-snug tracking-wide workout-title">
         {title}
+        {calculatedPaceString && <span className="font-normal text-accent-600">{calculatedPaceString}</span>}
       </h4>
 
       {desc && (

@@ -5,16 +5,16 @@ import sys
 import os
 import glob
 
-CH_DIR = 'calendar-hack'
+CH_DIR = 'stridr'
 
-# find the calendar hack dir
+# find the stridr dir
 d = os.getcwd()
 while os.path.basename(d) and os.path.basename(d) != CH_DIR:
     d = os.path.dirname(d)
 if os.path.basename(d) != CH_DIR:
     sys.exit("Could not find directory {}".format(CH_DIR))
 
-# find all yaml plan files in calendar-hack/public/plans/yaml
+# find all yaml plan files in stridr/public/plans/yaml
 src_path = os.path.join(d, "public", "plans", "yaml")
 out_path = os.path.join(d, "public", "plans", "json")
 print("Looking in {}".format(src_path))

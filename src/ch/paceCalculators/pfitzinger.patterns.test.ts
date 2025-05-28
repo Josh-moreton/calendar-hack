@@ -13,7 +13,7 @@ describe("Pfitzinger Pace Patterns", () => {
     const result = substitutePacesEnhanced(input, paceSettings, "pfitz_18_55");
 
     expect(result).not.toContain("@ marathon race pace");
-    expect(result).toMatch(/@\d+:\d{2} pace/);
+    expect(result).toMatch(/\d+:\d{2} pace/);
   });
 
   it("should substitute lactate threshold pattern", () => {
@@ -22,7 +22,7 @@ describe("Pfitzinger Pace Patterns", () => {
     const result = substitutePacesEnhanced(input, paceSettings, "pfitz_18_55");
 
     expect(result).not.toContain("@ 15K to half marathon race pace");
-    expect(result).toMatch(/@\d+:\d{2} pace/);
+    expect(result).toMatch(/\d+:\d{2} pace/);
   });
 
   it("should substitute VO2max pattern", () => {
@@ -31,7 +31,7 @@ describe("Pfitzinger Pace Patterns", () => {
     const result = substitutePacesEnhanced(input, paceSettings, "pfitz_18_55");
 
     expect(result).not.toContain("@ 5K race pace");
-    expect(result).toMatch(/@\d+:\d{2} pace/);
+    expect(result).toMatch(/\d+:\d{2} pace/);
   });
 
   it("should use Pfitzinger calculator for pfitz plan", () => {

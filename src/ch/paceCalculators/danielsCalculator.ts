@@ -29,7 +29,8 @@ export class DanielsPaceCalculator extends BasePaceCalculator {
     marathon: "Marathon (M)",
     threshold: "Threshold (T)", 
     interval: "Interval (I)",
-    repetition: "Repetition (R)"
+    recovery: "Repetition (R)",
+    long: "Long Run (L)"
   };
 
   calculatePaces(raceTime: RaceTime, units: Units): PaceZones {
@@ -51,7 +52,8 @@ export class DanielsPaceCalculator extends BasePaceCalculator {
       marathon: fiveKPace * 1.15, // Marathon: 15% slower than 5K pace
       threshold: fiveKPace * 1.08, // Threshold: 8% slower than 5K pace
       interval: fiveKPace * 1.0, // Interval: 5K pace
-      repetition: fiveKPace * 0.95, // Repetition: 5% faster than 5K pace
+      recovery: fiveKPace * 0.95, // Recovery: 5% faster than 5K pace
+      long: fiveKPace * 1.4, // Long: 40% slower than 5K pace
     };
   }
 }

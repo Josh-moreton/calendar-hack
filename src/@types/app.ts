@@ -36,6 +36,7 @@ export interface PlannedWorkout {
   tags: Tags[];
   distance: number;
   units: Units;
+  pace?: string; // Add optional pace field
 }
 
 export interface WeekSchedule {
@@ -68,6 +69,7 @@ export interface DayDetails {
   tags: Tags[];
   dist: number;
   sourceUnits: Units;
+  pace?: string; // Added pace property
 }
 
 export type dayOfWeek =
@@ -103,5 +105,8 @@ export interface PaceZones {
   marathon: number;
   threshold: number;
   interval: number;
-  repetition: number;
+  recovery: number;
+  long: number;
 }
+
+export type PaceZoneKey = keyof PaceZones; // Added PaceZoneKey

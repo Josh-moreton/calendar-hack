@@ -2,7 +2,7 @@ const GitHubButton = () => {
   return (
     <div className="group relative">
       <a
-        href="https://github.com/nanreh/calendar-hack"
+        href="https://github.com/nanreh/stridr"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="GitHub Repository"
