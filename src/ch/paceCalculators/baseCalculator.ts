@@ -18,9 +18,18 @@ export interface PaceZones {
   repetition: number; // Neuromuscular power/mile pace (seconds per unit)
 }
 
+export interface PaceZoneLabels {
+  easy: string;
+  marathon: string;
+  threshold: string;
+  interval: string;
+  repetition?: string; // Optional since not all providers use all zones
+}
+
 export interface PaceCalculator {
   name: string;
   description: string;
+  zoneLabels: PaceZoneLabels;
   calculatePaces(raceTime: RaceTime, units: Units): PaceZones;
   supportedDistances: string[];
 }
@@ -32,6 +41,7 @@ export abstract class BasePaceCalculator implements PaceCalculator {
   abstract name: string;
   abstract description: string;
   abstract supportedDistances: string[];
+  abstract zoneLabels: PaceZoneLabels;
 
   abstract calculatePaces(raceTime: RaceTime, units: Units): PaceZones;
 

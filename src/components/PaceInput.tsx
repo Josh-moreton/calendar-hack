@@ -87,10 +87,13 @@ const PaceInput: React.FC<PaceInputProps> = ({
       );
       
       return {
-        easy: formatPace(paces.easy),
-        marathon: formatPace(paces.marathon),
-        threshold: formatPace(paces.threshold),
-        interval: formatPace(paces.interval),
+        paces: {
+          easy: formatPace(paces.easy),
+          marathon: formatPace(paces.marathon),
+          threshold: formatPace(paces.threshold),
+          interval: formatPace(paces.interval),
+        },
+        labels: calculator.zoneLabels
       };
     } catch {
       return null;
@@ -170,20 +173,20 @@ const PaceInput: React.FC<PaceInputProps> = ({
               <h4>Training Pace Zones:</h4>
               <div className="pace-zones">
                 <div className="pace-zone">
-                  <span className="zone-label">Easy:</span>
-                  <span className="zone-pace">{pacePreview.easy}</span>
+                  <span className="zone-label">{pacePreview.labels.easy}:</span>
+                  <span className="zone-pace">{pacePreview.paces.easy}</span>
                 </div>
                 <div className="pace-zone">
-                  <span className="zone-label">Marathon:</span>
-                  <span className="zone-pace">{pacePreview.marathon}</span>
+                  <span className="zone-label">{pacePreview.labels.marathon}:</span>
+                  <span className="zone-pace">{pacePreview.paces.marathon}</span>
                 </div>
                 <div className="pace-zone">
-                  <span className="zone-label">Threshold:</span>
-                  <span className="zone-pace">{pacePreview.threshold}</span>
+                  <span className="zone-label">{pacePreview.labels.threshold}:</span>
+                  <span className="zone-pace">{pacePreview.paces.threshold}</span>
                 </div>
                 <div className="pace-zone">
-                  <span className="zone-label">Interval:</span>
-                  <span className="zone-pace">{pacePreview.interval}</span>
+                  <span className="zone-label">{pacePreview.labels.interval}:</span>
+                  <span className="zone-pace">{pacePreview.paces.interval}</span>
                 </div>
               </div>
               <small className="pace-note">
