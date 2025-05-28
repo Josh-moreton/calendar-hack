@@ -20,6 +20,7 @@ function renderDayDetails(
       tags: plannedWorkout.tags,
       dist: plannedWorkout.distance,
       sourceUnits: sourceUnits,
+      pace: plannedWorkout.pace, // Add pace here
     };
   } else {
     return undefined;

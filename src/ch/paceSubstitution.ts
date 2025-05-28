@@ -1,10 +1,9 @@
-import { PaceSettings, Units } from "../@types/app";
+import { PaceSettings } from "../@types/app";
 import {
   calculateTrainingPaces,
   formatPace,
   RaceTime,
   RaceDistance,
-  RACE_DISTANCES,
 } from "./paceCalculator";
 
 // Pace placeholder patterns that can be used in workout descriptions

@@ -7,7 +7,7 @@ import {
   getPaceByZone,
   parsePaceRange,
   predictRaceTime,
-  RACE_DISTANCES,
+  // RACE_DISTANCES, // Removed unused import
   type RaceTime,
   type PaceZones,
 } from "./paceCalculator";

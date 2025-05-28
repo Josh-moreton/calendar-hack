@@ -105,32 +105,6 @@ export const CalendarGrid = ({
 
   return (
     <div className="calendar-grid w-full overflow-x-auto flex flex-col p-0 sm:p-1">
-      <style jsx global>{`
-        .calendar-grid .week-grid {
-          min-width: 800px;
-        }
-        @media (min-width: 768px) {
-          .calendar-grid .week-grid {
-            min-width: 100%;
-          }
-        }
-        /* Custom scrollbar styles */
-        .calendar-grid::-webkit-scrollbar {
-          height: 8px;
-          width: 8px;
-        }
-        .calendar-grid::-webkit-scrollbar-track {
-          background-color: rgba(0, 0, 0, 0.05);
-          border-radius: 4px;
-        }
-        .calendar-grid::-webkit-scrollbar-thumb {
-          background-color: rgba(0, 0, 0, 0.2);
-          border-radius: 4px;
-        }
-        .calendar-grid::-webkit-scrollbar-thumb:hover {
-          background-color: rgba(0, 0, 0, 0.3);
-        }
-      `}</style>
       {getHeader()}
       {racePlan.dateGrid.weeks.map((w, _) => getWeek(w))}
     </div>

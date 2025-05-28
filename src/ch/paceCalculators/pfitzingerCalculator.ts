@@ -13,13 +13,13 @@ export class PfitzingerPaceCalculator extends BasePaceCalculator {
   description =
     "Scientific training zones based on Advanced Marathoning methodology";
   supportedDistances = ["5K", "10K", "15K", "10M", "half", "marathon"];
-  
+
   zoneLabels: PaceZoneLabels = {
     easy: "General Aerobic (GA)",
-    marathon: "Marathon Pace (MP)", 
+    marathon: "Marathon Pace (MP)",
     threshold: "Lactate Threshold (LT)",
     interval: "VO₂max",
-    repetition: "Recovery"
+    repetition: "Recovery", // Changed from "Repetition"
   };
 
   calculatePaces(raceTime: RaceTime, units: Units): PaceZones {
