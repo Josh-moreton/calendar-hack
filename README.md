@@ -1,44 +1,78 @@
-# Stridr Project Info
+# Stridr
 
-Stridr is a web application for runners who train for races. It renders a training program on a calendar and provides some basic editing features. It also provides for downloading the result as an iCal file which can be imported into any calendar application worth using.
+Stridr is a web application designed for runners who train for races. It allows users to visualize their training plans on a calendar, customize workouts, and download the plans as iCal files for integration with popular calendar applications.
 
-The project is hosted at [defy.org/hacks/calendarhack](https://www.defy.org/hacks/calendarhack)
+The project is hosted at [Stridr on GitHub Pages](https://joshua-moreton.github.io/stridr/).
 
-More project details are available on [the About page](https://www.defy.org/hacks/calendarhack/about)
+## Features
 
-## Contributing
-If you have a bugfix, a new feature, a new training plan, a UX/UI fix, or other contribution, please send a PR.
-Feel free to create a GitHub issue if you want to call something out.
+- **Training Plan Visualization**: Displays training plans in an interactive calendar format.
+- **Customizable Workouts**: Edit and adjust workouts to fit your schedule.
+- **iCal Export**: Download training plans as iCal files for easy import into calendar apps.
+- **Support for Multiple Training Plans**: Includes popular plans like Pfitzinger, FRR, and more.
 
 ## Running Locally
 
-Stridr is a React application. Using yarn, you can run it locally with: `yarn dev`
+Stridr is a React application. To run it locally:
 
-The other standard scripts exist also: `yarn test`, `yarn build`, etc.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/joshua-moreton/stridr.git
+   cd stridr
+   ```
+2. Install dependencies:
+   ```bash
+   yarn install
+   ```
+3. Start the development server:
+   ```bash
+   yarn dev
+   ```
 
-## Plans
-Training plans are represented as YAML files that are easy to create and edit. They can be found in [plans/yaml](public/plans/yaml/).
+Other available scripts:
 
-Plans can be validated against a JSON schema ([public/schema/plan-schema.json](public/schema/plan-schema.json)) as follows:
+- `yarn test`: Run tests.
+- `yarn build`: Build the application for production.
+- `yarn preview`: Preview the production build.
 
-```
-# Install ajv
+## Contributing
+
+We welcome contributions! If you have a bugfix, feature request, or new training plan, feel free to:
+
+- Open a GitHub issue.
+- Submit a pull request.
+
+## Training Plans
+
+Training plans are stored as YAML files for easy editing. They can be found in the `public/plans/yaml/` directory. These plans are converted to JSON for the application to consume.
+
+### Validating Plans
+
+Plans can be validated against a JSON schema located at `public/schema/plan-schema.json`:
+
+```bash
+# Install ajv-cli globally
 npm install -g ajv-cli
 
-# Run the validator with yarn
+# Validate plans
 yarn run validatePlans
 ```
 
-## Converting new plans
+### Converting Plans
 
-If you are adding a new plan or modifying an existing one, you should work with the YAML version of the plan.
+To convert YAML plans to JSON:
 
-A simple program then converts the YAML plans to JSON for the application to consume:
-```
+```bash
 python3 -m venv my_env
-source ./venv/bin/activate
+source my_env/bin/activate
 pip install pyyaml
 python3 ./bin/convertPlans
 ```
 
-TODO: automate this step 
+## Deployment
+
+Stridr is deployed to GitHub Pages using GitHub Actions. Any changes pushed to the `main` branch will automatically trigger a deployment.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE.md` file for details.

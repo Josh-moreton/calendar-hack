@@ -26,10 +26,16 @@ function renderDesc(
 
   let calculatedPaceString = "";
   // --- BEGIN DEBUG LOGGING ---
-  console.log("[WorkoutCard] renderDesc: dayDetails:", JSON.parse(JSON.stringify(dayDetails)));
+  console.log(
+    "[WorkoutCard] renderDesc: dayDetails:",
+    JSON.parse(JSON.stringify(dayDetails))
+  );
   console.log("[WorkoutCard] renderDesc: paceSettings:", paceSettings);
   console.log("[WorkoutCard] renderDesc: planId:", planId);
-  console.log("[WorkoutCard] renderDesc: dayDetails.pace VALUE:", dayDetails.pace); // ADDED THIS LINE
+  console.log(
+    "[WorkoutCard] renderDesc: dayDetails.pace VALUE:",
+    dayDetails.pace
+  ); // ADDED THIS LINE
   // --- END DEBUG LOGGING ---
 
   if (paceSettings && dayDetails.pace && planId) {
@@ -44,7 +50,10 @@ function renderDesc(
       to // ensure pace is in the correct units
     );
     // --- BEGIN DEBUG LOGGING ---
-    console.log("[WorkoutCard] renderDesc: specificPace returned:", specificPace);
+    console.log(
+      "[WorkoutCard] renderDesc: specificPace returned:",
+      specificPace
+    );
     // --- END DEBUG LOGGING ---
     if (specificPace) {
       calculatedPaceString = ` (Pace: ${specificPace})`;
@@ -58,7 +67,11 @@ function renderDesc(
     <div className="w-full">
       <h4 className="font-semibold text-neutral-900 mb-2 text-sm leading-snug tracking-wide workout-title">
         {title}
-        {calculatedPaceString && <span className="font-normal text-accent-600">{calculatedPaceString}</span>}
+        {calculatedPaceString && (
+          <span className="font-normal text-accent-600">
+            {calculatedPaceString}
+          </span>
+        )}
       </h4>
 
       {desc && (

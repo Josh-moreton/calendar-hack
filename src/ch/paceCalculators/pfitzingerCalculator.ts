@@ -6,7 +6,12 @@
  */
 
 import { Units } from "../../@types/app";
-import { BasePaceCalculator, RaceTime, PaceZones, PaceZoneLabels } from "./baseCalculator";
+import {
+  BasePaceCalculator,
+  RaceTime,
+  PaceZones,
+  PaceZoneLabels,
+} from "./baseCalculator";
 
 export class PfitzingerPaceCalculator extends BasePaceCalculator {
   name = "Pfitzinger/Douglas";

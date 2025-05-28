@@ -6,7 +6,12 @@
  */
 
 import { Units } from "../../@types/app";
-import { BasePaceCalculator, RaceTime, PaceZones, PaceZoneLabels } from "./baseCalculator";
+import {
+  BasePaceCalculator,
+  RaceTime,
+  PaceZones,
+  PaceZoneLabels,
+} from "./baseCalculator";
 
 export class DanielsPaceCalculator extends BasePaceCalculator {
   name = "Jack Daniels";
@@ -23,14 +28,14 @@ export class DanielsPaceCalculator extends BasePaceCalculator {
     "half",
     "marathon",
   ];
-  
+
   zoneLabels: PaceZoneLabels = {
     easy: "Easy (E)",
     marathon: "Marathon (M)",
-    threshold: "Threshold (T)", 
+    threshold: "Threshold (T)",
     interval: "Interval (I)",
     recovery: "Repetition (R)",
-    long: "Long Run (L)"
+    long: "Long Run (L)",
   };
 
   calculatePaces(raceTime: RaceTime, units: Units): PaceZones {

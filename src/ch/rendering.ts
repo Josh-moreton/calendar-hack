@@ -1,9 +1,16 @@
 import * as moo from "moo";
-import { Week, DayDetails, Units, PaceSettings, PaceZoneKey, PaceZones } from "types/app"; // Added PaceZones
+import {
+  Week,
+  DayDetails,
+  Units,
+  PaceSettings,
+  PaceZoneKey,
+  PaceZones,
+} from "types/app"; // Added PaceZones
 import { substitutePacesEnhanced } from "./paceSubstitutionEnhanced";
 import { getPaceCalculatorForPlan } from "./paceCalculators/calculatorRegistry";
 
-// Removed: import { formatPace } from "./formatters"; 
+// Removed: import { formatPace } from "./formatters";
 // formatPace will be used from the calculator instance or a local helper
 
 export function kmToMiles(value: number): number {
@@ -103,7 +110,8 @@ export function render(
   let desc = handle_conversions(input.desc, from, to);
 
   // Apply pace substitutions if pace settings are provided
-  if (paceSettings && planId) { // ensure planId is also present
+  if (paceSettings && planId) {
+    // ensure planId is also present
     title = substitutePacesEnhanced(title, paceSettings, planId);
     desc = substitutePacesEnhanced(desc, paceSettings, planId);
   }
@@ -135,26 +143,35 @@ export function getCalculatedPaceForWorkout(
     return null;
   }
 
-  const raceTimeParts = paceSettings.goalTime.split(':').map(Number);
+  const raceTimeParts = paceSettings.goalTime.split(":").map(Number);
   let timeInSeconds = 0;
-  if (raceTimeParts.length === 3) { // HH:MM:SS
-    timeInSeconds = raceTimeParts[0] * 3600 + raceTimeParts[1] * 60 + raceTimeParts[2];
-  } else if (raceTimeParts.length === 2) { // MM:SS
+  if (raceTimeParts.length === 3) {
+    // HH:MM:SS
+    timeInSeconds =
+      raceTimeParts[0] * 3600 + raceTimeParts[1] * 60 + raceTimeParts[2];
+  } else if (raceTimeParts.length === 2) {
+    // MM:SS
     timeInSeconds = raceTimeParts[0] * 60 + raceTimeParts[1];
   } else {
-    console.error('Invalid race time format for pace calculation');
+    console.error("Invalid race time format for pace calculation");
     return null;
   }
 
   const raceTime = { distance: paceSettings.raceDistance, timeInSeconds };
-  const allPaces: PaceZones = calculator.calculatePaces(raceTime, paceSettings.units);
-  
+  const allPaces: PaceZones = calculator.calculatePaces(
+    raceTime,
+    paceSettings.units
+  );
+
   // Ensure paceKey is a valid key for allPaces
   const specificPaceInSecondsPerKm = allPaces[paceKey as keyof PaceZones];
 
-  if (specificPaceInSecondsPerKm === undefined || specificPaceInSecondsPerKm === null) {
+  if (
+    specificPaceInSecondsPerKm === undefined ||
+    specificPaceInSecondsPerKm === null
+  ) {
     // console.warn(`Pace key "${paceKey}" not found in calculated paces for plan "${planId}". Available keys: ${Object.keys(allPaces).join(', ')}`);
-    return null; 
+    return null;
   }
 
   // The calculators return paces in seconds per km (based on current implementation)
