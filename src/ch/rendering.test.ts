@@ -1,4 +1,6 @@
 import { renderStr } from "./rendering";
+import { render } from "./rendering";
+import { PaceSettings, Units } from "../@types/app";
 
 describe("Rendering", function () {
   it("should render strings in correct units", async function () {
@@ -51,5 +53,67 @@ describe("Rendering", function () {
     const eight = "{10:6} Easy";
     expect(renderStr(eight, "km", "km")).toEqual("10 km Easy");
     expect(renderStr(eight, "km", "mi")).toEqual("6 mi Easy");
+  });
+});
+
+describe("Rendering with pace substitution", function () {
+  it("should substitute paces for Pfitzinger plans", function () {
+    const input = {
+      title: "{6} Easy @easy@",
+      desc: "{9} Tempo @threshold@",
+      tags: [],
+      dist: 0,
+      sourceUnits: "mi" as Units,
+    };
+    const paceSettings: PaceSettings = {
+      raceDistance: "10K",
+      goalTime: "40:00",
+      units: "mi",
+    };
+    const planId = "pfitz_advanced";
+
+    const [title, desc] = render(input, "mi", "mi", paceSettings, planId);
+
+    expect(title).toContain("Easy");
+    expect(desc).toContain("Tempo");
+    expect(title).not.toContain("@easy@");
+    expect(desc).not.toContain("@threshold@");
+  });
+
+  it("should handle missing pace settings gracefully", function () {
+    const input = {
+      title: "{6} Easy @easy@",
+      desc: "{9} Tempo @threshold@",
+      tags: [],
+      dist: 0,
+      sourceUnits: "mi" as Units,
+    };
+    const [title, desc] = render(input, "mi", "mi", null, "pfitz_advanced");
+
+    expect(title).toContain("@easy@");
+    expect(desc).toContain("@threshold@");
+  });
+
+  it("should use default calculator for unknown plans", function () {
+    const input = {
+      title: "{6} Easy @easy@",
+      desc: "{9} Tempo @threshold@",
+      tags: [],
+      dist: 0,
+      sourceUnits: "mi" as Units,
+    };
+    const paceSettings: PaceSettings = {
+      raceDistance: "10K",
+      goalTime: "40:00",
+      units: "mi",
+    };
+    const planId = "unknown_plan";
+
+    const [title, desc] = render(input, "mi", "mi", paceSettings, planId);
+
+    expect(title).toContain("Easy");
+    expect(desc).toContain("Tempo");
+    expect(title).not.toContain("@easy@");
+    expect(desc).not.toContain("@threshold@");
   });
 });

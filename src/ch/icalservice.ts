@@ -9,7 +9,11 @@ export function toDate(d: Date): [number, number, number] {
   return [d.getFullYear(), 1 + d.getMonth(), d.getDate()];
 }
 
-export function toIcal(plan: RacePlan, units: Units, paceSettings?: PaceSettings | null): string | undefined {
+export function toIcal(
+  plan: RacePlan,
+  units: Units,
+  paceSettings?: PaceSettings | null
+): string | undefined {
   const events = new Array<EventAttributes>();
   let weekDesc = null;
   let weeks = plan.dateGrid.weeks;
@@ -34,7 +38,13 @@ export function toIcal(plan: RacePlan, units: Units, paceSettings?: PaceSettings
     for (var j = 0; j < currWeek.days.length; j++) {
       const currWorkout = currWeek.days[j];
       if (currWorkout.event) {
-        let [title, desc] = render(currWorkout.event, plan.sourceUnits, units, paceSettings);
+        let [title, desc] = render(
+          currWorkout.event,
+          plan.sourceUnits,
+          units,
+          paceSettings,
+          plan.planId
+        );
         desc = desc.replace(/(\r\n|\n|\r)/gm, "\n");
         // if desc is not set, use title
         if (desc.replace(/\s/g, "") === "") {

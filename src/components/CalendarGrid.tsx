@@ -79,6 +79,7 @@ export const CalendarGrid = ({
             selected={selectedDow === format(d.date, "EEEE")}
             hovering={hoveringDow === format(d.date, "EEEE")}
             paceSettings={paceSettings}
+            planId={racePlan.planId}
           />
         ))}
       </div>

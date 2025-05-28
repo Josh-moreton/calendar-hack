@@ -1,6 +1,6 @@
 import * as moo from "moo";
 import { Week, DayDetails, Units, PaceSettings } from "types/app";
-import { substitutePaces } from "./paceSubstitution";
+import { substitutePacesEnhanced } from "./paceSubstitutionEnhanced";
 
 export function kmToMiles(value: number): number {
   return value * 0.62137;
@@ -91,33 +91,17 @@ export function render(
   input: DayDetails,
   from: Units,
   to: Units,
-  paceSettings?: PaceSettings | null
+  paceSettings?: PaceSettings | null,
+  planId?: string
 ): [string, string] {
   // [title, desc]
   let title = handle_conversions(input.title, from, to);
   let desc = handle_conversions(input.desc, from, to);
 
-  // Debug logging
-  console.log("render() called with:", {
-    title: input.title,
-    desc: input.desc,
-    paceSettings,
-    hasPaceSettings: !!paceSettings,
-  });
-
   // Apply pace substitutions if pace settings are provided
   if (paceSettings) {
-    console.log("Applying pace substitutions...");
-    const titleBefore = title;
-    const descBefore = desc;
-    title = substitutePaces(title, paceSettings);
-    desc = substitutePaces(desc, paceSettings);
-    console.log("Pace substitution results:", {
-      titleBefore,
-      titleAfter: title,
-      descBefore,
-      descAfter: desc,
-    });
+    title = substitutePacesEnhanced(title, paceSettings, planId);
+    desc = substitutePacesEnhanced(desc, paceSettings, planId);
   }
 
   return [title, desc];

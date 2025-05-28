@@ -1,31 +1,57 @@
-import React, { useState } from 'react';
-import { Units, PaceSettings } from '../@types/app';
-import { RaceDistance, calculateTrainingPaces, parseTimeToSeconds, formatPace } from '../ch/paceCalculator';
+import React, { useState } from "react";
+import { Units, PaceSettings } from "../@types/app";
+import {
+  RaceDistance,
+  calculateTrainingPaces,
+  parseTimeToSeconds,
+  formatPace,
+} from "../ch/paceCalculator";
 
 interface PaceInputProps {
   units: Units;
   onPaceSettingsChange: (settings: PaceSettings | null) => void;
+  planId?: string;
 }
 
 const raceDistanceOptions: { label: string; value: RaceDistance }[] = [
-  { label: '5K', value: '5K' },
-  { label: '8K', value: '8K' },
-  { label: '10K', value: '10K' },
-  { label: '15K', value: '15K' },
-  { label: '10 Mile', value: '10M' },
-  { label: 'Half Marathon', value: 'half' },
-  { label: 'Marathon', value: 'marathon' },
+  { label: "5K", value: "5K" },
+  { label: "8K", value: "8K" },
+  { label: "10K", value: "10K" },
+  { label: "15K", value: "15K" },
+  { label: "10 Mile", value: "10M" },
+  { label: "Half Marathon", value: "half" },
+  { label: "Marathon", value: "marathon" },
 ];
 
-const PaceInput: React.FC<PaceInputProps> = ({ units, onPaceSettingsChange }) => {
-  const [raceDistance, setRaceDistance] = useState<RaceDistance>('5K');
-  const [goalTime, setGoalTime] = useState('');
+const PaceInput: React.FC<PaceInputProps> = ({
+  units,
+  onPaceSettingsChange,
+  planId,
+}) => {
+  const [raceDistance, setRaceDistance] = useState<RaceDistance>("5K");
+  const [goalTime, setGoalTime] = useState("");
   const [isEnabled, setIsEnabled] = useState(false);
+
+  const getProviderName = () => {
+    if (!planId) return "Pfitzinger/Douglas (default)";
+
+    if (planId.includes("pfitz") || planId.includes("frr")) {
+      return "Pfitzinger/Douglas";
+    } else if (planId.includes("hanson")) {
+      return "Hansons Marathon Method";
+    } else if (planId.includes("higdon")) {
+      return "Hal Higdon";
+    } else if (planId.includes("daniel")) {
+      return "Jack Daniels";
+    } else {
+      return "Pfitzinger/Douglas (default)";
+    }
+  };
 
   const handleToggle = () => {
     const newEnabled = !isEnabled;
     setIsEnabled(newEnabled);
-    
+
     if (newEnabled && goalTime) {
       onPaceSettingsChange({ raceDistance, goalTime, units });
     } else {
@@ -49,10 +75,13 @@ const PaceInput: React.FC<PaceInputProps> = ({ units, onPaceSettingsChange }) =>
 
   const getPacePreview = () => {
     if (!isEnabled || !goalTime) return null;
-    
+
     try {
       const timeInSeconds = parseTimeToSeconds(goalTime);
-      const paces = calculateTrainingPaces({ distance: raceDistance, timeInSeconds }, units);
+      const paces = calculateTrainingPaces(
+        { distance: raceDistance, timeInSeconds },
+        units
+      );
       return {
         easy: formatPace(paces.easy),
         marathon: formatPace(paces.marathon),
@@ -70,16 +99,32 @@ const PaceInput: React.FC<PaceInputProps> = ({ units, onPaceSettingsChange }) =>
     <div className="pace-input-container">
       <div className="pace-input-header">
         <label className="pace-input-toggle">
-          <input
-            type="checkbox"
-            checked={isEnabled}
-            onChange={handleToggle}
-          />
-          <span className="toggle-text">
-            Calculate Training Paces
-          </span>
+          <input type="checkbox" checked={isEnabled} onChange={handleToggle} />
+          <span className="toggle-text">Calculate Training Paces</span>
         </label>
       </div>
+
+      {planId && (
+        <div className="provider-info mt-2 mb-4 px-2 py-1 bg-blue-50 border border-blue-100 rounded-md">
+          <small className="provider-note text-blue-700">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4 inline-block mr-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            Using <strong>{getProviderName()}</strong> pace methodology
+          </small>
+        </div>
+      )}
 
       {isEnabled && (
         <div className="pace-input-form">
@@ -88,7 +133,9 @@ const PaceInput: React.FC<PaceInputProps> = ({ units, onPaceSettingsChange }) =>
             <select
               id="race-distance"
               value={raceDistance}
-              onChange={(e) => handleDistanceChange(e.target.value as RaceDistance)}
+              onChange={e =>
+                handleDistanceChange(e.target.value as RaceDistance)
+              }
               className="race-distance-select"
             >
               {raceDistanceOptions.map(({ label, value }) => (
@@ -105,7 +152,7 @@ const PaceInput: React.FC<PaceInputProps> = ({ units, onPaceSettingsChange }) =>
               id="goal-time"
               type="text"
               value={goalTime}
-              onChange={(e) => handleTimeChange(e.target.value)}
+              onChange={e => handleTimeChange(e.target.value)}
               placeholder="MM:SS or HH:MM:SS"
               className="goal-time-input"
             />
@@ -136,7 +183,7 @@ const PaceInput: React.FC<PaceInputProps> = ({ units, onPaceSettingsChange }) =>
                 </div>
               </div>
               <small className="pace-note">
-                Paces per {units === 'mi' ? 'mile' : 'kilometer'}
+                Paces per {units === "mi" ? "mile" : "kilometer"}
               </small>
             </div>
           )}

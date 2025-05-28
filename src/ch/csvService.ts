@@ -38,7 +38,13 @@ export function toCsv(
       const currWorkout = currWeek.days[j];
       let date = format(currWorkout.date, "yyyy-MM-dd");
       if (currWorkout.event) {
-        let [title, desc] = render(currWorkout.event, plan.sourceUnits, units, paceSettings);
+        let [title, desc] = render(
+          currWorkout.event,
+          plan.sourceUnits,
+          units,
+          paceSettings,
+          plan.planId
+        );
         let text = date + ": " + title;
         desc = desc.replace(/(\r\n|\n|\r)/gm, "\n");
         if (desc.replace(/\s/g, "") !== "") {

@@ -246,6 +246,7 @@ const App = () => {
               <PaceInput
                 units={selectedUnits}
                 onPaceSettingsChange={setPaceSettings}
+                planId={racePlan?.planId}
               />
             </div>
 

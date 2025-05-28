@@ -13,6 +13,7 @@ interface Props {
   selected: boolean;
   hovering: boolean;
   paceSettings?: PaceSettings | null;
+  planId?: string;
 }
 
 export const DayCell = ({
@@ -23,6 +24,7 @@ export const DayCell = ({
   selected,
   hovering,
   paceSettings,
+  planId,
 }: Props) => {
   function canSwap(droppedDate: Date) {
     return dayDetails !== undefined && date !== droppedDate;
@@ -55,6 +57,7 @@ export const DayCell = ({
             units={units}
             swap={swap}
             paceSettings={paceSettings}
+            planId={planId}
           />
         )}
         {!dayDetails && <BlankCard date={date} />}
