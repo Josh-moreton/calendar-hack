@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Units, PaceSettings } from "../@types/app";
 import {
   RaceDistance,
-  calculateTrainingPaces,
   parseTimeToSeconds,
   formatPace,
 } from "../ch/paceCalculator";
+import { getPaceCalculatorForPlan } from "../ch/paceCalculators/calculatorRegistry";
 
 interface PaceInputProps {
   units: Units;
@@ -78,10 +78,14 @@ const PaceInput: React.FC<PaceInputProps> = ({
 
     try {
       const timeInSeconds = parseTimeToSeconds(goalTime);
-      const paces = calculateTrainingPaces(
+      
+      // Use the appropriate calculator for this plan
+      const calculator = getPaceCalculatorForPlan(planId || "default");
+      const paces = calculator.calculatePaces(
         { distance: raceDistance, timeInSeconds },
         units
       );
+      
       return {
         easy: formatPace(paces.easy),
         marathon: formatPace(paces.marathon),

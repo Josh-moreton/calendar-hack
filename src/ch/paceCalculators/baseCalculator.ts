@@ -45,12 +45,12 @@ export abstract class BasePaceCalculator implements PaceCalculator {
   ): number {
     if (fromUnit === toUnit) return paceSeconds;
 
-    if (fromUnit === "mi" && toUnit === "km") {
+    if (fromUnit === "km" && toUnit === "mi") {
+      // Convert from per-km to per-mile (slower pace)
+      return paceSeconds * 1.609344;
+    } else {
       // Convert from per-mile to per-km (faster pace)
       return paceSeconds * 0.621371;
-    } else {
-      // Convert from per-km to per-mile (slower pace)
-      return paceSeconds / 0.621371;
     }
   }
 
