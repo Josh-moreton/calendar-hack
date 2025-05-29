@@ -17,6 +17,7 @@ import {
   DateParam,
   NumberParam,
 } from "use-query-params";
+import { useLocation } from "react-router-dom";
 import { PlanDetailsCard } from "./components/PlanDetailsCard";
 import { WeekStartsOn, WeekStartsOnValues } from "./ch/datecalc";
 import WeekStartsOnPicker from "./components/WeekStartsOnPicker";
@@ -57,12 +58,12 @@ const App = () => {
   });
 
   const [, forceUpdate] = React.useReducer(x => x + 1, 0);
+  const location = useLocation();
+  
   React.useEffect(() => {
-    // listen for changes to the URL and force the app to re-render
-    history.listen(() => {
-      forceUpdate();
-    });
-  }, []);
+    // Force re-render when location changes
+    forceUpdate();
+  }, [location]);
 
   const getParams = (
     units: Units,
