@@ -1,7 +1,7 @@
 {
   "name": "stridr",
   "version": "0.1.0",
-  "homepage": "https://joshua-moreton.github.io/stridr/",
+  "homepage": "https://stridr.dev/",
   "private": true,
   "type": "module",
   "scripts": {
