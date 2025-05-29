@@ -23,8 +23,8 @@ import { WindowHistoryAdapter } from "use-query-params/adapters/window";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Determine the basename based on environment
-// In development, use no basename, in production use '/stridr'
-const basename = import.meta.env.DEV ? "" : "/stridr";
+// For custom domain, always use root path
+const basename = "";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
