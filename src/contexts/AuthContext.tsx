@@ -11,6 +11,7 @@ import React, {
   ReactNode,
 } from "react";
 import supabase from "../lib/supabase";
+import { getAuthRedirectUrl } from "../lib/config";
 import type {
   AuthContextType,
   AuthState,
@@ -80,7 +81,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           full_name: credentials.displayName,
           display_name: credentials.displayName,
         },
-        emailRedirectTo: `${window.location.origin}/auth/verify`,
+        emailRedirectTo: getAuthRedirectUrl("/auth/verify"),
       },
     });
 
@@ -97,11 +98,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         error: null,
       });
     } else {
-      // User needs to confirm email
+      // User needs to confirm email - this is normal, don't set as error
       setAuthState(prev => ({
         ...prev,
         loading: false,
-        error: "Please check your email to confirm your account.",
+        error: null, // Clear any previous errors
       }));
     }
   };
@@ -152,7 +153,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${window.location.origin}/welcome`,
+        redirectTo: getAuthRedirectUrl("/welcome"),
         queryParams: {
           access_type: "offline",
           prompt: "consent",
@@ -170,7 +171,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "apple",
       options: {
-        redirectTo: `${window.location.origin}/welcome`,
+        redirectTo: getAuthRedirectUrl("/welcome"),
       },
     });
 
@@ -186,7 +187,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "strava" as any, // Custom provider
       options: {
-        redirectTo: `${window.location.origin}/welcome`,
+        redirectTo: getAuthRedirectUrl("/welcome"),
         scopes: "read,activity:read",
       },
     });

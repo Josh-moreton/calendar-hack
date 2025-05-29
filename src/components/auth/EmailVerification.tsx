@@ -6,6 +6,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import supabase from "../../lib/supabase";
+import { getAuthRedirectUrl } from "../../lib/config";
 
 interface EmailVerificationProps {
   email: string;
@@ -26,7 +27,7 @@ export function EmailVerification({ email }: EmailVerificationProps) {
         type: "signup",
         email,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/verify`,
+          emailRedirectTo: getAuthRedirectUrl("/auth/verify"),
         },
       });
 
