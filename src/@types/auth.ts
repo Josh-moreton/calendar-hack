@@ -2,8 +2,6 @@
  * Authentication Type Definitions
  */
 
-import { User as FirebaseUser } from "firebase/auth";
-
 export interface AppUser {
   uid: string;
   email: string | null;

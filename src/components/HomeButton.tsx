@@ -1,9 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
 
 const HomeButton = () => {
-  const { user } = useAuth();
-
   return (
     <div className="group relative">
       <NavLink

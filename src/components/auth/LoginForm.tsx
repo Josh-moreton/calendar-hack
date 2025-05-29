@@ -3,21 +3,13 @@
  * Provides email/password and social sign-in options
  */
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import type { LoginCredentials } from "../../@types/auth";
 
-interface LoginFormProps {
-  onSuccess?: () => void;
-  redirectTo?: string;
-}
-
-export const LoginForm: React.FC<LoginFormProps> = ({
-  onSuccess,
-  redirectTo = "/",
-}) => {
+export function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
   const {
     signIn,
     signInWithGoogle,
@@ -345,4 +337,4 @@ export const LoginForm: React.FC<LoginFormProps> = ({
       </div>
     </div>
   );
-};
+}

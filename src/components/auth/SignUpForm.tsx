@@ -3,21 +3,13 @@
  * Provides account creation with email/password and social sign-up options
  */
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import type { RegisterCredentials } from "../../@types/auth";
 
-interface SignUpFormProps {
-  onSuccess?: () => void;
-  redirectTo?: string;
-}
-
-export const SignUpForm: React.FC<SignUpFormProps> = ({
-  onSuccess,
-  redirectTo = "/",
-}) => {
+export function SignUpForm({ onSuccess }: { onSuccess?: () => void }) {
   const {
     signUp,
     signInWithGoogle,
@@ -416,4 +408,4 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({
       </div>
     </div>
   );
-};
+}

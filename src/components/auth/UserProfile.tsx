@@ -7,16 +7,11 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import supabase from "../../lib/supabase";
 
-interface UserProfile {
-  full_name: string;
-  avatar_url?: string;
-}
-
 export const UserProfile: React.FC = () => {
-  const { user, updateProfile } = useAuth();
-  const [profile, setProfile] = useState<UserProfile>({
-    full_name: user?.user_metadata?.full_name || "",
-    avatar_url: user?.user_metadata?.avatar_url || "",
+  const { user } = useAuth();
+  const [profile, setProfile] = useState({
+    full_name: user?.email || "", // Use email as fallback since full_name doesn't exist on AppUser
+    avatar_url: "", // Initialize as empty string
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -29,10 +24,14 @@ export const UserProfile: React.FC = () => {
 
   const loadProfile = async () => {
     try {
+      // Get the current user from Supabase auth
+      const { data: authUser } = await supabase.auth.getUser();
+      if (!authUser?.user) return;
+
       const { data, error } = await supabase
         .from("user_profiles")
         .select("*")
-        .eq("id", user?.id)
+        .eq("id", authUser.user.id)
         .single();
 
       if (error && error.code !== "PGRST116") {
@@ -56,6 +55,10 @@ export const UserProfile: React.FC = () => {
     setMessage("");
 
     try {
+      // Get the current user from Supabase auth
+      const { data: authUser } = await supabase.auth.getUser();
+      if (!authUser?.user) throw new Error("No authenticated user");
+
       // Update auth user metadata
       const { error: authError } = await supabase.auth.updateUser({
         data: {
@@ -70,7 +73,7 @@ export const UserProfile: React.FC = () => {
       const { error: profileError } = await supabase
         .from("user_profiles")
         .upsert({
-          id: user?.id,
+          id: authUser.user.id,
           full_name: profile.full_name,
           avatar_url: profile.avatar_url,
           email: user?.email,

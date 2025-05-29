@@ -5,7 +5,7 @@ import "./css/modern.css"; // Import our modern styles
 import "./index.css";
 import Index from "./Index";
 import App from "./App";
-import About from "./About.new";
+import About from "./About";
 import { GarminCallback } from "./components/GarminCallback";
 import { LoginForm } from "./components/auth/LoginForm";
 import { SignUpForm } from "./components/auth/SignUpForm";

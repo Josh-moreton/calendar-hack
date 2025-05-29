@@ -16,14 +16,14 @@ export const GarminCallback: React.FC = () => {
   );
   const [message, setMessage] = useState("Processing Garmin authentication...");
 
-  // Use environment variables for configuration
+  // Use environment variables for configuration with proper typing
   const garminOAuthConfig = {
     consumerKey: import.meta.env.VITE_GARMIN_CONSUMER_KEY as string,
-    callbackUrl: import.meta.env.VITE_GARMIN_REDIRECT_URI as string,
-    scopes: import.meta.env.VITE_GARMIN_SCOPES?.split(",") || [
-      "WORKOUT_IMPORT",
-    ],
-    production: import.meta.env.VITE_GARMIN_PRODUCTION_MODE === "true",
+    consumerSecret: import.meta.env.VITE_GARMIN_CONSUMER_SECRET as string,
+    callbackUrl: `${window.location.origin}/garmin/callback`,
+    redirectUri: `${window.location.origin}/garmin/callback`,
+    scopes: (import.meta.env.VITE_GARMIN_SCOPES as string)?.split(",") || [], // Convert string to array
+    production: import.meta.env.VITE_GARMIN_PRODUCTION === "true",
   };
 
   const garmin = useGarminAuth(garminOAuthConfig);
@@ -146,8 +146,8 @@ export const GarminCallback: React.FC = () => {
                   status === "success"
                     ? "text-green-800"
                     : status === "error"
-                      ? "text-red-800"
-                      : "text-gray-900"
+                    ? "text-red-800"
+                    : "text-gray-900"
                 }`}
               >
                 {message}

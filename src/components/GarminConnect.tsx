@@ -7,12 +7,14 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useGarminAuth } from "../ch/useGarminAuth";
 
-// Use environment variables for configuration
+// Use environment variables for configuration with proper typing
 const garminOAuthConfig = {
   consumerKey: import.meta.env.VITE_GARMIN_CONSUMER_KEY as string,
-  callbackUrl: import.meta.env.VITE_GARMIN_REDIRECT_URI as string,
-  scopes: import.meta.env.VITE_GARMIN_SCOPES?.split(",") || ["WORKOUT_IMPORT"],
-  production: import.meta.env.VITE_GARMIN_PRODUCTION_MODE === "true",
+  consumerSecret: import.meta.env.VITE_GARMIN_CONSUMER_SECRET as string,
+  callbackUrl: `${window.location.origin}/garmin/callback`,
+  redirectUri: `${window.location.origin}/garmin/callback`,
+  scopes: (import.meta.env.VITE_GARMIN_SCOPES as string)?.split(",") || [], // Convert string to array
+  production: import.meta.env.VITE_GARMIN_PRODUCTION === "true",
 };
 
 export const GarminConnect: React.FC = () => {
@@ -26,8 +28,10 @@ export const GarminConnect: React.FC = () => {
       const linkAccounts = async () => {
         try {
           setIsLinking(true);
-          // Link the Garmin account to the user's profile
-          await linkGarminAccount(garmin.user.userId);
+          // Link the Garmin account to the user's profile with proper null check
+          if (garmin.user?.userId) {
+            await linkGarminAccount(garmin.user.userId);
+          }
           setIsLinking(false);
         } catch (error) {
           console.error("Failed to link Garmin account:", error);
