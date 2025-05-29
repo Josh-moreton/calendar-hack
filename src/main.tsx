@@ -23,8 +23,8 @@ import { WindowHistoryAdapter } from "use-query-params/adapters/window";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Determine the basename based on environment
-// In development, use no basename, in production use '/hacks/calendarhack'
-const basename = import.meta.env.DEV ? "" : "/hacks/calendarhack";
+// In development, use no basename, in production use '/stridr'
+const basename = import.meta.env.DEV ? "" : "/stridr";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

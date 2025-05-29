@@ -146,8 +146,8 @@ export const GarminCallback: React.FC = () => {
                   status === "success"
                     ? "text-green-800"
                     : status === "error"
-                    ? "text-red-800"
-                    : "text-gray-900"
+                      ? "text-red-800"
+                      : "text-gray-900"
                 }`}
               >
                 {message}
