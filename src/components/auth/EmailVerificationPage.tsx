@@ -27,11 +27,6 @@ export function EmailVerificationPage() {
     }
   }, [searchParams, user, navigate]);
 
-  const handleVerificationComplete = () => {
-    // Redirect to dashboard or home after successful verification
-    navigate('/');
-  };
-
   if (!email) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -43,7 +38,6 @@ export function EmailVerificationPage() {
   return (
     <EmailVerification 
       email={email} 
-      onVerificationComplete={handleVerificationComplete} 
     />
   );
 }

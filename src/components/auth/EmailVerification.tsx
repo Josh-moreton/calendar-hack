@@ -9,15 +9,15 @@ import supabase from "../../lib/supabase";
 
 interface EmailVerificationProps {
   email: string;
-  onVerificationComplete?: () => void;
 }
 
 export function EmailVerification({ 
-  email, 
-  onVerificationComplete 
+  email
 }: EmailVerificationProps) {
   const [isResending, setIsResending] = useState(false);
   const [message, setMessage] = useState("");
+
+  // Email verification happens via callback when user clicks the link in their email
 
   const handleResendVerification = async () => {
     try {
