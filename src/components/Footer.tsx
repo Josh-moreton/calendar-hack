@@ -50,16 +50,6 @@ const Footer = () => {
               Terms of Service
             </Link>
           </div>
-
-          <div className="flex items-center">
-            <svg
-              className="w-4 h-4 mr-2"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M5.5 7L3 12.5c0 .83.67 1.5 1.5 1.5S6 13.33 6 12.5L5.5 7zM11 7v5.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V7h-3zm7-2.5l-1.5 5.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5L18 4.5z" />
-            </svg>
-          </div>
         </div>
       </div>
     </footer>
