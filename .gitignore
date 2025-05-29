@@ -19,8 +19,13 @@
 .env.test.local
 .env.production.local
 
+# development tools (debug, test files, scripts)
+/dev-tools
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
 my_env
+garmin-documentation/Appendix A and B.xlsx
+garmin-documentation/Training_API_V2.pdf

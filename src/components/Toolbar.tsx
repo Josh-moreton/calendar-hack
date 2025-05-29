@@ -1,7 +1,13 @@
 import HomeButton from "./HomeButton";
 import GitHubButton from "./GitHubButton";
+import AboutButton from "./AboutButton";
+import AuthButton from "./AuthButton";
+import CalendarButton from "./CalendarButton";
+import { useAuth } from "../contexts/AuthContext";
 
 const Toolbar = () => {
+  const { user } = useAuth();
+
   return (
     <header className="sticky top-0 z-50 bg-blue-800 text-white shadow-md w-full">
       <div className="px-4 sm:px-6 md:px-8">
@@ -13,8 +19,11 @@ const Toolbar = () => {
             </h1>
           </div>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-3">
+            {user && <CalendarButton />}
+            <AboutButton />
             <GitHubButton />
+            <AuthButton />
           </div>
         </div>
       </div>
