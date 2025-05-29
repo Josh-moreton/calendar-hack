@@ -37,7 +37,7 @@ export function SignUpForm({ onSuccess }: { onSuccess?: () => void }) {
     try {
       const { confirmPassword, ...credentials } = data;
       await signUp(credentials);
-      
+
       // Redirect to email verification page with email parameter
       navigate(`/verify-email?email=${encodeURIComponent(credentials.email)}`);
       onSuccess?.();

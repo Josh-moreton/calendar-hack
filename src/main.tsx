@@ -45,8 +45,14 @@ createRoot(document.getElementById("root")!).render(
                   <Route path="about" element={<About />} />
                   <Route path="login" element={<LoginForm />} />
                   <Route path="signup" element={<SignUpForm />} />
-                  <Route path="verify-email" element={<EmailVerificationPage />} />
-                  <Route path="auth/verify" element={<EmailVerificationCallback />} />
+                  <Route
+                    path="verify-email"
+                    element={<EmailVerificationPage />}
+                  />
+                  <Route
+                    path="auth/verify"
+                    element={<EmailVerificationCallback />}
+                  />
                   <Route path="welcome" element={<WelcomePage />} />
                   <Route path="terms" element={<TermsPage />} />
                   <Route path="privacy" element={<PrivacyPage />} />

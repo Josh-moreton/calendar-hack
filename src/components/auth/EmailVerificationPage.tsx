@@ -16,14 +16,14 @@ export function EmailVerificationPage() {
 
   useEffect(() => {
     // Get email from URL params or user context
-    const emailParam = searchParams.get('email');
+    const emailParam = searchParams.get("email");
     if (emailParam) {
       setEmail(emailParam);
     } else if (user?.email) {
       setEmail(user.email);
     } else {
       // If no email available, redirect to signup
-      navigate('/signup');
+      navigate("/signup");
     }
   }, [searchParams, user, navigate]);
 
@@ -35,9 +35,5 @@ export function EmailVerificationPage() {
     );
   }
 
-  return (
-    <EmailVerification 
-      email={email} 
-    />
-  );
+  return <EmailVerification email={email} />;
 }

@@ -12,18 +12,20 @@ export function EmailVerificationCallback() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { user } = useAuth();
-  const [status, setStatus] = useState<'verifying' | 'success' | 'error'>('verifying');
+  const [status, setStatus] = useState<"verifying" | "success" | "error">(
+    "verifying"
+  );
   const [message, setMessage] = useState("");
 
   useEffect(() => {
     const verifyEmail = async () => {
       try {
         // Check if we have the necessary tokens in the URL
-        const access_token = searchParams.get('access_token');
-        const refresh_token = searchParams.get('refresh_token');
-        const type = searchParams.get('type');
+        const access_token = searchParams.get("access_token");
+        const refresh_token = searchParams.get("refresh_token");
+        const type = searchParams.get("type");
 
-        if (type === 'signup' && access_token && refresh_token) {
+        if (type === "signup" && access_token && refresh_token) {
           // Set the session with the tokens from the URL
           const { data, error } = await supabase.auth.setSession({
             access_token,
@@ -35,28 +37,30 @@ export function EmailVerificationCallback() {
           }
 
           if (data.user) {
-            setStatus('success');
+            setStatus("success");
             setMessage("Email verified successfully! Welcome to Stridr.");
-            
+
             // Redirect to the welcome page after a short delay
             setTimeout(() => {
-              navigate('/welcome', { replace: true });
+              navigate("/welcome", { replace: true });
             }, 2000);
           }
         } else {
           // If we don't have the right parameters, check if user is already verified
           if (user?.emailVerified) {
-            setStatus('success');
+            setStatus("success");
             setMessage("Your email is already verified!");
-            setTimeout(() => navigate('/welcome', { replace: true }), 2000);
+            setTimeout(() => navigate("/welcome", { replace: true }), 2000);
           } else {
             throw new Error("Invalid verification link or missing parameters");
           }
         }
       } catch (error: any) {
-        console.error('Email verification error:', error);
-        setStatus('error');
-        setMessage(error.message || "Failed to verify email. Please try again.");
+        console.error("Email verification error:", error);
+        setStatus("error");
+        setMessage(
+          error.message || "Failed to verify email. Please try again."
+        );
       }
     };
 
@@ -67,14 +71,19 @@ export function EmailVerificationCallback() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
-          <div className={`mx-auto h-12 w-12 flex items-center justify-center rounded-full ${
-            status === 'verifying' ? 'bg-blue-100' :
-            status === 'success' ? 'bg-green-100' : 'bg-red-100'
-          }`}>
-            {status === 'verifying' && (
+          <div
+            className={`mx-auto h-12 w-12 flex items-center justify-center rounded-full ${
+              status === "verifying"
+                ? "bg-blue-100"
+                : status === "success"
+                  ? "bg-green-100"
+                  : "bg-red-100"
+            }`}
+          >
+            {status === "verifying" && (
               <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
             )}
-            {status === 'success' && (
+            {status === "success" && (
               <svg
                 className="h-6 w-6 text-green-600"
                 fill="none"
@@ -89,7 +98,7 @@ export function EmailVerificationCallback() {
                 />
               </svg>
             )}
-            {status === 'error' && (
+            {status === "error" && (
               <svg
                 className="h-6 w-6 text-red-600"
                 fill="none"
@@ -105,19 +114,17 @@ export function EmailVerificationCallback() {
               </svg>
             )}
           </div>
-          
+
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            {status === 'verifying' && "Verifying your email..."}
-            {status === 'success' && "Email verified!"}
-            {status === 'error' && "Verification failed"}
+            {status === "verifying" && "Verifying your email..."}
+            {status === "success" && "Email verified!"}
+            {status === "error" && "Verification failed"}
           </h2>
-          
-          <p className="mt-2 text-center text-sm text-gray-600">
-            {message}
-          </p>
+
+          <p className="mt-2 text-center text-sm text-gray-600">{message}</p>
         </div>
 
-        {status === 'success' && (
+        {status === "success" && (
           <div className="bg-green-50 border border-green-200 rounded-lg p-4">
             <div className="flex items-start space-x-3">
               <div className="flex-shrink-0">
@@ -135,14 +142,15 @@ export function EmailVerificationCallback() {
               </div>
               <div>
                 <p className="text-sm text-green-700">
-                  You'll be redirected to the app shortly. You can now start creating your training plans!
+                  You'll be redirected to the app shortly. You can now start
+                  creating your training plans!
                 </p>
               </div>
             </div>
           </div>
         )}
 
-        {status === 'error' && (
+        {status === "error" && (
           <div className="space-y-4">
             <div className="bg-red-50 border border-red-200 rounded-lg p-4">
               <div className="flex items-start space-x-3">
@@ -161,7 +169,8 @@ export function EmailVerificationCallback() {
                 </div>
                 <div>
                   <p className="text-sm text-red-700">
-                    The verification link may have expired or is invalid. Please try signing up again or request a new verification email.
+                    The verification link may have expired or is invalid. Please
+                    try signing up again or request a new verification email.
                   </p>
                 </div>
               </div>
@@ -169,13 +178,13 @@ export function EmailVerificationCallback() {
 
             <div className="flex space-x-3">
               <button
-                onClick={() => navigate('/signup')}
+                onClick={() => navigate("/signup")}
                 className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Try signing up again
               </button>
               <button
-                onClick={() => navigate('/login')}
+                onClick={() => navigate("/login")}
                 className="flex-1 py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Back to login

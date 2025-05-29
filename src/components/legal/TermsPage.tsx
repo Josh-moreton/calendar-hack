@@ -10,7 +10,9 @@ export function TermsPage() {
       <div className="max-w-4xl mx-auto">
         <div className="bg-white shadow-sm rounded-lg p-8">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900">Terms of Service</h1>
+            <h1 className="text-3xl font-bold text-gray-900">
+              Terms of Service
+            </h1>
             <p className="mt-2 text-sm text-gray-600">
               Last updated: May 29, 2025
             </p>
@@ -19,12 +21,15 @@ export function TermsPage() {
           <div className="prose prose-gray max-w-none">
             <h2>1. Acceptance of Terms</h2>
             <p>
-              By accessing and using Stridr ("the Service"), you accept and agree to be bound by the terms and provision of this agreement.
+              By accessing and using Stridr ("the Service"), you accept and
+              agree to be bound by the terms and provision of this agreement.
             </p>
 
             <h2>2. Description of Service</h2>
             <p>
-              Stridr is a training calendar application that helps runners create, manage, and track their training plans. The Service may include features such as:
+              Stridr is a training calendar application that helps runners
+              create, manage, and track their training plans. The Service may
+              include features such as:
             </p>
             <ul>
               <li>Training plan creation and customization</li>
@@ -35,7 +40,8 @@ export function TermsPage() {
 
             <h2>3. User Accounts</h2>
             <p>
-              To access certain features of the Service, you must register for an account. You agree to:
+              To access certain features of the Service, you must register for
+              an account. You agree to:
             </p>
             <ul>
               <li>Provide accurate and complete information</li>
@@ -46,13 +52,12 @@ export function TermsPage() {
 
             <h2>4. Data and Privacy</h2>
             <p>
-              Your privacy is important to us. Please review our Privacy Policy to understand how we collect, use, and protect your information.
+              Your privacy is important to us. Please review our Privacy Policy
+              to understand how we collect, use, and protect your information.
             </p>
 
             <h2>5. Acceptable Use</h2>
-            <p>
-              You agree not to use the Service to:
-            </p>
+            <p>You agree not to use the Service to:</p>
             <ul>
               <li>Violate any laws or regulations</li>
               <li>Infringe on intellectual property rights</li>
@@ -62,22 +67,29 @@ export function TermsPage() {
 
             <h2>6. Third-Party Integrations</h2>
             <p>
-              The Service may integrate with third-party platforms such as Garmin Connect, Strava, and others. Your use of these integrations is subject to their respective terms of service.
+              The Service may integrate with third-party platforms such as
+              Garmin Connect, Strava, and others. Your use of these integrations
+              is subject to their respective terms of service.
             </p>
 
             <h2>7. Limitation of Liability</h2>
             <p>
-              The Service is provided "as is" without warranties of any kind. We shall not be liable for any indirect, incidental, or consequential damages arising from your use of the Service.
+              The Service is provided "as is" without warranties of any kind. We
+              shall not be liable for any indirect, incidental, or consequential
+              damages arising from your use of the Service.
             </p>
 
             <h2>8. Changes to Terms</h2>
             <p>
-              We reserve the right to modify these terms at any time. Changes will be effective upon posting to the Service. Continued use constitutes acceptance of modified terms.
+              We reserve the right to modify these terms at any time. Changes
+              will be effective upon posting to the Service. Continued use
+              constitutes acceptance of modified terms.
             </p>
 
             <h2>9. Contact Information</h2>
             <p>
-              For questions about these Terms of Service, please contact us at legal@stridr.app.
+              For questions about these Terms of Service, please contact us at
+              legal@stridr.app.
             </p>
           </div>
 

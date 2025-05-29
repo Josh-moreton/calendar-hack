@@ -80,10 +80,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           full_name: credentials.displayName,
           display_name: credentials.displayName,
         },
-        emailRedirectTo: `${window.location.origin}/auth/verify`
-      }
+        emailRedirectTo: `${window.location.origin}/auth/verify`,
+      },
     });
-    
+
     if (error) {
       setAuthState(prev => ({ ...prev, error: error.message }));
       throw error;
@@ -98,10 +98,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       });
     } else {
       // User needs to confirm email
-      setAuthState(prev => ({ 
-        ...prev, 
-        loading: false, 
-        error: "Please check your email to confirm your account." 
+      setAuthState(prev => ({
+        ...prev,
+        loading: false,
+        error: "Please check your email to confirm your account.",
       }));
     }
   };
@@ -150,16 +150,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const signInWithGoogle = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
+      provider: "google",
       options: {
         redirectTo: `${window.location.origin}/welcome`,
         queryParams: {
-          access_type: 'offline',
-          prompt: 'consent',
+          access_type: "offline",
+          prompt: "consent",
         },
       },
     });
-    
+
     if (error) {
       setAuthState(prev => ({ ...prev, error: error.message }));
       throw error;
@@ -168,12 +168,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const signInWithApple = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'apple',
+      provider: "apple",
       options: {
         redirectTo: `${window.location.origin}/welcome`,
       },
     });
-    
+
     if (error) {
       setAuthState(prev => ({ ...prev, error: error.message }));
       throw error;
@@ -184,13 +184,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // For Strava, you'll need to set up a custom OAuth provider in Supabase
     // or implement a custom OAuth flow
     const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'strava' as any, // Custom provider
+      provider: "strava" as any, // Custom provider
       options: {
         redirectTo: `${window.location.origin}/welcome`,
-        scopes: 'read,activity:read',
+        scopes: "read,activity:read",
       },
     });
-    
+
     if (error) {
       setAuthState(prev => ({ ...prev, error: error.message }));
       throw error;

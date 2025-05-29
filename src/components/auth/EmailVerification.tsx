@@ -11,9 +11,7 @@ interface EmailVerificationProps {
   email: string;
 }
 
-export function EmailVerification({ 
-  email
-}: EmailVerificationProps) {
+export function EmailVerification({ email }: EmailVerificationProps) {
   const [isResending, setIsResending] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -23,17 +21,17 @@ export function EmailVerification({
     try {
       setIsResending(true);
       setMessage("");
-      
+
       const { error } = await supabase.auth.resend({
-        type: 'signup',
+        type: "signup",
         email,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/verify`
-        }
+          emailRedirectTo: `${window.location.origin}/auth/verify`,
+        },
       });
 
       if (error) throw error;
-      
+
       setMessage("Verification email sent! Please check your inbox.");
     } catch (error: any) {
       setMessage(`Error: ${error.message}`);
@@ -61,11 +59,11 @@ export function EmailVerification({
               />
             </svg>
           </div>
-          
+
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Check your email
           </h2>
-          
+
           <p className="mt-2 text-center text-sm text-gray-600">
             We've sent a verification link to{" "}
             <span className="font-medium text-blue-600">{email}</span>
@@ -90,7 +88,8 @@ export function EmailVerification({
               </div>
               <div>
                 <p className="text-sm text-gray-700">
-                  Click the verification link in the email to activate your account.
+                  Click the verification link in the email to activate your
+                  account.
                 </p>
               </div>
             </div>
@@ -118,11 +117,13 @@ export function EmailVerification({
           </div>
 
           {message && (
-            <div className={`mt-4 p-3 rounded-md ${
-              message.includes('Error') 
-                ? 'bg-red-50 text-red-700 border border-red-200' 
-                : 'bg-green-50 text-green-700 border border-green-200'
-            }`}>
+            <div
+              className={`mt-4 p-3 rounded-md ${
+                message.includes("Error")
+                  ? "bg-red-50 text-red-700 border border-red-200"
+                  : "bg-green-50 text-green-700 border border-green-200"
+              }`}
+            >
               <p className="text-sm">{message}</p>
             </div>
           )}
@@ -153,7 +154,8 @@ export function EmailVerification({
 
         <div className="text-center">
           <p className="text-xs text-gray-500">
-            Didn't receive the email? Check your spam folder or try a different email address.
+            Didn't receive the email? Check your spam folder or try a different
+            email address.
           </p>
         </div>
       </div>
