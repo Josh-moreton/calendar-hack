@@ -11,7 +11,6 @@ import UnitsButtons from "./components/UnitsButtons";
 import PlanAndDate from "./components/PlanAndDate";
 import UndoButton from "./components/UndoButton";
 import PaceInput from "./components/PaceInput";
-import history from "./defy/history";
 import {
   useQueryParams,
   StringParam,

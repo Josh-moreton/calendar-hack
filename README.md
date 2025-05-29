@@ -2,7 +2,7 @@
 
 Stridr is a web application designed for runners who train for races. It allows users to visualize their training plans on a calendar, customize workouts, and download the plans as iCal files for integration with popular calendar applications.
 
-The project is hosted at [Stridr on GitHub Pages](https://joshua-moreton.github.io/stridr/).
+The project is hosted at [stridr.dev](https://stridr.dev/).
 
 ## Features
 
@@ -17,7 +17,7 @@ Stridr is a React application. To run it locally:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/joshua-moreton/stridr.git
+   git clone https://github.com/Josh-moreton/stridr.git
    cd stridr
    ```
 2. Install dependencies:

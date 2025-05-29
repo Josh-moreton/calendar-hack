@@ -1,6 +1,6 @@
 {
     "description": "Plan schema",
-    "$id": "https://defy.org/plan",
+    "$id": "https://stridr.dev/plan",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "properties": {

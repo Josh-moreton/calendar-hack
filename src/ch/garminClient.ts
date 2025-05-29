@@ -354,8 +354,8 @@ export class GarminConnectClient {
       workoutName: fitData.workout.wktName,
       description: fitData.workoutSteps[0]?.notes || '',
       sport: (sportMapping[fitData.workout.sport] || 'RUNNING') as any,
-      workoutProvider: 'Calendar Hack',
-      workoutSourceId: 'calendar-hack',
+      workoutProvider: 'STRIDR',
+      workoutSourceId: 'stridr',
       isSessionTransitionEnabled: false,
       segments: [{
         segmentOrder: 1,
