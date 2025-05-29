@@ -61,6 +61,16 @@ export function PrivacyPage() {
             </ul>
 
             <h2>2. How We Use Your Information</h2>
+            
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 my-4">
+              <h3 className="text-blue-900 font-semibold mb-2">📋 Complete Data Usage Transparency</h3>
+              <p className="text-blue-800">
+                We believe in complete transparency about how your data is used. Below is a comprehensive list of every way 
+                we process your information. We will <strong>never use your data for purposes not listed here</strong> without 
+                obtaining your explicit consent first.
+              </p>
+            </div>
+
             <p>We process your personal data for the following purposes:</p>
 
             <h3>2.1 Service Provision</h3>
@@ -89,9 +99,17 @@ export function PrivacyPage() {
             </ul>
 
             <h2>3. Information Sharing and Disclosure</h2>
+            
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 my-4">
+              <h3 className="text-red-900 font-semibold mb-2">🚫 We Do NOT Sell Your Data</h3>
+              <p className="text-red-800">
+                <strong>Stridr does not sell, rent, lease, or trade your personal information or activity data to third parties for monetary or other consideration.</strong> 
+                This includes all fitness data, training information, personal details, and usage analytics. We will never monetize your personal data.
+              </p>
+            </div>
+
             <p>
-              We are committed to protecting your privacy. We do not sell, rent, or trade your personal information to third parties. 
-              We only share your information in the following limited circumstances:
+              We are committed to protecting your privacy. We only share your information in the following limited circumstances:
             </p>
 
             <h3>3.1 With Your Explicit Consent</h3>
@@ -277,6 +295,23 @@ export function PrivacyPage() {
               <li>Right to opt-out of the sale of personal information (we do not sell personal information)</li>
               <li>Right to non-discrimination for exercising privacy rights</li>
             </ul>
+
+            <h2>12.1. Data Monetization and Sale Notification Policy</h2>
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4 my-4">
+              <h3 className="text-green-900 font-semibold mb-2">✅ Our Commitment to You</h3>
+              <div className="text-green-800 space-y-2">
+                <p><strong>Current Policy:</strong> Stridr does not and will not sell your personal data or activity information.</p>
+                <p><strong>Future Changes:</strong> If we ever consider any form of data monetization that involves sharing your information with third parties for their commercial benefit, we will:</p>
+                <ul className="list-disc ml-6 mt-2">
+                  <li>Notify you at least 60 days in advance via email and app notification</li>
+                  <li>Provide clear opt-out mechanisms before any such changes take effect</li>
+                  <li>Allow you to download all your data before the policy change</li>
+                  <li>Require explicit consent for any new data sharing practices</li>
+                  <li>Offer a paid tier with no data sharing as an alternative</li>
+                </ul>
+                <p><strong>Your Rights:</strong> You will always have the right to opt-out of any data sharing or monetization practices.</p>
+              </div>
+            </div>
 
             <h2>13. Changes to This Privacy Policy</h2>
             <p>

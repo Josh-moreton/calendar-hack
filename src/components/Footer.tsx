@@ -1,5 +1,7 @@
 // filepath: /Users/joshmoreton/GitHub/stridr/src/components/Footer.tsx
 
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="bg-blue-900 text-white py-6 mt-auto border-t border-white/10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
@@ -32,6 +34,21 @@ const Footer = () => {
             >
               email
             </a>
+          </div>
+
+          <div className="flex items-center gap-6">
+            <Link
+              to="/privacy"
+              className="text-white/80 hover:text-orange-400 transition-colors duration-200 text-sm"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/terms"
+              className="text-white/80 hover:text-orange-400 transition-colors duration-200 text-sm"
+            >
+              Terms of Service
+            </Link>
           </div>
 
           <div className="flex items-center">
