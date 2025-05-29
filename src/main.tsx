@@ -5,6 +5,8 @@ import "./css/modern.css"; // Import our modern styles
 import "./index.css";
 import Index from "./Index";
 import App from "./App";
+import About from "./About.new";
+import { GarminCallback } from "./components/GarminCallback";
 import { DndProvider } from "react-dnd-multi-backend";
 import { HTML5toTouch } from "rdndmb-html5-to-touch";
 import { QueryParamProvider } from "use-query-params";
@@ -23,8 +25,10 @@ createRoot(document.getElementById("root")!).render(
           <BrowserRouter basename={basename}>
             <Routes>
               <Route path="/" element={<Index />}>
-                <Route index path="/" element={<App />} />
+                <Route index element={<App />} />
+                <Route path="about" element={<About />} />
               </Route>
+              <Route path="/garmin/callback" element={<GarminCallback />} />
             </Routes>
           </BrowserRouter>
         </div>

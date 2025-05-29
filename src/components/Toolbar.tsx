@@ -1,5 +1,6 @@
 import HomeButton from "./HomeButton";
 import GitHubButton from "./GitHubButton";
+import AboutButton from "./AboutButton";
 
 const Toolbar = () => {
   return (
@@ -14,6 +15,7 @@ const Toolbar = () => {
           </div>
 
           <div className="flex items-center gap-1">
+            <AboutButton />
             <GitHubButton />
           </div>
         </div>

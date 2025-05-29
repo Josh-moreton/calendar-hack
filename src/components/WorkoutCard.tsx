@@ -5,6 +5,7 @@ import { useDrag, DragSourceMonitor } from "react-dnd";
 import { ItemTypes } from "../ch/ItemTypes";
 import { DragHandle } from "./DragHandle";
 import { DayDetails, Units, PaceSettings, PaceZoneKey } from "../@types/app"; // Updated import path for types, removed PaceZones
+import { FitExportButton } from "./FitExportButton"; // Add FIT export import
 
 interface Props {
   dayDetails: DayDetails;
@@ -136,6 +137,18 @@ export const WorkoutCard = ({
           paceSettings,
           planId
         )}
+      </div>
+      <div className="p-4 border-t border-neutral-100">
+        <FitExportButton
+          workout={{
+            title: dayDetails.title,
+            description: dayDetails.desc,
+            distance: dayDetails.dist,
+            pace: dayDetails.pace,
+            units: dayDetails.sourceUnits
+          }}
+          className="w-full"
+        />
       </div>
     </div>
   );
