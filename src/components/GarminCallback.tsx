@@ -5,11 +5,24 @@
 
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useGarminAuth } from '../ch/useGarminAuth';
+import { useAuth } from '../contexts/AuthContext';
 
 export const GarminCallback: React.FC = () => {
   const navigate = useNavigate();
+  const { user, linkGarminAccount } = useAuth();
   const [status, setStatus] = useState<'processing' | 'success' | 'error'>('processing');
   const [message, setMessage] = useState('Processing Garmin authentication...');
+
+  // Use environment variables for configuration
+  const garminOAuthConfig = {
+    consumerKey: import.meta.env.VITE_GARMIN_CONSUMER_KEY as string,
+    callbackUrl: import.meta.env.VITE_GARMIN_REDIRECT_URI as string,
+    scopes: import.meta.env.VITE_GARMIN_SCOPES?.split(',') || ['WORKOUT_IMPORT'],
+    production: import.meta.env.VITE_GARMIN_PRODUCTION_MODE === 'true',
+  };
+
+  const garmin = useGarminAuth(garminOAuthConfig);
 
   useEffect(() => {
     const handleCallback = async () => {
@@ -27,6 +40,14 @@ export const GarminCallback: React.FC = () => {
 
         if (!oauthToken || !oauthVerifier) {
           throw new Error('Missing OAuth parameters');
+        }
+        
+        // Process the callback with Garmin OAuth
+        await garmin.handleCallback(searchParams);
+        
+        // If we have a user and Garmin user, link them
+        if (user && garmin.user) {
+          await linkGarminAccount(garmin.user.userId);
         }
 
         setStatus('success');
@@ -53,7 +74,7 @@ export const GarminCallback: React.FC = () => {
     };
 
     handleCallback();
-  }, [navigate]);
+  }, [navigate, user, linkGarminAccount, garmin]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
