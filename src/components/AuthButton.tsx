@@ -3,9 +3,9 @@
  * Displays login/signup options or user profile based on authentication state
  */
 
-import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
+import React, { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 const AuthButton: React.FC = () => {
   const { user, signOut } = useAuth();
@@ -20,9 +20,9 @@ const AuthButton: React.FC = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -32,7 +32,7 @@ const AuthButton: React.FC = () => {
       await signOut();
       setIsMenuOpen(false);
     } catch (error) {
-      console.error('Failed to log out', error);
+      console.error("Failed to log out", error);
     }
   };
 
@@ -68,21 +68,28 @@ const AuthButton: React.FC = () => {
         {user.photoURL ? (
           <img
             src={user.photoURL}
-            alt={user.displayName || 'User'}
+            alt={user.displayName || "User"}
             className="h-8 w-8 rounded-full"
           />
         ) : (
           <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-white">
-            {user.displayName?.charAt(0) || user.email?.charAt(0) || 'U'}
+            {user.displayName?.charAt(0) || user.email?.charAt(0) || "U"}
           </div>
         )}
       </button>
 
       {isMenuOpen && (
         <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
-          <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+          <div
+            className="py-1"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="user-menu"
+          >
             <div className="block px-4 py-2 text-sm text-gray-700 border-b border-gray-100">
-              <div className="font-medium truncate">{user.displayName || 'User'}</div>
+              <div className="font-medium truncate">
+                {user.displayName || "User"}
+              </div>
               <div className="text-xs text-gray-500 truncate">{user.email}</div>
             </div>
             <Link

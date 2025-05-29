@@ -2,7 +2,7 @@
  * Authentication Type Definitions
  */
 
-import { User as FirebaseUser } from 'firebase/auth';
+import { User as FirebaseUser } from "firebase/auth";
 
 export interface AppUser {
   uid: string;
@@ -20,7 +20,7 @@ export interface AppUser {
 }
 
 export interface UserPreferences {
-  units: 'metric' | 'imperial';
+  units: "metric" | "imperial";
   weekStartsOn: 0 | 1 | 6; // Sunday, Monday, Saturday
   timezone: string;
   notifications: {
@@ -54,15 +54,15 @@ export interface AuthContextType extends AuthState {
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   updateProfile: (updates: Partial<AppUser>) => Promise<void>;
-  
+
   // Social auth
   signInWithGoogle: () => Promise<void>;
   signInWithApple: () => Promise<void>;
   signInWithStrava: () => Promise<void>;
-  
+
   // Garmin integration
   linkGarminAccount: (garminUserId: string) => Promise<void>;
   unlinkGarminAccount: () => Promise<void>;
 }
 
-export type SocialProvider = 'google' | 'apple' | 'strava';
+export type SocialProvider = "google" | "apple" | "strava";

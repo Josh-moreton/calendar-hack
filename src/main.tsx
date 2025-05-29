@@ -40,10 +40,34 @@ createRoot(document.getElementById("root")!).render(
                   <Route path="about" element={<About />} />
                   <Route path="login" element={<LoginForm />} />
                   <Route path="signup" element={<SignUpForm />} />
-                  <Route path="forgot-password" element={<ForgotPasswordForm />} />
-                  <Route path="profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
-                  <Route path="connect" element={<ProtectedRoute><ConnectDevices /></ProtectedRoute>} />
-                  <Route path="connect/garmin" element={<ProtectedRoute><GarminConnect /></ProtectedRoute>} />
+                  <Route
+                    path="forgot-password"
+                    element={<ForgotPasswordForm />}
+                  />
+                  <Route
+                    path="profile"
+                    element={
+                      <ProtectedRoute>
+                        <UserProfile />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="connect"
+                    element={
+                      <ProtectedRoute>
+                        <ConnectDevices />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="connect/garmin"
+                    element={
+                      <ProtectedRoute>
+                        <GarminConnect />
+                      </ProtectedRoute>
+                    }
+                  />
                 </Route>
                 <Route path="/garmin/callback" element={<GarminCallback />} />
               </Routes>
