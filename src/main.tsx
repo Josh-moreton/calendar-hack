@@ -10,6 +10,11 @@ import { GarminCallback } from "./components/GarminCallback";
 import { LoginForm } from "./components/auth/LoginForm";
 import { SignUpForm } from "./components/auth/SignUpForm";
 import { ForgotPasswordForm } from "./components/auth/ForgotPasswordForm";
+import { EmailVerificationPage } from "./components/auth/EmailVerificationPage";
+import { EmailVerificationCallback } from "./components/auth/EmailVerificationCallback";
+import { WelcomePage } from "./components/auth/WelcomePage";
+import { TermsPage } from "./components/legal/TermsPage";
+import { PrivacyPage } from "./components/legal/PrivacyPage";
 import { UserProfile } from "./components/auth/UserProfile";
 import GarminConnect from "./components/GarminConnect";
 import ConnectDevices from "./components/ConnectDevices";
@@ -40,6 +45,11 @@ createRoot(document.getElementById("root")!).render(
                   <Route path="about" element={<About />} />
                   <Route path="login" element={<LoginForm />} />
                   <Route path="signup" element={<SignUpForm />} />
+                  <Route path="verify-email" element={<EmailVerificationPage />} />
+                  <Route path="auth/verify" element={<EmailVerificationCallback />} />
+                  <Route path="welcome" element={<WelcomePage />} />
+                  <Route path="terms" element={<TermsPage />} />
+                  <Route path="privacy" element={<PrivacyPage />} />
                   <Route
                     path="forgot-password"
                     element={<ForgotPasswordForm />}

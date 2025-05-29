@@ -5,7 +5,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import type { RegisterCredentials } from "../../@types/auth";
 
@@ -20,6 +20,7 @@ export function SignUpForm({ onSuccess }: { onSuccess?: () => void }) {
   } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [socialLoading, setSocialLoading] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -36,6 +37,9 @@ export function SignUpForm({ onSuccess }: { onSuccess?: () => void }) {
     try {
       const { confirmPassword, ...credentials } = data;
       await signUp(credentials);
+      
+      // Redirect to email verification page with email parameter
+      navigate(`/verify-email?email=${encodeURIComponent(credentials.email)}`);
       onSuccess?.();
     } catch (error) {
       // Error is handled by the auth context

@@ -72,16 +72,38 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   const signUp = async (credentials: RegisterCredentials) => {
-    const { data, error } = await supabase.auth.signUp(credentials);
+    const { data, error } = await supabase.auth.signUp({
+      email: credentials.email,
+      password: credentials.password,
+      options: {
+        data: {
+          full_name: credentials.displayName,
+          display_name: credentials.displayName,
+        },
+        emailRedirectTo: `${window.location.origin}/auth/verify`
+      }
+    });
+    
     if (error) {
       setAuthState(prev => ({ ...prev, error: error.message }));
       throw error;
     }
-    setAuthState({
-      user: mapSupabaseUserToAppUser(data.user),
-      loading: false,
-      error: null,
-    });
+
+    // If signup was successful and user is confirmed immediately
+    if (data.user && data.user.email_confirmed_at) {
+      setAuthState({
+        user: mapSupabaseUserToAppUser(data.user),
+        loading: false,
+        error: null,
+      });
+    } else {
+      // User needs to confirm email
+      setAuthState(prev => ({ 
+        ...prev, 
+        loading: false, 
+        error: "Please check your email to confirm your account." 
+      }));
+    }
   };
 
   const signIn = async (credentials: LoginCredentials) => {
@@ -127,15 +149,52 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const signInWithGoogle = async () => {
-    // Placeholder for Google sign-in
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/welcome`,
+        queryParams: {
+          access_type: 'offline',
+          prompt: 'consent',
+        },
+      },
+    });
+    
+    if (error) {
+      setAuthState(prev => ({ ...prev, error: error.message }));
+      throw error;
+    }
   };
 
   const signInWithApple = async () => {
-    // Placeholder for Apple sign-in
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'apple',
+      options: {
+        redirectTo: `${window.location.origin}/welcome`,
+      },
+    });
+    
+    if (error) {
+      setAuthState(prev => ({ ...prev, error: error.message }));
+      throw error;
+    }
   };
 
   const signInWithStrava = async () => {
-    // Placeholder for Strava sign-in
+    // For Strava, you'll need to set up a custom OAuth provider in Supabase
+    // or implement a custom OAuth flow
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'strava' as any, // Custom provider
+      options: {
+        redirectTo: `${window.location.origin}/welcome`,
+        scopes: 'read,activity:read',
+      },
+    });
+    
+    if (error) {
+      setAuthState(prev => ({ ...prev, error: error.message }));
+      throw error;
+    }
   };
 
   const linkGarminAccount = async () => {
