@@ -39,16 +39,16 @@ const AuthButton: React.FC = () => {
   if (!user) {
     // Not logged in - show login/signup buttons
     return (
-      <div className="flex items-center">
+      <div className="flex items-center gap-3">
         <Link
           to="/login"
-          className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-blue-700"
+          className="px-4 py-2 rounded-lg text-sm font-semibold text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200 border border-white/20 hover:border-white/40"
         >
           Login
         </Link>
         <Link
           to="/signup"
-          className="ml-2 px-3 py-2 bg-orange-500 rounded-md text-sm font-medium text-white hover:bg-orange-600"
+          className="px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 rounded-lg text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
         >
           Sign Up
         </Link>

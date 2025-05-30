@@ -25,6 +25,10 @@ import { useMountEffect } from "./ch/hooks";
 import { Units, PlanSummary, dayOfWeek, PaceSettings } from "types/app";
 import { getLocaleUnits } from "./ch/localize";
 import HeroSection from "./components/HeroSection";
+import FeaturesSection from "./components/FeaturesSection";
+import TestimonialsSection from "./components/TestimonialsSection";
+import FAQSection from "./components/FAQSection";
+import FooterSection from "./components/FooterSection";
 
 type ViewState = "selection" | "calendar";
 
@@ -186,12 +190,21 @@ const App = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Two-page sliding container */}
-      <div className="relative overflow-hidden min-h-[50vh]">
+      {/* Features Section */}
+      <FeaturesSection />
+
+      {/* Testimonials Section */}
+      <TestimonialsSection />
+
+      {/* FAQ Section */}
+      <FAQSection />
+
+      {/* Two-page sliding container for the main app */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-neutral-50 to-white">
         {/* Selection Page */}
         <div
           className={`transition-all duration-700 ease-in-out ${
@@ -200,12 +213,26 @@ const App = () => {
               : "-translate-x-full opacity-0"
           } ${isTransitioning ? "pointer-events-none" : ""}`}
         >
-          <div className="max-w-6xl mx-auto px-4 md:px-6 space-y-8 pb-12">
-            {/* Customize Training Plan Card */}
-            <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 animate-slide-up">
-              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-primary-700">
-                Customize Your Training Plan
+          <div className="max-w-6xl mx-auto px-4 md:px-6 space-y-8 py-16">
+            {/* App Introduction */}
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-neutral-900">
+                Create Your{" "}
+                <span className="bg-gradient-orange bg-clip-text text-transparent">
+                  Custom Training Plan
+                </span>
               </h2>
+              <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+                Get started by selecting your race distance, target date, and preferences. 
+                We'll create a personalized training calendar that fits your schedule.
+              </p>
+            </div>
+
+            {/* Customize Training Plan Card */}
+            <div className="bg-white rounded-3xl p-8 md:p-10 shadow-medium hover:shadow-strong transition-all duration-500 border border-neutral-100">
+              <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center text-neutral-900">
+                Customize Your Training Plan
+              </h3>
 
               <PlanAndDate
                 availablePlans={repo.available}
@@ -216,7 +243,7 @@ const App = () => {
                 weekStartsOn={weekStartsOn}
               />
 
-              <div className="flex justify-center mt-6">
+              <div className="flex justify-center mt-8">
                 <UnitsButtons
                   units={selectedUnits}
                   unitsChangeHandler={onSelectedUnitsChanged}
@@ -225,22 +252,26 @@ const App = () => {
             </div>
 
             {/* Plan Details Card */}
-            <div
-              className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300"
-              style={{ animationDelay: "100ms" }}
-            >
-              <h3 className="text-xl font-semibold mb-4 text-primary-700">
-                Plan Details
+            <div className="bg-white rounded-3xl p-8 md:p-10 shadow-medium hover:shadow-strong transition-all duration-500 border border-neutral-100">
+              <h3 className="text-xl font-semibold mb-6 text-neutral-900 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-primary-100 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                Plan Overview
               </h3>
               <PlanDetailsCard racePlan={racePlan} />
             </div>
 
             {/* Pace Calculator Card */}
-            <div
-              className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300"
-              style={{ animationDelay: "150ms" }}
-            >
-              <h3 className="text-xl font-semibold mb-4 text-primary-700">
+            <div className="bg-white rounded-3xl p-8 md:p-10 shadow-medium hover:shadow-strong transition-all duration-500 border border-neutral-100">
+              <h3 className="text-xl font-semibold mb-6 text-neutral-900 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-secondary-100 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-secondary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
                 Training Pace Calculator
               </h3>
               <PaceInput
@@ -251,11 +282,13 @@ const App = () => {
             </div>
 
             {/* Week Options Card */}
-            <div
-              className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300"
-              style={{ animationDelay: "200ms" }}
-            >
-              <h3 className="text-xl font-semibold mb-4 text-primary-700">
+            <div className="bg-white rounded-3xl p-8 md:p-10 shadow-medium hover:shadow-strong transition-all duration-500 border border-neutral-100">
+              <h3 className="text-xl font-semibold mb-6 text-neutral-900 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-accent-100 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-accent-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
                 Week Options
               </h3>
               <WeekStartsOnPicker
@@ -265,17 +298,20 @@ const App = () => {
             </div>
 
             {/* Generate Calendar Button */}
-            <div className="flex justify-center py-8">
+            <div className="flex justify-center py-12">
               <button
                 onClick={generateCalendar}
                 disabled={!racePlan || isTransitioning}
-                className="bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white py-4 px-12 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100"
+                className="group bg-gradient-orange hover:shadow-glow disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white py-5 px-16 rounded-2xl font-bold text-xl shadow-strong transition-all duration-500 transform hover:scale-105 disabled:hover:scale-100 relative overflow-hidden"
               >
-                <span className="flex items-center gap-3">
+                {/* Button background animation */}
+                <div className="absolute inset-0 bg-gradient-to-r from-secondary-600 to-secondary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <span className="flex items-center gap-4 relative z-10">
                   {isTransitioning ? (
                     <>
                       <svg
-                        className="w-6 h-6 animate-spin"
+                        className="w-7 h-7 animate-spin"
                         fill="none"
                         viewBox="0 0 24 24"
                       >
@@ -293,13 +329,13 @@ const App = () => {
                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                         ></path>
                       </svg>
-                      Generating...
+                      Generating Your Calendar...
                     </>
                   ) : (
                     <>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="w-6 h-6"
+                        className="w-7 h-7 group-hover:rotate-12 transition-transform duration-300"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -311,7 +347,7 @@ const App = () => {
                           d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                         />
                       </svg>
-                      Generate Calendar
+                      Generate Training Calendar
                     </>
                   )}
                 </span>
@@ -435,6 +471,9 @@ const App = () => {
           </div>
         </div>
       </div>
+
+      {/* Footer Section */}
+      <FooterSection />
     </div>
   );
 };
