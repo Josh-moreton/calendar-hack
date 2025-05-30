@@ -41,6 +41,7 @@ createRoot(document.getElementById("root")!).render(
               <Routes>
                 <Route path="/" element={<Index />}>
                   <Route index element={<HomePage />} />
+                  <Route path="dashboard" element={<HomePage />} />
                   <Route path="calendar" element={<App />} />
                   <Route path="about" element={<About />} />
                   <Route path="login" element={<LoginForm />} />

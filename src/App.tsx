@@ -24,8 +24,6 @@ import WeekStartsOnPicker from "./components/WeekStartsOnPicker";
 import { useMountEffect } from "./ch/hooks";
 import { Units, PlanSummary, dayOfWeek, PaceSettings } from "types/app";
 import { getLocaleUnits } from "./ch/localize";
-import HeroSection from "./components/HeroSection";
-
 type ViewState = "selection" | "calendar";
 
 const App = () => {
@@ -187,9 +185,6 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Hero Section */}
-      <HeroSection />
-
       {/* Two-page sliding container */}
       <div className="relative overflow-hidden min-h-[50vh]">
         {/* Selection Page */}
